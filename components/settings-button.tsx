@@ -20,7 +20,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import grupe from '../data/I Godina/po_smeru.json'
+import smerovi from '../data/I Godina/po_smeru.json'
+import grupe from '../data/I Godina/po_grupi.json'
 import { useAtom } from 'jotai'
 import { settingsAtom } from '@/state/settingsAtom'
 
@@ -29,26 +30,41 @@ export default function Component() {
   const [settings, setSettings] = useAtom(settingsAtom)
   const [selectedSearchType, setSelectedSearchType] = useState('lastName')
   const [selectedYear, setSelectedYear] = useState('year1')
+  const [selectedGroupYear, setSelectedGroupYear] = useState('year1')
+  const [selectedGroup, setSelectedGroup] = useState('')
   const [selectedClass, setSelectedClass] = useState('')
   const [lastName, setLastName] = useState('')
   // const []
 
   const handleSaveChanges = () => {
-    console.log('Changes saved')
+    const settingsDict = {
+      search_by: selectedSearchType,
+      year: selectedYear,
+      class: selectedClass,
+      lastName: lastName,
+      group_year: selectedGroupYear,
+      group: selectedGroup,
+    }
+    window.localStorage.setItem('SETTINGS', JSON.stringify(settingsDict))
+    setSettings(settingsDict)
     setIsOpen(false)
   }
 
   useEffect(() => {
-    setSettings({
-      search_by: selectedSearchType,
-      year: selectedYear,
-      class: selectedClass,
-      lastName: lastName
-    })
   }, [selectedSearchType, selectedYear, selectedClass, lastName])
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (open) {
+        setSelectedSearchType(settings["search_by"])
+        setSelectedYear(settings["year"])
+        setSelectedClass(settings["class"])
+        setLastName(settings["lastName"])
+        setSelectedGroupYear(settings["group_year"])
+        setSelectedGroup(settings["group"])
+      }
+      setIsOpen(open)
+    }}>
       <DialogTrigger asChild>
         <Button variant="outline" className='px-2'>
           <Settings2 strokeWidth={1.5}/>
@@ -61,7 +77,7 @@ export default function Component() {
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="selection-type">Pretraga po</Label>
-            <Select value={selectedSearchType} onValueChange={setSelectedSearchType} disabled={true}>
+            <Select value={selectedSearchType} onValueChange={setSelectedSearchType} disabled={false}>
               <SelectTrigger id="selection-type">
                 <SelectValue placeholder="Izaberi tip" />
               </SelectTrigger>
@@ -73,18 +89,38 @@ export default function Component() {
           </div>
           
           {selectedSearchType === 'group' ? (
-            <div className="grid gap-2">
-              <Label htmlFor="group-select">Izaberi grupu</Label>
-              <Select>
-                <SelectTrigger id="group-select">
-                  <SelectValue placeholder="Izavberi grupu" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="group1">A1</SelectItem>
-                  <SelectItem value="group2">A2</SelectItem>
-                  <SelectItem value="group3">A3</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="group-year-select">Godina Studija</Label>
+                <Select value={selectedGroupYear} onValueChange={(value) => {
+                    setSelectedGroup('')
+                    setSelectedGroupYear(value)
+                  }} disabled={true}>
+                  <SelectTrigger id="group-year-select">
+                    <SelectValue placeholder="Izaberi godinu" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="year1">I Godina</SelectItem>
+                    <SelectItem value="year2">II Godina</SelectItem>
+                    <SelectItem value="year3">III Godina</SelectItem>
+                    <SelectItem value="year4">IV Godina</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className='grid gap-2'>
+                <Label htmlFor="group-select">Izaberi grupu</Label>
+                <Select value={selectedGroup} onValueChange={setSelectedGroup} 
+                        disabled={selectedGroupYear == '' ? true : false}>
+                  <SelectTrigger id="group-select">
+                    <SelectValue placeholder="Izaberi grupu" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(grupe).sort().map((grupa) => {
+                      return <SelectItem value={grupa}>{grupa}</SelectItem>
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           ) : (
             <div className="grid gap-4">
@@ -107,13 +143,13 @@ export default function Component() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="class-select">Smer</Label>
-                <Select value={selectedClass} onValueChange={setSelectedClass}>
+                <Select value={selectedClass} onValueChange={setSelectedClass} disabled={selectedYear == '' ? true : false}>
                   <SelectTrigger id="class-select">
                     <SelectValue placeholder="Izaberi smer" />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.keys(grupe).map((smer) => {
-                      return <SelectItem value={smer}>{smer}</SelectItem>
+                    {Object.keys(smerovi).map((smer, index) => {
+                      return <SelectItem value={smer} key={index}>{smer}</SelectItem>
                     })}
                   </SelectContent>
                 </Select>
