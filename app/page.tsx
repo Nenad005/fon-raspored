@@ -9,7 +9,7 @@ import raspored from '../data/raspored_nastave.json'
 import grupe from '../data/raspored_grupa.json'
 import { cn, latinToCyrillic } from "@/lib/utils";
 import DaySelect from "@/components/day-select";
-import { Calendar, Clock, MapPin, Martini, Notebook, Projector, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Notebook, Projector, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function unicodeCompare(name1, name2) {

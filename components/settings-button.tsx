@@ -119,7 +119,7 @@ export default function Component() {
                   </SelectTrigger>
                   <SelectContent>
                     {Object.keys(raspored).filter((grupa) => {
-                      let S = selectedGroupYear == 'year1' ? 'A' 
+                      const S = selectedGroupYear == 'year1' ? 'A' 
                       : ( selectedGroupYear == 'year2' ? 'B' 
                       : ( selectedGroupYear == 'year3' ? 'C'
                       : 'D') )
