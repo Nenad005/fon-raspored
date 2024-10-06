@@ -6,17 +6,18 @@ import { useEffect, useState } from "react";
 // import smerovi from '../data/I Godina/po_smeru.json'
 // import po_grupi from '../data/I Godina/po_grupi.json'
 import raspored from '../data/raspored_nastave.json'
+import grupe from '../data/raspored_grupa.json'
 import { cn, latinToCyrillic } from "@/lib/utils";
 import DaySelect from "@/components/day-select";
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Martini, Notebook, Projector, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function unicodeCompare(name1, name2) {
   return name1.localeCompare(name2, 'sr', { sensitivity: 'base' });
 }
 
-function assignGroup(smer, lastName) {
-  // console.log(smer, lastName)
+function assignGroup(year, smer, lastName) {
+  const smerovi = grupe[year]
   if (!smerovi[smer]) {
     console.error(`Error: SMER '${smer}' not found.`);
     return null;
@@ -126,7 +127,7 @@ export default function Home() {
       if (settings["lastName"] == '')
         return { ...result, message: 'Error: Prezime nije uneto.' };
 
-      return { ...result, group: assignGroup(settings['class'], latinToCyrillic(settings["lastName"])), year: settings["year"] };
+      return { ...result, group: assignGroup(settings['year'], settings['class'], latinToCyrillic(settings["lastName"])), year: settings["year"] };
     }
   
     return { ...result, message: 'Error: Unsupported search_by value.' };
@@ -152,9 +153,21 @@ export default function Home() {
             </div>
             {/* <h1 className="font-bold">{`${getGroup().group}|${getGroup().year}`}</h1> */}
             <DaySelect day={day} setDay={setDay} className="my-5"></DaySelect>
-            <div className="mb-20 w-full">
+            {day in raspored[`${getGroup().group}`] && 
+              <div className="flex justify-center px-5 gap-2 items-center">
+                <Badge className="bg-green-400 flex gap-1 items-center py-1">
+                  <Projector size={15}></Projector>
+                  <h1>Predavanje</h1>
+                </Badge>
+                <Badge className="bg-blue-400 flex gap-1 items-center py-1">
+                  <Notebook size={15}></Notebook>
+                  <h1>Vežba</h1>
+                </Badge>
+              </div>
+            }
+            <div className="mb-20 w-full flex flex-col items-center">
               { day in raspored[`${getGroup().group}`] ? raspored[`${getGroup().group}`][`${day}`].map((predavanje, index) => {
-                return <div key={index} className="px-5 py-4 w-full flex justify-between">
+                return <div key={index} className="px-5 py-4 w-full md:w-[500px] flex justify-between">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-3">
                       <div className={cn("felx block w-3 h-3 aspect-square rounded-full gap-1 items-center", predavanje.tip == 'P' ? "bg-green-400" : "bg-blue-400")}>
@@ -184,7 +197,10 @@ export default function Home() {
                   </div>
                 </div>
               }) : <>
-                <div>Nema danas nista</div>
+                <div className="mt-10 flex flex-col items-center gap-10">
+                  <p className="text-2xl">Danas si Slobodan !!!</p>
+                  <p className="text-5xl">🍹  🙌  🎉</p>
+                </div>
               </>}
             </div>
           </> : <p>{getGroup()['message']}</p>}
