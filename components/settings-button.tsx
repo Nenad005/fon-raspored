@@ -115,8 +115,8 @@ export default function Component() {
                     <SelectValue placeholder="Izaberi grupu" />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.keys(grupe).sort().map((grupa) => {
-                      return <SelectItem value={grupa}>{grupa}</SelectItem>
+                    {Object.keys(grupe).sort().map((grupa, index) => {
+                      return <SelectItem value={grupa} key={index}>{grupa}</SelectItem>
                     })}
                   </SelectContent>
                 </Select>

@@ -7,8 +7,7 @@ import smerovi from '../data/I Godina/po_smeru.json'
 import po_grupi from '../data/I Godina/po_grupi.json'
 import { cn, latinToCyrillic } from "@/lib/utils";
 import DaySelect from "@/components/day-select";
-import { Separator } from "@/components/ui/separator";
-import { Book, Calendar, Clock, Laptop, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function unicodeCompare(name1, name2) {
@@ -81,7 +80,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoaded(true)
-    let settingsData = window.localStorage.getItem('SETTINGS')
+    const settingsData = window.localStorage.getItem('SETTINGS')
     if (settingsData) {
       setSettings(JSON.parse(settingsData))
       // console.log(JSON.parse(settingsData))
@@ -100,7 +99,7 @@ export default function Home() {
   }, [])
 
   function getGroup() {
-    let result = {
+    const result = {
       group: null,
       year: null,
       message: 'Success!'
