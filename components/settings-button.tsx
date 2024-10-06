@@ -20,8 +20,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import smerovi from '../data/I Godina/po_smeru.json'
-import grupe from '../data/I Godina/po_grupi.json'
+// import smerovi from '../data/I Godina/po_smeru.json'
+// import grupe from '../data/I Godina/po_grupi.json'
+import raspored from '../data/raspored_nastave.json'
+import grupe from '../data/raspored_grupa.json'
 import { useAtom } from 'jotai'
 import { settingsAtom } from '@/state/settingsAtom'
 
@@ -51,6 +53,7 @@ export default function Component() {
   }
 
   useEffect(() => {
+    console.log(grupe, raspored)
   }, [selectedSearchType, selectedYear, selectedClass, lastName])
 
   return (
@@ -95,7 +98,7 @@ export default function Component() {
                 <Select value={selectedGroupYear} onValueChange={(value) => {
                     setSelectedGroup('')
                     setSelectedGroupYear(value)
-                  }} disabled={true}>
+                  }} disabled={false}>
                   <SelectTrigger id="group-year-select">
                     <SelectValue placeholder="Izaberi godinu" />
                   </SelectTrigger>
@@ -115,7 +118,13 @@ export default function Component() {
                     <SelectValue placeholder="Izaberi grupu" />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.keys(grupe).sort().map((grupa, index) => {
+                    {Object.keys(raspored).filter((grupa) => {
+                      let S = selectedGroupYear == 'year1' ? 'A' 
+                      : ( selectedGroupYear == 'year2' ? 'B' 
+                      : ( selectedGroupYear == 'year3' ? 'C'
+                      : 'D') )
+                      return grupa.includes(S)
+                    }).sort().map((grupa, index) => {
                       return <SelectItem value={grupa} key={index}>{grupa}</SelectItem>
                     })}
                   </SelectContent>
@@ -129,7 +138,7 @@ export default function Component() {
                 <Select value={selectedYear} onValueChange={(value) => {
                     setSelectedClass('')
                     setSelectedYear(value)
-                  }} disabled={true}>
+                  }} disabled={false}>
                   <SelectTrigger id="year-select">
                     <SelectValue placeholder="Izaberi godinu" />
                   </SelectTrigger>
@@ -148,7 +157,7 @@ export default function Component() {
                     <SelectValue placeholder="Izaberi smer" />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.keys(smerovi).map((smer, index) => {
+                    {Object.keys(grupe[selectedYear]).map((smer, index) => {
                       return <SelectItem value={smer} key={index}>{smer}</SelectItem>
                     })}
                   </SelectContent>

@@ -3,8 +3,9 @@
 import { settingsAtom } from "@/state/settingsAtom";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import smerovi from '../data/I Godina/po_smeru.json'
-import po_grupi from '../data/I Godina/po_grupi.json'
+// import smerovi from '../data/I Godina/po_smeru.json'
+// import po_grupi from '../data/I Godina/po_grupi.json'
+import raspored from '../data/raspored_nastave.json'
 import { cn, latinToCyrillic } from "@/lib/utils";
 import DaySelect from "@/components/day-select";
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
@@ -152,7 +153,7 @@ export default function Home() {
             {/* <h1 className="font-bold">{`${getGroup().group}|${getGroup().year}`}</h1> */}
             <DaySelect day={day} setDay={setDay} className="my-5"></DaySelect>
             <div className="mb-20 w-full">
-              {po_grupi[`${getGroup().group}`][`${day}`].map((predavanje, index) => {
+              { day in raspored[`${getGroup().group}`] ? raspored[`${getGroup().group}`][`${day}`].map((predavanje, index) => {
                 return <div key={index} className="px-5 py-4 w-full flex justify-between">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-3">
@@ -182,7 +183,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              })}
+              }) : <>
+                <div>Nema danas nista</div>
+              </>}
             </div>
           </> : <p>{getGroup()['message']}</p>}
         </>
