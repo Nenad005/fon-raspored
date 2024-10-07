@@ -83,7 +83,6 @@ export default function Raspored({raspored, group}) {
             <div className="flex items-center gap-3">
               <div className={cn("felx block w-3 h-3 aspect-square rounded-full gap-1 items-center", predavanje.tip == 'P' ? "bg-green-400" : "bg-blue-400")}>
                 {/* {predavanje.tip == 'P' ? <Book size={15}/> : <Laptop size={15}/>} */}
-                {/* {predavanje.tip == 'P' ? 'Predavanje' : 'Vežba'} */}
               </div>
               <h1 className="text-xl">{predavanje.predmet}</h1>
             </div>
