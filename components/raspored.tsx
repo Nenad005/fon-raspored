@@ -50,7 +50,7 @@ function yearName(year) {
 export default function Raspored({raspored, group}) {
   const [day, setDay] = useState(nazivDana())
   const [error, setError] = useAtom(errorAtom)
-  console.log(error ? '' : '')
+  console.log(error ? '' : 'test')
   setError(false)
 
   return <>
