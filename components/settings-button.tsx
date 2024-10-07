@@ -124,7 +124,11 @@ export default function Component() {
                       : ( selectedGroupYear == 'year3' ? 'C'
                       : 'D') )
                       return grupa.includes(S)
-                    }).sort().map((grupa, index) => {
+                    }).sort((a, b) => {
+                      const aInt = parseInt(a.slice(1, a.length))
+                      const bInt = parseInt(b.slice(1, b.length))
+                      return aInt - bInt
+                    }).map((grupa, index) => {
                       return <SelectItem value={grupa} key={index}>{grupa}</SelectItem>
                     })}
                   </SelectContent>
