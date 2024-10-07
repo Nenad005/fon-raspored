@@ -65,11 +65,11 @@ export default function Raspored({raspored, group}) {
     <DaySelect day={day} setDay={setDay} className="my-5"></DaySelect>
     {day in raspored[`${group.group}`] && 
       <div className="flex justify-center px-5 gap-2 items-center">
-        <Badge className="bg-green-400 flex gap-1 items-center py-1">
+        <Badge className="bg-green-400 flex gap-1 items-center py-1 hover:bg-green-500 transition-all duration-300">
           <Projector size={15}></Projector>
           <h1>Predavanje</h1>
         </Badge>
-        <Badge className="bg-blue-400 flex gap-1 items-center py-1">
+        <Badge className="bg-blue-400 flex gap-1 items-center py-1 hover:bg-blue-500 transition-all duration-300">
           <Notebook size={15}></Notebook>
           <h1>Vežba</h1>
         </Badge>
@@ -107,7 +107,7 @@ export default function Raspored({raspored, group}) {
           </div>
         </div>
       }) : <>
-        <div className="mt-10 flex flex-col items-center gap-10 ">
+        <div className="mt-10 flex flex-col items-center gap-10 animate-bounce">
           <p className="text-2xl">Danas si slobodan !</p>
           <p className="text-5xl">🍹  🙌  🎉</p>
         </div>
