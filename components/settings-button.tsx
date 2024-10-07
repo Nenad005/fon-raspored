@@ -40,6 +40,7 @@ export default function Component() {
   const [selectedClass, setSelectedClass] = useState('')
   const [lastName, setLastName] = useState('')
   const [error, setError] = useAtom(errorAtom)
+  console.log(setError ? '' : '')
 
   const handleSaveChanges = () => {
     const settingsDict = {
@@ -56,7 +57,7 @@ export default function Component() {
   }
 
   useEffect(() => {
-    console.log(grupe, raspored)
+    // console.log(grupe, raspored)   
   }, [selectedSearchType, selectedYear, selectedClass, lastName])
 
   return (

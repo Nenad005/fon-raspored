@@ -1,12 +1,12 @@
 import { errorAtom } from "@/state/errorAtom";
-import { isOpenAtom } from "@/state/isOpenAtom";
+// import { isOpenAtom } from "@/state/isOpenAtom";
 import { useAtom } from "jotai";
 import { ServerCrash } from "lucide-react";
 
 export default function ErrorMsg({message}) {
   const [error, setError] = useAtom(errorAtom)
-  const [isOpen, setIsOpen] = useAtom(isOpenAtom)
   setError(true)
+  console.log(error ? '' : '')
   // setIsOpen(true)
 
   return <div className="flex flex-col items-center gap-5 absolute top-[50%] animate-bounce cursor-pointer">

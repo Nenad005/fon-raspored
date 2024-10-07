@@ -10,7 +10,7 @@ import grupe from '../data/raspored_grupa.json'
 import { latinToCyrillic } from "@/lib/utils";
 import ErrorMsg from "@/components/error-msg";
 import Raspored from "@/components/raspored";
-import { isOpenAtom } from "@/state/isOpenAtom";
+// import { isOpenAtom } from "@/state/isOpenAtom";
 
 function unicodeCompare(name1, name2) {
   return name1.localeCompare(name2, 'sr', { sensitivity: 'base' });
@@ -38,7 +38,6 @@ function assignGroup(year, smer, lastName) {
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false)
-  const [isOpen, setIsOpen] = useAtom(isOpenAtom)
   const [settings, setSettings] = useAtom(settingsAtom)
 
   useEffect(() => {
