@@ -26,9 +26,12 @@ import raspored from '../data/raspored_nastave.json'
 import grupe from '../data/raspored_grupa.json'
 import { useAtom } from 'jotai'
 import { settingsAtom } from '@/state/settingsAtom'
+import { errorAtom } from '@/state/errorAtom'
+import { cn } from '@/lib/utils'
+import { isOpenAtom } from '@/state/isOpenAtom'
 
 export default function Component() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useAtom(isOpenAtom)
   const [settings, setSettings] = useAtom(settingsAtom)
   const [selectedSearchType, setSelectedSearchType] = useState('lastName')
   const [selectedYear, setSelectedYear] = useState('year1')
@@ -36,7 +39,7 @@ export default function Component() {
   const [selectedGroup, setSelectedGroup] = useState('')
   const [selectedClass, setSelectedClass] = useState('')
   const [lastName, setLastName] = useState('')
-  // const []
+  const [error, setError] = useAtom(errorAtom)
 
   const handleSaveChanges = () => {
     const settingsDict = {
@@ -69,7 +72,7 @@ export default function Component() {
       setIsOpen(open)
     }}>
       <DialogTrigger asChild>
-        <Button variant="outline" className='px-2'>
+        <Button variant="outline" className={cn('px-2', error ? 'border-2 border-red-500' : '')}>
           <Settings2 strokeWidth={1.5}/>
         </Button>
       </DialogTrigger>
