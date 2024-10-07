@@ -88,8 +88,8 @@ export default function Component() {
                 <SelectValue placeholder="Izaberi tip" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="group">Po Grupi</SelectItem>
-                <SelectItem value="lastName">Po Prezimenu</SelectItem>
+                <SelectItem value="group">Po grupi</SelectItem>
+                <SelectItem value="lastName">Po prezimenu</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -97,7 +97,7 @@ export default function Component() {
           {selectedSearchType === 'group' ? (
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="group-year-select">Godina Studija</Label>
+                <Label htmlFor="group-year-select">Godina studija</Label>
                 <Select value={selectedGroupYear} onValueChange={(value) => {
                     setSelectedGroup('')
                     setSelectedGroupYear(value)
@@ -141,7 +141,7 @@ export default function Component() {
           ) : (
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="year-select">Godina Studija</Label>
+                <Label htmlFor="year-select">Godina studija</Label>
                 <Select value={selectedYear} onValueChange={(value) => {
                     setSelectedClass('')
                     setSelectedYear(value)
@@ -180,7 +180,7 @@ export default function Component() {
           )}
         </div>
         <DialogFooter>
-          <Button onClick={handleSaveChanges}>Save changes</Button>
+          <Button onClick={handleSaveChanges}>Sačuvaj</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
