@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import React from "react";
 import Footer from "@/components/footer";
+import { ClerkProvider } from "@clerk/nextjs"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +18,16 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
-      <body className={`antialiased min-h-screen relative`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header></Header>
-          {children}
-          <Footer></Footer>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`antialiased min-h-screen relative`}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Header></Header>
+            {children}
+            <Footer></Footer>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
