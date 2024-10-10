@@ -6,3 +6,15 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Termin {
+  id      String @id @default(cuid()) @db.VarChar(255)
+  predmet String @db.VarChar(255)
+  tip     String @db.VarChar(1)
+  grupe   String @db.VarChar(50)
+  od      String @db.VarChar(5)
+  do      String @db.VarChar(5)
+  sala    String @db.VarChar(50)
+  dan     Int    @db.TinyInt()
+  userId  String @db.VarChar(255)
+}
