@@ -29,7 +29,7 @@ export default function Header() {
                 }
               }
             }/>
-            <p>{user.user.id}</p>
+            <p className="hidden md:block">{user.user.id}</p>
           </> : 
           <SignInButton>
             <Button>Prijava</Button>

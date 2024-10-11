@@ -17,4 +17,6 @@ model Termin {
   sala    String @db.VarChar(50)
   dan     Int    @db.TinyInt()
   userId  String @db.VarChar(255)
+
+  @@index([userId])
 }

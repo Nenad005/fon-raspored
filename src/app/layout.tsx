@@ -5,6 +5,7 @@ import Header from "~/components/header";
 import React from "react";
 import Footer from "~/components/footer";
 import { ClerkProvider } from "@clerk/nextjs"
+import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,11 +22,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`antialiased min-h-screen relative`}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header></Header>
-            {children}
-            <Footer></Footer>
-          </ThemeProvider>
+          <TRPCReactProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <Header></Header>
+              {children}
+              <Footer></Footer>
+            </ThemeProvider>
+          </TRPCReactProvider>
         </body>
       </html>
     </ClerkProvider>
