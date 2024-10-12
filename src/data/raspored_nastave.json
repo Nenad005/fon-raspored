@@ -48,19 +48,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V A4 10:15 -12:00  61 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A4"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V A4 10:15 -12:00  60 "
             },
             {
                 "predmet": "Ekonomija",
@@ -214,31 +203,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "07",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A4",
-                    "A6"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "06",
-                "string": "Osnove  informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A4",
-                    "A6"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "17",
+                "sala": "17/07/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  17 "
             },
             {
@@ -316,19 +281,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V A5 14:15 -16:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A5"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V A5 14:15 -16:00  61 "
             },
             {
                 "predmet": "Francuski jezik u informatici",
@@ -435,29 +389,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A5 14:15 -16:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A5"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "62",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A5 14:15 -16:00  62 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A5"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "07",
+                "sala": "07/06/62",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A5 14:15 -16:00  07 "
             },
             {
@@ -700,31 +632,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "07",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A4",
-                    "A6"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "06",
-                "string": "Osnove  informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A4",
-                    "A6"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "17",
+                "sala": "17/07/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A4,A6  12:15 -14:00  17 "
             },
             {
@@ -735,18 +643,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V A6 14:15 -16:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A6"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V A6 14:15 -16:00  61 "
             },
             {
@@ -801,31 +698,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "07",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A1",
-                    "A3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A1",
-                    "A3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "21",
+                "sala": "21/07/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  21 "
             }
         ],
@@ -994,19 +867,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V A1 08:15 -10:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A1"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V A1 08:15 -10:00  61 "
             },
             {
                 "predmet": "Matematika 1",
@@ -1196,31 +1058,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  06  "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih",
-                "tip": "V",
-                "grupe": [
-                    "A2",
-                    "A7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "07",
-                "string": "3 Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A2",
-                    "A7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "Čitaonica",
+                "sala": "Čitaonica/06/07",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  Čitaonica  "
             },
             {
@@ -1264,19 +1102,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V A2 12:15 -14:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A2"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V A2 12:15 -14:00  61 "
             }
         ]
     },
@@ -1319,31 +1146,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "07",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A1",
-                    "A3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A1",
-                    "A3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "21",
+                "sala": "21/07/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A1,A3  12:15 -14:00  21 "
             }
         ],
@@ -1384,19 +1187,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V A3 12:15 -14:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V A3 12:15 -14:00  61 "
             },
             {
                 "predmet": "Francuski jezik u informatici",
@@ -1607,31 +1399,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A10",
-                    "A17"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A10",
-                    "A17"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "17",
+                "sala": "17/40/50",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  17  "
             },
             {
@@ -1686,19 +1454,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "50",
+                "sala": "50/40",
                 "string": "Elektronsko poslovanje (NA)  V A10 08:15 -10:00  50 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A10"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "40",
-                "string": "Elektronsko poslovanje (NA)  V A10 08:15 -10:00  40 "
             },
             {
                 "predmet": "Engleski jezik u informatici",
@@ -1834,19 +1591,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V A7 12:15 -14:00  61 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V A7 12:15 -14:00  60 "
             }
         ],
         "Utorak": [
@@ -1981,31 +1727,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  06  "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih",
-                "tip": "V",
-                "grupe": [
-                    "A2",
-                    "A7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "07",
-                "string": "3 Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  07 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A2",
-                    "A7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "Čitaonica",
+                "sala": "Čitaonica/06/07",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A2,A7  12:15 -14:00  Čitaonica  "
             },
             {
@@ -2092,19 +1814,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V A8 08:15 -10:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A8"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V A8 08:15 -10:00  61 "
             },
             {
                 "predmet": "Ekonomija",
@@ -2281,31 +1992,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "18",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  18 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A8",
-                    "A9"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A8",
-                    "A9"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "07",
+                "sala": "07/18/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  07 "
             }
         ]
@@ -2481,19 +2168,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V A9 12:15 -14:00  61 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "A9"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V A9 12:15 -14:00  60 "
             },
             {
                 "predmet": "Osnovi organizacije",
@@ -2537,31 +2213,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "18",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  18 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A8",
-                    "A9"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "06",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  06 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A8",
-                    "A9"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "07",
+                "sala": "07/18/06",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A8,A9  14:15 -16:00  07 "
             }
         ]
@@ -2679,31 +2331,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A14",
-                    "A16"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A14",
-                    "A16"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "62",
+                "sala": "62/50/40",
                 "string": "Osnove  informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  62 "
             }
         ],
@@ -2857,31 +2485,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "62",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  62 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A11",
-                    "A15"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A11",
-                    "A15"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "50",
+                "sala": "50/62/40",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  50 "
             }
         ],
@@ -3034,31 +2638,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A14",
-                    "A16"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A14",
-                    "A16"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "62",
+                "sala": "62/50/40",
                 "string": "Osnove  informaciono komunikacionih tehnologija  V A14,A16  12:15 -14:00  62 "
             },
             {
@@ -3200,31 +2780,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "62",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  62 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A11",
-                    "A15"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A11",
-                    "A15"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "50",
+                "sala": "50/62/40",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A11,A15  10:15 -12:00  50 "
             },
             {
@@ -3337,31 +2893,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A12",
-                    "A13"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A12",
-                    "A13"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "21",
+                "sala": "21/50/40",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  21 "
             },
             {
@@ -3523,7 +3055,7 @@
                 "string": "Menadžment  V A13 10:15 -12:00  21 "
             },
             {
-                "predmet": "Osnovi",
+                "predmet": "Osnovi organizacije",
                 "tip": "V",
                 "grupe": [
                     "A13"
@@ -3542,31 +3074,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A12",
-                    "A13"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A12",
-                    "A13"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "21",
+                "sala": "21/50/40",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A12,A13  14:15 -16:00  21 "
             },
             {
@@ -3714,31 +3222,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "40",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  40 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A10",
-                    "A17"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "50",
-                "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  50 "
-            },
-            {
-                "predmet": "Osnove informaciono komunikacionih tehnologija",
-                "tip": "V",
-                "grupe": [
-                    "A10",
-                    "A17"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "17",
+                "sala": "17/40/50",
                 "string": "Osnove informaciono komunikacionih tehnologija  V A10,A17  12:15 -14:00  17  "
             },
             {
@@ -3938,21 +3422,10 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Programiranje 1 (NA)  V B7 12:15 -14:00  09 "
             },
             {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "08",
-                "string": "Programiranje 1 (NA)  V B7 12:15 -14:00  08 "
-            },
-            {
                 "predmet": "Arhitektura računara i operativni sistemi",
                 "tip": "V",
                 "grupe": [
@@ -3961,31 +3434,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "50",
-                "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  50 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B7",
-                    "B8"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "40",
-                "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  40 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B7",
-                    "B8"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "62",
+                "sala": "62/50/40",
                 "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  62 "
             },
             {
@@ -4106,19 +3555,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Programiranje 1 (NA)  V B1 12:15 -14:00  09 "
-            },
-            {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B1"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "08",
-                "string": "Programiranje 1 (NA)  V B1 12:15 -14:00  08 "
             },
             {
                 "predmet": "Marketing",
@@ -4149,31 +3587,7 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "40",
-                "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  40 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B1",
-                    "B2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "30",
-                "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  30 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B1",
-                    "B2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "50",
+                "sala": "50/40/30",
                 "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  50 "
             },
             {
@@ -4377,31 +3791,7 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "40",
-                "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  40 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B1",
-                    "B2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "30",
-                "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  30 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B1",
-                    "B2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "50",
+                "sala": "50/40/30",
                 "string": "Arhitektura računara i operativni sistemi  V B1,B2  08:15 -10:00  50 "
             },
             {
@@ -4488,19 +3878,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Programiranje 1 (NA)  V B2 08:15 -10:00  08 "
-            },
-            {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "09",
-                "string": "Programiranje 1 (NA)  V B2 08:15 -10:00  09 "
             },
             {
                 "predmet": "Teorija verovatnoće",
@@ -4635,31 +4014,7 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "09",
-                "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  09 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B3",
-                    "B4"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "21",
-                "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  21 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B3",
-                    "B4"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "08",
+                "sala": "08/09/21",
                 "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  08 "
             },
             {
@@ -4754,19 +4109,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Programiranje 1 (NA)  V B3 12:15 -14:00  09 "
-            },
-            {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "08",
-                "string": "Programiranje 1 (NA)  V B3 12:15 -14:00  08 "
             },
             {
                 "predmet": "Marketing",
@@ -4852,7 +4196,7 @@
         ],
         "Sreda": [
             {
-                "predmet": "Osnove",
+                "predmet": "Osnove kvaliteta",
                 "tip": "P",
                 "grupe": [
                     "B12",
@@ -4989,7 +4333,7 @@
                 "string": "Menadžment ljudskih resursa  V B13 08:15 -10:00  13 "
             },
             {
-                "predmet": "Osnove",
+                "predmet": "Osnove kvaliteta",
                 "tip": "P",
                 "grupe": [
                     "B12",
@@ -5513,31 +4857,7 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "09",
-                "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  09 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B3",
-                    "B4"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "21",
-                "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  21 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B3",
-                    "B4"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "08",
+                "sala": "08/09/21",
                 "string": "Arhitektura računara i operativni sistemi  V B3,B4  08:15 -10:00  08 "
             },
             {
@@ -5633,19 +4953,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Programiranje 1 (NA)  V B4 10:15 -12:00  09  "
-            },
-            {
-                "predmet": "Programiranje 1",
-                "tip": "V",
-                "grupe": [
-                    "B4"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "08",
-                "string": "3 Programiranje 1 (NA)  V B4 10:15 -12:00  08 "
             },
             {
                 "predmet": "Teorija verovatnoće",
@@ -5821,21 +5130,10 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Programiranje 1 (NA)  V B5 08:15 -10:00  08 "
             },
             {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B5"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "09",
-                "string": "Programiranje 1 (NA)  V B5 08:15 -10:00  09 "
-            },
-            {
                 "predmet": "Arhitektura računara i operativni sistemi",
                 "tip": "V",
                 "grupe": [
@@ -5844,31 +5142,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "07",
-                "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15 -12:00  07 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B5",
-                    "B6"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "06",
-                "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15 -12:00  06 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B5",
-                    "B6"
-                ],
-                "od": "10:15-12:00",
-                "do": "62",
-                "sala": "",
+                "sala": "62/07/06",
                 "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15-12:00  62 "
             }
         ],
@@ -6052,31 +5326,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "07",
-                "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15 -12:00  07 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B5",
-                    "B6"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "06",
-                "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15 -12:00  06 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B5",
-                    "B6"
-                ],
-                "od": "10:15-12:00",
-                "do": "62",
-                "sala": "",
+                "sala": "62/07/06",
                 "string": "Arhitektura računara i operativni sistemi  V B5,B6  10:15-12:00  62 "
             },
             {
@@ -6087,18 +5337,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "09",
-                "string": "Programiranje 1 (NA)  V B6 12:15 -14:00  09 "
-            },
-            {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B6"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Programiranje 1 (NA)  V B6 12:15 -14:00  08 "
             },
             {
@@ -6235,31 +5474,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "50",
-                "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  50 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B7",
-                    "B8"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "40",
-                "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  40 "
-            },
-            {
-                "predmet": "Arhitektura računara i operativni sistemi",
-                "tip": "V",
-                "grupe": [
-                    "B7",
-                    "B8"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "62",
+                "sala": "62/50/40",
                 "string": "Arhitektura računara i operativni sistemi  V B7,B8  14:15 -16:00  62 "
             },
             {
@@ -6304,19 +5519,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Programiranje 1 (NA)  V B8 10:15 -12:00  08 "
-            },
-            {
-                "predmet": "Programiranje 1 (NA)",
-                "tip": "V",
-                "grupe": [
-                    "B8"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "09",
-                "string": "Programiranje 1 (NA)  V B8 10:15 -12:00  09 "
             },
             {
                 "predmet": "Teorija verovatnoće",
@@ -6452,7 +5656,7 @@
                 "string": "Projektovanje informacionih sistema  V C5 12:15 -14:00  12 "
             },
             {
-                "predmet": "Operaciona istraživanja",
+                "predmet": "Operaciona istraživanja 1",
                 "tip": "V",
                 "grupe": [
                     "C5"
@@ -6509,29 +5713,7 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "06",
-                "string": "Računarske mreže i telekomunikacije  V C5 08:15 -10:00  06 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C5"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "07",
-                "string": "Računarske mreže i telekomunikacije  V C5 08:15 -10:00  07 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C5"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "21",
+                "sala": "21/06/07",
                 "string": "Računarske mreže i telekomunikacije  V C5 08:15 -10:00  21 "
             },
             {
@@ -6542,18 +5724,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "50",
-                "string": "Projektovanje softvera  V C5 10:15 -12:00  50 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C5"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "62",
+                "sala": "62/50",
                 "string": "Projektovanje softvera  V C5 10:15 -12:00  62 "
             },
             {
@@ -6564,18 +5735,7 @@
                 ],
                 "od": "12:15",
                 "do": "13:00",
-                "sala": "11",
-                "string": "Teorija sistema  V C5 12:15 -13:00  11 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C5"
-                ],
-                "od": "12:15",
-                "do": "13:00",
-                "sala": "40",
+                "sala": "40/11",
                 "string": "Teorija sistema  V C5 12:15 -13:00  40 "
             }
         ]
@@ -6590,21 +5750,10 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V C1 12:15 -14:00  50 "
             },
             {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C1"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V C1 12:15 -14:00  62 "
-            },
-            {
                 "predmet": "Računarske mreže i telekomunikacije",
                 "tip": "V",
                 "grupe": [
@@ -6613,31 +5762,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "09",
-                "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  09 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C1",
-                    "C2"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "20",
-                "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  20 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C1",
-                    "C2"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "08",
+                "sala": "08/09/20",
                 "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  08 "
             },
             {
@@ -6661,19 +5786,8 @@
                 ],
                 "od": "10:15",
                 "do": "11:00",
-                "sala": "11",
+                "sala": "11/19",
                 "string": "Teorija sistema  V C1 10:15 -11:00  11 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C1"
-                ],
-                "od": "10:15",
-                "do": "11:00",
-                "sala": "19",
-                "string": "Teorija sistema  V C1 10:15 -11:00  19 "
             },
             {
                 "predmet": "Projektovanje informacionih sistema",
@@ -6847,19 +5961,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Elektronsko poslovanje (NA)  V C11 16:15 -18:00  60 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "C11"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "61",
-                "string": "Elektronsko poslovanje (NA)  V C11 16:15 -18:00  61 "
             }
         ],
         "Sreda": [
@@ -7178,19 +6281,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V C17 10:15 -12:00  61 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "C17"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V C17 10:15 -12:00  60 "
             }
         ]
     },
@@ -7320,19 +6412,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA)  V C18 16:15 -18:00  61 "
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "V",
-                "grupe": [
-                    "C18"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "60",
-                "string": "Elektronsko poslovanje (NA)  V C18 16:15 -18:00  60 "
             }
         ]
     },
@@ -7358,31 +6439,7 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "09",
-                "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  09 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C1",
-                    "C2"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "20",
-                "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  20 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C1",
-                    "C2"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "08",
+                "sala": "08/09/20",
                 "string": "Računarske mreže i telekomunikacije  V C1,C2  14:15 -16:00  08 "
             },
             {
@@ -7393,18 +6450,7 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V C2 16:15 -18:00  62 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C2"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V C2 16:15 -18:00  50 "
             }
         ],
@@ -7417,19 +6463,8 @@
                 ],
                 "od": "11:15",
                 "do": "12:00",
-                "sala": "19",
+                "sala": "19/11",
                 "string": "Teorija sistema  V C2 11:15 -12:00  19 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C2"
-                ],
-                "od": "11:15",
-                "do": "12:00",
-                "sala": "11",
-                "string": "Teorija sistema  V C2 11:15 -12:00  11 "
             },
             {
                 "predmet": "Projektovanje informacionih sistema",
@@ -7564,19 +6599,8 @@
                 ],
                 "od": "13:15",
                 "do": "14:00",
-                "sala": "11",
+                "sala": "11/19",
                 "string": "Teorija sistema  V C6 13:15 -14:00  11 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C6"
-                ],
-                "od": "13:15",
-                "do": "14:00",
-                "sala": "19",
-                "string": "Teorija sistema  V C6 13:15 -14:00  19 "
             },
             {
                 "predmet": "Teorija sistema",
@@ -7647,21 +6671,10 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "62",
+                "sala": "62/50",
                 "string": "Projektovanje softvera  V C6 08:15 -10:00  62 "
             },
             {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C6"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "50",
-                "string": "Projektovanje softvera  V C6 08:15 -10:00  50 "
-            },
-            {
                 "predmet": "Računarske mreže i telekomunikacije",
                 "tip": "V",
                 "grupe": [
@@ -7670,31 +6683,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "07",
-                "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  07 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C6",
-                    "C7"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "06",
-                "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  06 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C6",
-                    "C7"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "21",
+                "sala": "21/07/06",
                 "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  21 "
             },
             {
@@ -7783,19 +6772,8 @@
                 ],
                 "od": "09:15",
                 "do": "10:00",
-                "sala": "40",
+                "sala": "40/19",
                 "string": "Teorija sistema  V C7 09:15 -10:00  40 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C7"
-                ],
-                "od": "09:15",
-                "do": "10:00",
-                "sala": "19",
-                "string": "Teorija sistema  V C7 09:15 -10:00  19 "
             },
             {
                 "predmet": "Projektovanje softvera",
@@ -7832,31 +6810,7 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "07",
-                "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  07 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C6",
-                    "C7"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "06",
-                "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  06 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C6",
-                    "C7"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "21",
+                "sala": "21/07/06",
                 "string": "Računarske mreže i telekomunikacije  V C6,C7  10:15 -12:00  21 "
             },
             {
@@ -7867,18 +6821,7 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V C7 12:15 -14:00  62 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C7"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V C7 12:15 -14:00  50 "
             },
             {
@@ -8136,19 +7079,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Upravljački sistemi  V C19 14:15 -16:00  09 "
-            },
-            {
-                "predmet": "Upravljački sistemi",
-                "tip": "V",
-                "grupe": [
-                    "C19"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "08",
-                "string": "Upravljački sistemi  V C19 14:15 -16:00  08 "
             },
             {
                 "predmet": "Operaciona istraživanja 1",
@@ -8438,21 +7370,10 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V C3 14:15 -16:00  50 "
             },
             {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C3"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V C3 14:15 -16:00  62 "
-            },
-            {
                 "predmet": "Računarske mreže i telekomunikacije",
                 "tip": "V",
                 "grupe": [
@@ -8461,31 +7382,7 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "20",
-                "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  20 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C3",
-                    "C4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  09 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C3",
-                    "C4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "08",
+                "sala": "08/20/09",
                 "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  08 "
             },
             {
@@ -8602,19 +7499,8 @@
                 ],
                 "od": "12:15",
                 "do": "13:00",
-                "sala": "19",
+                "sala": "19/40",
                 "string": "Teorija sistema  V C3 12:15 -13:00  19 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C3"
-                ],
-                "od": "12:15",
-                "do": "13:00",
-                "sala": "40",
-                "string": "Teorija sistema  V C3 12:15 -13:00  40 "
             }
         ]
     },
@@ -8640,31 +7526,7 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "20",
-                "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  20 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C3",
-                    "C4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  09 "
-            },
-            {
-                "predmet": "Računarske mreže i telekomunikacije",
-                "tip": "V",
-                "grupe": [
-                    "C3",
-                    "C4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "08",
+                "sala": "08/20/09",
                 "string": "Računarske mreže i telekomunikacije  V C3,C4  16:15 -18:00  08 "
             },
             {
@@ -8675,18 +7537,7 @@
                 ],
                 "od": "18:15",
                 "do": "20:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V C4 18:15 -20:00  62 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "C4"
-                ],
-                "od": "18:15",
-                "do": "20:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V C4 18:15 -20:00  50 "
             }
         ],
@@ -8790,34 +7641,8 @@
                 ],
                 "od": "13:15",
                 "do": "14:00",
-                "sala": "40",
+                "sala": "40/11",
                 "string": "Teorija sistema  V C4 13:15 -14:00  40 "
-            },
-            {
-                "predmet": "Teorija sistema",
-                "tip": "V",
-                "grupe": [
-                    "C4"
-                ],
-                "od": "13:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Teorija sistema  V C4 13:15 -14:00  11 "
-            }
-        ]
-    },
-    "3": {
-        "Četvrtak": [
-            {
-                "predmet": "",
-                "tip": "Petak",
-                "grupe": [
-                    "3"
-                ],
-                "od": "Petak",
-                "do": "3",
-                "sala": "Petak",
-                "string": "3 Petak      "
             }
         ]
     },
@@ -8831,19 +7656,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Internet tehnologije  V D1 08:15 -10:00  60 "
-            },
-            {
-                "predmet": "Internet tehnologije",
-                "tip": "V",
-                "grupe": [
-                    "D1"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "61",
-                "string": "Internet tehnologije  V D1 08:15 -10:00  61 "
             },
             {
                 "predmet": "Projektovanje informacionih sistema",
@@ -8897,22 +7711,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  08 "
-            },
-            {
-                "predmet": "Dizajn korisničkog interfejsa",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "09",
-                "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  09 "
             },
             {
                 "predmet": "Napredne .NET tehnologije",
@@ -8971,20 +7771,6 @@
                 "string": "Napredne .NET tehnologije  V D1,D2,D3,D4  16:15 -18:00  11  "
             },
             {
-                "predmet": "Dizajn korisničkog",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
-            },
-            {
                 "predmet": "Dizajn korisničkog interfejsa",
                 "tip": "V",
                 "grupe": [
@@ -8995,8 +7781,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "08",
-                "string": "Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  08 "
+                "sala": "09/08",
+                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
             },
             {
                 "predmet": "Multimediji",
@@ -9022,19 +7808,8 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "07",
+                "sala": "07/06",
                 "string": "Multimediji  V D1 08:15 -10:00  07 "
-            },
-            {
-                "predmet": "Multimediji",
-                "tip": "V",
-                "grupe": [
-                    "D1"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "06",
-                "string": "Multimediji  V D1 08:15 -10:00  06 "
             },
             {
                 "predmet": "Mobilno poslovanje",
@@ -9098,21 +7873,10 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Simulacija i simulacioni jezici  V D1 08:15 -10:00  61 "
             },
             {
-                "predmet": "Simulacija i simulacioni jezici",
-                "tip": "V",
-                "grupe": [
-                    "D1"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "60",
-                "string": "Simulacija i simulacioni jezici  V D1 08:15 -10:00  60 "
-            },
-            {
                 "predmet": "Projektovanje softvera",
                 "tip": "V",
                 "grupe": [
@@ -9120,19 +7884,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "40",
+                "sala": "40/50",
                 "string": "Projektovanje softvera  V D1 10:15 -12:00  40 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "D1"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "50",
-                "string": "Projektovanje softvera  V D1 10:15 -12:00  50 "
             }
         ],
         "Petak": [
@@ -9242,20 +7995,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Analiza pouzdanosti i rizika  V D7,D8  12:15 -14:00  08 "
-            },
-            {
-                "predmet": "Analiza pouzdanosti i rizika",
-                "tip": "V",
-                "grupe": [
-                    "D7",
-                    "D8"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "09",
-                "string": "Analiza pouzdanosti i rizika  V D7,D8  12:15 -14:00  09 "
             },
             {
                 "predmet": "Intelektualna svojina",
@@ -9344,41 +8085,19 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Dizajn za životnu sredinu  P D7 14:15 -16:00  08 "
             },
             {
                 "predmet": "Dizajn za životnu sredinu",
-                "tip": "P",
-                "grupe": [
-                    "D7"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "09",
-                "string": "Dizajn za životnu sredinu  P D7 14:15 -16:00  09 "
-            },
-            {
-                "predmet": "Dizajn za životnu sredinu",
                 "tip": "V",
                 "grupe": [
                     "D7"
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Dizajn za životnu sredinu  V D7 16:15 -18:00  09 "
-            },
-            {
-                "predmet": "Dizajn za životnu sredinu",
-                "tip": "V",
-                "grupe": [
-                    "D7"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "08",
-                "string": "Dizajn za životnu sredinu  V D7 16:15 -18:00  08 "
             }
         ],
         "Četvrtak": [
@@ -9390,19 +8109,8 @@
                 ],
                 "od": "14:15",
                 "do": "18:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Informacioni sistemi preduzeća  V D7 14:15 -18:00  08 "
-            },
-            {
-                "predmet": "Informacioni sistemi preduzeća",
-                "tip": "V",
-                "grupe": [
-                    "D7"
-                ],
-                "od": "14:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "Informacioni sistemi preduzeća  V D7 14:15 -18:00  09 "
             }
         ],
         "Petak": [
@@ -9451,19 +8159,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Internet tehnologije  V D2 10:15 -12:00  60 "
-            },
-            {
-                "predmet": "Internet tehnologije",
-                "tip": "V",
-                "grupe": [
-                    "D2"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "61",
-                "string": "Internet tehnologije  V D2 10:15 -12:00  61 "
             }
         ],
         "Utorak": [
@@ -9506,22 +8203,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  08 "
-            },
-            {
-                "predmet": "Dizajn korisničkog interfejsa",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "09",
-                "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  09 "
             },
             {
                 "predmet": "Napredne .NET tehnologije",
@@ -9580,20 +8263,6 @@
                 "string": "Napredne .NET tehnologije  V D1,D2,D3,D4  16:15 -18:00  11  "
             },
             {
-                "predmet": "Dizajn korisničkog",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
-            },
-            {
                 "predmet": "Dizajn korisničkog interfejsa",
                 "tip": "V",
                 "grupe": [
@@ -9604,8 +8273,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "08",
-                "string": "Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  08 "
+                "sala": "09/08",
+                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
             },
             {
                 "predmet": "Multimediji",
@@ -9631,19 +8300,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Multimediji  V D2 10:15 -12:00  09 "
-            },
-            {
-                "predmet": "Multimediji",
-                "tip": "V",
-                "grupe": [
-                    "D2"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "08",
-                "string": "Multimediji  V D2 10:15 -12:00  08 "
             },
             {
                 "predmet": "Mobilno poslovanje",
@@ -9707,21 +8365,10 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "50",
+                "sala": "50/62",
                 "string": "Projektovanje softvera  V D2 08:15 -10:00  50 "
             },
             {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "D2"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "62",
-                "string": "Projektovanje softvera  V D2 08:15 -10:00  62 "
-            },
-            {
                 "predmet": "Simulacija i simulacioni jezici",
                 "tip": "V",
                 "grupe": [
@@ -9729,19 +8376,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Simulacija i simulacioni jezici  V D2 10:15 -12:00  60 "
-            },
-            {
-                "predmet": "Simulacija i simulacioni jezici",
-                "tip": "V",
-                "grupe": [
-                    "D2"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "61",
-                "string": "Simulacija i simulacioni jezici  V D2 10:15 -12:00  61 "
             }
         ],
         "Petak": [
@@ -9851,20 +8487,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Analiza pouzdanosti i rizika  V D7,D8  12:15 -14:00  08 "
-            },
-            {
-                "predmet": "Analiza pouzdanosti i rizika",
-                "tip": "V",
-                "grupe": [
-                    "D7",
-                    "D8"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "09",
-                "string": "Analiza pouzdanosti i rizika  V D7,D8  12:15 -14:00  09 "
             }
         ],
         "Sreda": [
@@ -9983,21 +8607,10 @@
                 ],
                 "od": "08:15",
                 "do": "10:00",
-                "sala": "09",
+                "sala": "09/08",
                 "string": "Multimediji  V D3 08:15 -10:00  09 "
             },
             {
-                "predmet": "Multimediji",
-                "tip": "V",
-                "grupe": [
-                    "D3"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "08",
-                "string": "Multimediji  V D3 08:15 -10:00  08 "
-            },
-            {
                 "predmet": "Internet tehnologije",
                 "tip": "V",
                 "grupe": [
@@ -10005,19 +8618,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Internet tehnologije  V D3 14:15 -16:00  61 "
-            },
-            {
-                "predmet": "Internet tehnologije",
-                "tip": "V",
-                "grupe": [
-                    "D3"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "60",
-                "string": "Internet tehnologije  V D3 14:15 -16:00  60 "
             },
             {
                 "predmet": "Projektovanje informacionih sistema",
@@ -10071,22 +8673,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  08 "
-            },
-            {
-                "predmet": "Dizajn korisničkog interfejsa",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "09",
-                "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  09 "
             },
             {
                 "predmet": "Napredne .NET tehnologije",
@@ -10145,20 +8733,6 @@
                 "string": "Napredne .NET tehnologije  V D1,D2,D3,D4  16:15 -18:00  11  "
             },
             {
-                "predmet": "Dizajn korisničkog",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
-            },
-            {
                 "predmet": "Dizajn korisničkog interfejsa",
                 "tip": "V",
                 "grupe": [
@@ -10169,8 +8743,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "08",
-                "string": "Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  08 "
+                "sala": "09/08",
+                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
             },
             {
                 "predmet": "Multimediji",
@@ -10250,19 +8824,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "62",
+                "sala": "62/50",
                 "string": "Projektovanje softvera  V D3 12:15 -14:00  62 "
-            },
-            {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "D3"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "50",
-                "string": "Projektovanje softvera  V D3 12:15 -14:00  50 "
             },
             {
                 "predmet": "Simulacija i simulacioni jezici",
@@ -10272,19 +8835,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Simulacija i simulacioni jezici  V D3 14:15 -16:00  60 "
-            },
-            {
-                "predmet": "Simulacija i simulacioni",
-                "tip": "V",
-                "grupe": [
-                    "D3"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "61",
-                "string": "3 Simulacija i simulacioni jezici  V D3 14:15 -16:00  61 "
             }
         ],
         "Petak": [
@@ -10324,19 +8876,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Multimediji  V D4 10:15 -12:00  08 "
-            },
-            {
-                "predmet": "Multimediji",
-                "tip": "V",
-                "grupe": [
-                    "D4"
-                ],
-                "od": "10:15",
-                "do": "12:00",
-                "sala": "09",
-                "string": "Multimediji  V D4 10:15 -12:00  09 "
             },
             {
                 "predmet": "Projektovanje informacionih sistema",
@@ -10357,19 +8898,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "60",
+                "sala": "60/61",
                 "string": "Internet tehnologije  V D4 16:15 -18:00  60 "
-            },
-            {
-                "predmet": "Internet tehnologije",
-                "tip": "V",
-                "grupe": [
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "61",
-                "string": "Internet tehnologije  V D4 16:15 -18:00  61 "
             }
         ],
         "Utorak": [
@@ -10412,22 +8942,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "08",
+                "sala": "08/09",
                 "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  08 "
-            },
-            {
-                "predmet": "Dizajn korisničkog interfejsa",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "09",
-                "string": "Dizajn korisničkog interfejsa  P D1,D2,D3,D4  14:15 -16:00  09 "
             },
             {
                 "predmet": "Napredne .NET tehnologije",
@@ -10486,20 +9002,6 @@
                 "string": "Napredne .NET tehnologije  V D1,D2,D3,D4  16:15 -18:00  11  "
             },
             {
-                "predmet": "Dizajn korisničkog",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "09",
-                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
-            },
-            {
                 "predmet": "Dizajn korisničkog interfejsa",
                 "tip": "V",
                 "grupe": [
@@ -10510,8 +9012,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "08",
-                "string": "Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  08 "
+                "sala": "09/08",
+                "string": "2 Dizajn korisničkog interfejsa  V D1,D2,D3,D4  16:15 -18:00  09 "
             },
             {
                 "predmet": "Multimediji",
@@ -10591,21 +9093,10 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "40",
+                "sala": "40/50",
                 "string": "Projektovanje softvera  V D4 14:15 -16:00  40  "
             },
             {
-                "predmet": "Projektovanje softvera",
-                "tip": "V",
-                "grupe": [
-                    "D4"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "50",
-                "string": "Projektovanje softvera  V D4 14:15 -16:00  50 "
-            },
-            {
                 "predmet": "Simulacija i simulacioni jezici",
                 "tip": "V",
                 "grupe": [
@@ -10613,19 +9104,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "61",
+                "sala": "61/60",
                 "string": "Simulacija i simulacioni jezici  V D4 16:15 -18:00  61 "
-            },
-            {
-                "predmet": "Simulacija i simulacioni jezici",
-                "tip": "V",
-                "grupe": [
-                    "D4"
-                ],
-                "od": "16:15",
-                "do": "18:00",
-                "sala": "60",
-                "string": "Simulacija i simulacioni jezici  V D4 16:15 -18:00  60 "
             }
         ],
         "Petak": [
