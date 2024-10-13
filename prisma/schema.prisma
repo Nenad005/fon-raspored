@@ -23,7 +23,7 @@ model Termin {
 
 model Podesavanja {
   id     String  @db.VarChar(255) @id @default(cuid())
-  userId String  @db.VarChar(255)
+  userId String  @db.VarChar(255) @unique
   godina Int     @db.TinyInt()
   grupa  Int     @db.TinyInt()
   
@@ -35,6 +35,7 @@ model Predmeti {
   userId  String  @db.VarChar(255)
   godina  Int     @db.TinyInt()
   ime     String  @db.VarChar(255)
+  tip     String  @db.VarChar(1)
 
   @@index([userId])
 }

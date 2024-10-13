@@ -6,15 +6,31 @@ import { ModeToggle } from "./ui/mode-toggle";
 import { SignedOut } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
 import { dark } from "@clerk/themes"
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const user = useUser()
+  // const router = useRouter()
+  // const [tab, setTab] = useState("account")
+
+  // useEffect(() => {
+  //   switch (router.pathname) {
+  //     case "test":
+  //       setTab("account")
+  //     default:
+  //       setTab("search")
+  //   }
+  // }, [router.pathname])
 
   return <>
     <header className="w-full flex justify-center border-b">
       <div className="flex justify-start w-full md:w-[760px] items-center px-5 py-2 gap-3">
-        <img  src="https://oas.fon.bg.ac.rs/wp-content/uploads/2023/04/FON-Logo-Tamni.png.webp"
-              className="h-16 aspect-auto dark:brightness-0 dark:invert mr-auto"></img>
+        <Link href={'/'} className="mr-auto">
+          <img  src="https://oas.fon.bg.ac.rs/wp-content/uploads/2023/04/FON-Logo-Tamni.png.webp"
+                className="h-16 aspect-auto dark:brightness-0 dark:invert"></img>
+        </Link>
         <ModeToggle></ModeToggle>
         <SettingButton></SettingButton>
         {user && user.isSignedIn ? <>

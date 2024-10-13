@@ -3,14 +3,11 @@
 import { settingsAtom } from "~/state/settingsAtom";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-// import smerovi from '../data/I Godina/po_smeru.json'
-// import po_grupi from '../data/I Godina/po_grupi.json'
 import raspored from '../data/raspored_nastave.json'
 import grupe from '../data/raspored_grupa.json'
 import { latinToCyrillic } from "~/lib/utils";
 import ErrorMsg from "~/components/error-msg";
 import Raspored from "~/components/raspored";
-// import { isOpenAtom } from "@/state/isOpenAtom";
 
 function unicodeCompare(name1, name2) {
   return name1.localeCompare(name2, 'sr', { sensitivity: 'base' });
@@ -45,7 +42,6 @@ export default function Home() {
     const settingsData = window.localStorage.getItem('SETTINGS')
     if (settingsData) {
       setSettings(JSON.parse(settingsData))
-      // console.log(JSON.parse(settingsData))
     } else {
       const settingsDict = {
         search_by: 'group',

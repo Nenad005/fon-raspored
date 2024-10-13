@@ -4,6 +4,7 @@ import predmeti from "~/data/predmeti.json"
 import termini from "~/data/termini.json"
 import TimeSlotSelector from '~/components/time-slot-selector' 
 import { space } from "postcss/lib/list";
+import SettingsButton from "~/components/settings-button";
 
 type Availability = "available" | "unavailable" | "selected"
 
