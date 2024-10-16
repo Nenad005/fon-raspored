@@ -21,21 +21,11 @@ model Termin {
   @@index([userId])
 }
 
-model Podesavanja {
-  id     String  @db.VarChar(255) @id @default(cuid())
-  userId String  @db.VarChar(255) @unique
-  godina Int     @db.TinyInt()
-  grupa  Int     @db.TinyInt()
-  
-  @@index([userId])
-}
-
 model Predmeti {
   id      String  @db.VarChar(255) @id @default(cuid())
   userId  String  @db.VarChar(255)
   godina  Int     @db.TinyInt()
-  ime     String  @db.VarChar(255)
-  tip     String  @db.VarChar(1)
+  ime     String  @db.VarChar(255)  
 
   @@index([userId])
 }
