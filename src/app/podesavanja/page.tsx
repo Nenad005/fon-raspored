@@ -2,7 +2,7 @@
 import { SignInButton, useUser } from "@clerk/nextjs"
 import { api } from "~/trpc/react"
 import { useState } from "react"
-import { FilePlus, FileUp, ListPlus, Loader, Plus } from "lucide-react"
+import { FilePlus, FileUp, ListPlus, Loader, Plus, UtensilsCrossed } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import Link from "next/link"
 import { Dialog, DialogHeader, DialogTitle, DialogContent, DialogTrigger, DialogFooter } from "~/components/ui/dialog"
@@ -18,24 +18,39 @@ import { db } from "~/server/db"
 
 function UserSettings({user}) {
   const {data : classes, isSuccess: classesSuccess, isLoading: classesLoading} = api.settings.getUserClasses.useQuery({userId: user.id})
+  const utils = api.useUtils()
+  const {mutate: loadClasses} = api.settings.addClassesFromSmer.useMutation()
+  const {mutate: addClass} = api.settings.addClass.useMutation()
   const [year, setYear] = useState("")
   const [customYear, setCustomYear] = useState("")
   const [smer, setSmer] = useState("")
   const [customSmer, setCustomSmer] = useState("")
   const [customClass, setCustomClass] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
   function handleLoadClasses(godina, smer) {
-    const {mutate} = api.settings.addClassesFromSmer.useMutation()
+    // const test = await api.settings.addClassesFromSmer.useMutation()
+    console.log(godina)
 
-    mutate({userId: user.id, smer: smer, year: godina})
+    loadClasses({userId: user.id, smer: smer, year: godina})
+    utils.settings.getUserClasses.invalidate()
+    
+    setIsOpen(false)
+  }
+
+  function handleAddClass(godina, ime) {
+    addClass({userId: user.id, year: godina, ime: ime})
+    utils.settings.getUserClasses.invalidate()
+
+    setIsOpen(false)
   }
 
   return <div className="mt-30 flex flex-col w-full items-center p-5 pt-10">
 
-    <div className="flex justify-start w-full md:w-[600px] items-center">
+    <div className="flex justify-start overflow-x-hidden max-w-full w-full md:w-[600px] items-center">
       <p className="text-2xl mr-auto">Tvoji predmeti</p>
       
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button variant="secondary" className="h-auto">Dodaj</Button>
         </DialogTrigger>
@@ -82,7 +97,10 @@ function UserSettings({user}) {
                 </div>
               </div>
               <DialogFooter>
-                <Button className="flex gap-2 items-center" onClick={() => {handleLoadClasses(year, smer)}}><FileUp size={20}></FileUp>Ucitaj</Button>
+                <Button disabled={smer == ""} className="flex gap-2 items-center" onClick={() => 
+                  { handleLoadClasses(year, smer) }}> 
+                  <FileUp size={20}></FileUp>Ucitaj
+                </Button>
               </DialogFooter>
             </TabsContent>
             <TabsContent value="custom">
@@ -132,7 +150,10 @@ function UserSettings({user}) {
                 </div>
               </div>
               <DialogFooter>
-                <Button className="flex gap-2 items-center"><ListPlus size={20}></ListPlus>Dodaj</Button>
+                <Button className="flex gap-2 items-center" disabled={customClass == ""} onClick={() => {
+                  handleAddClass(customYear, customClass)}}>
+                  <ListPlus size={20}></ListPlus>Dodaj
+                </Button>
               </DialogFooter>
             </TabsContent>
           </Tabs>
@@ -140,7 +161,17 @@ function UserSettings({user}) {
       </Dialog>
     </div>
     
-    <p>{classes && JSON.stringify(classes)}</p>
+    <div>
+      {classesLoading ? <LoadingIndicator></LoadingIndicator> : classesSuccess ? 
+      <div>
+        {classes.map((classObj) => {
+          return <div>
+            <p>{classObj.ime}</p>
+          </div>
+        })}
+      </div> : <div>GRESKA PRI UCITAVANJU</div>
+      }
+    </div>
   </div>
 }
 
