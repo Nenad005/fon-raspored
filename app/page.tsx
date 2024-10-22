@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 // import po_grupi from '../data/I Godina/po_grupi.json'
 import raspored from '../data/raspored_nastave.json'
 import grupe from '../data/raspored_grupa.json'
+import datum from '@/lib/date'
 import { latinToCyrillic } from "@/lib/utils";
 import ErrorMsg from "@/components/error-msg";
 import Raspored from "@/components/raspored";
@@ -99,7 +100,7 @@ export default function Home() {
       <div className="mt-16 flex flex-col items-center mb-20">
         <h1 className="text-3xl font-medium">RASPORED NASTAVE</h1>
         <h1 className="text-xl mt-2 font-light"><span className="text-blue-300 font-bold">ZIMSKI</span> semestar 2024/25</h1>
-        <p className="text-red-400 flex items-center gap-1"><CalendarCheck size={15}></CalendarCheck> vazi od 21. oktobra</p>
+        <p className="text-green-400 mt-2 flex items-center gap-1"><CalendarCheck size={18}></CalendarCheck>{datum}</p>
       </div>
       {loaded && <>
           {getGroup().group ? 
