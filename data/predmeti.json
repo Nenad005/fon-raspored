@@ -1,135 +1,135 @@
 {
     "year1": {
         "ISiT": [
-            "Matematika 1",
-            "Engleski jezik u informatici",
-            "Ekonomija",
             "Elektronsko poslovanje (NA)",
+            "Osnovi organizacije",
             "Osnove informaciono komunikacionih tehnologija",
-            "Menadžment",
+            "Ekonomija",
             "Francuski jezik u informatici",
-            "Osnovi organizacije"
+            "Menadžment",
+            "Engleski jezik u informatici",
+            "Matematika 1"
         ],
         "MiO": [
-            "Matematika 1",
-            "Ekonomija",
+            "Osnovi organizacije",
             "Osnove informaciono komunikacionih tehnologija",
-            "Menadžment",
+            "Ekonomija",
             "Francuski jezik u informatici",
-            "Osnovi organizacije"
+            "Menadžment",
+            "Matematika 1"
         ]
     },
     "year2": {
         "ISiT": [
-            "Upravljanje projektima",
             "Matematika 3",
-            "Arhitektura računara i operativni sistemi",
-            "Programiranje 1 (NA)",
-            "Diskretne matematičke strukture",
             "Marketing",
-            "Teorija verovatnoće"
+            "Arhitektura računara i operativni sistemi",
+            "Diskretne matematičke strukture",
+            "Upravljanje projektima",
+            "Teorija verovatnoće",
+            "Programiranje 1 (NA)"
         ],
         "MiO": [
-            "Osnove kvaliteta",
             "Računovodstvo",
+            "Osnove kvaliteta",
             "Marketing",
-            "Teorija verovatnoće",
-            "Menadžment ljudskih resursa"
+            "Menadžment ljudskih resursa",
+            "Teorija verovatnoće"
         ]
     },
     "year3": {
         "ISiT": [
-            "Računarske mreže i telekomunikacije",
-            "Projektovanje informacionih sistema",
             "Projektovanje softvera",
+            "Projektovanje informacionih sistema",
             "Operaciona istraživanja 1",
             "Projektovanje softvera (C#)",
+            "Računarske mreže i telekomunikacije",
             "Teorija sistema"
         ],
         "Finansijski menadžment": [
-            "Upravljanje projektima",
-            "Operaciona istraživanja 1",
-            "Elektronsko poslovanje (NA)",
             "Korporativne komunikacije",
+            "Elektronsko poslovanje (NA)",
+            "Operaciona istraživanja 1",
+            "Upravljanje projektima",
             "Osnove finansijskog menadžmenta"
         ],
         "Lin organizacija poslovanja": [
-            "Upravljanje projektima",
-            "Lin proizvodnja i usluge",
             "Operaciona istraživanja 1",
+            "Lin proizvodnja i usluge",
             "Industrijsko i menadžment inženjerstvo",
+            "Upravljanje projektima",
             "Osnove finansijskog menadžmenta"
         ],
         "Menadžment kvaliteta i standardizacija": [
-            "Upravljanje projektima",
             "Operaciona istraživanja 1",
             "Teorija odlučivanja",
+            "Upravljanje projektima",
             "Osnove finansijskog menadžmenta",
             "Upravljanje kvalitetom"
         ],
         "Marketing menadžment i komunikacije": [
-            "Upravljanje projektima",
-            "Operaciona istraživanja 1",
-            "Elektronsko poslovanje (NA)",
             "Korporativne komunikacije",
+            "Elektronsko poslovanje (NA)",
+            "Operaciona istraživanja 1",
+            "Upravljanje projektima",
             "Osnove finansijskog menadžmenta"
         ],
         "Operacioni menadžment": [
             "Operaciona istraživanja 1",
-            "Upravljački sistemi",
             "Lean logistika",
             "Industrijsko i menadžment inženjerstvo",
-            "Osnove finansijskog menadžmenta"
+            "Osnove finansijskog menadžmenta",
+            "Upravljački sistemi"
         ],
         "Projektni menadžment": [
-            "Upravljanje projektima",
-            "Lin proizvodnja i usluge",
             "Operaciona istraživanja 1",
             "Teorija odlučivanja",
+            "Lin proizvodnja i usluge",
+            "Upravljanje projektima",
             "Osnove finansijskog menadžmenta"
         ]
     },
     "year4": {
         "ISiT": [
+            "Simulacija i simulacioni jezici",
+            "Projektovanje softvera",
+            "Dinamika organizacionih sistema",
+            "Projektovanje informacionih sistema",
+            "Mobilno poslovanje",
+            "Projektovanje softvera (C#)",
+            "Napredne .NET tehnologije",
+            "Multimediji",
             "Dizajn korisničkog interfejsa",
             "Programiranje 3",
-            "Mobilno poslovanje",
-            "Napredne .NET tehnologije",
-            "Simulacija i simulacioni jezici",
-            "Projektovanje informacionih sistema",
-            "Multimediji",
-            "Projektovanje softvera",
-            "Projektovanje softvera (C#)",
-            "Dinamika organizacionih sistema",
             "Internet tehnologije"
         ],
         "Men": [
-            "Poslovna inteligencija",
-            "Preduzetništvo",
-            "Uvod u finansijska tržišta",
             "Strateški marketing",
+            "Uvod u finansijska tržišta",
             "Međunarodni menadžment",
-            "Veštine i tehnike poslovne komunikacije"
+            "Veštine i tehnike poslovne komunikacije",
+            "Preduzetništvo",
+            "Poslovna inteligencija"
         ],
         "OM": [
             "Računarski integrisana proizvodnja",
             "Kontinualno poboljšavanje proizvodnje",
-            "Informacioni sistemi preduzeća",
             "Analiza pouzdanosti i rizika",
             "Intelektualna svojina",
-            "Planiranje proizvodnje i usluga",
+            "Informacioni sistemi preduzeća",
             "Menadžment ključnih performansi proizvodnje",
+            "Planiranje proizvodnje i usluga",
             "Dizajn za životnu sredinu"
         ],
         "MKS": [
-            "Upravljanje projektima",
-            "Analiza pouzdanosti i rizika",
-            "Poslovni informacioni sistemi",
-            "Odabrana poglavlja iz menadžmenta kvaliteta 1",
-            "Menadžment totalnog kvaliteta",
             "Inženjering kvaliteta",
             "Sistem kvaliteta životne sredine",
-            "Sistem menadžmenta zdravlja i bezbednosti na radu"
+            "Menadžment totalnog kvaliteta",
+            "Analiza pouzdanosti i rizika",
+            "Poslovni informacioni sistemi",
+            "Upravljanje projektima",
+            "Sistem menadžmenta zdravlja i bezbednosti na radu",
+            "Odabrana poglavlja iz menadžmenta kvaliteta 1"
         ]
     }
 }
