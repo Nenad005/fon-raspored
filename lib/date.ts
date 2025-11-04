@@ -1,2 +1,2 @@
-const datum = "važi od 21.oktobra"
+const datum = "4. novembar 2025"
 export default datum
