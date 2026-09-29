@@ -93,7 +93,7 @@ export default function Home() {
     <div className="w-100vw overflow-x-hidden flex flex-col items-center">
       <div className="mt-16 flex flex-col items-center mb-20">
         <h1 className="text-3xl font-medium">RASPORED NASTAVE</h1>
-        <h1 className="text-xl mt-2 font-light"><span className="text-blue-300 font-bold">ZIMSKI</span> semestar 2024/25</h1>
+        <h1 className="text-xl mt-2 font-light"><span className="text-blue-300 font-bold">ZIMSKI</span> semestar 2026/27</h1>
       </div>
       {loaded && <>
           {getGroup().group ? 

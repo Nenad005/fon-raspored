@@ -1,6 +1,6 @@
 # FON Raspored Nastave 🗓️
 
-Web aplikacija za interaktivni prikaz rasporeda nastave na **Fakultetu organizacionih nauka (FON)** za zimski semestar 2024/25. Aplikacija omogućava studentima da brzo i jednostavno pronađu svoj raspored predavanja i vežbi, bilo direktnim izborom grupe ili automatskim određivanjem grupe na osnovu smera i prezimena. Takođe nudi mogućnost personalizacije i čuvanja sopstvenih predmeta za prijavljene korisnike.
+Web aplikacija za interaktivni prikaz rasporeda nastave na **Fakultetu organizacionih nauka (FON)** za zimski semestar 2026/27. Aplikacija omogućava studentima da brzo i jednostavno pronađu svoj raspored predavanja i vežbi, bilo direktnim izborom grupe ili automatskim određivanjem grupe na osnovu smera i prezimena. Takođe nudi mogućnost personalizacije i čuvanja sopstvenih predmeta za prijavljene korisnike.
 
 Aplikacija je hostovana i javno dostupna na adresi: **[fon-ispiti.vercel.app](https://fon-ispiti.vercel.app)**
 
