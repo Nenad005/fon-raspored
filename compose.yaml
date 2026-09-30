@@ -1,0 +1,70 @@
+services:
+  mysql:
+    container_name: fon-raspored-mysql
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-fon_raspored}
+      MYSQL_USER: ${MYSQL_USER:-fon}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-fon_password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change_this_root_password}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  db-init:
+    container_name: fon-raspored-db-init
+    build:
+      context: .
+      target: migrate
+    environment:
+      DATABASE_URL: mysql://${MYSQL_USER:-fon}:${MYSQL_PASSWORD:-fon_password}@mysql:3306/${MYSQL_DATABASE:-fon_raspored}
+    networks:
+      - backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: "no"
+
+  app:
+    container_name: fon-raspored
+    build:
+      context: .
+      target: development
+    restart: unless-stopped
+    command: npm run dev -- --hostname 0.0.0.0
+    environment:
+      DATABASE_URL: mysql://${MYSQL_USER:-fon}:${MYSQL_PASSWORD:-fon_password}@mysql:3306/${MYSQL_DATABASE:-fon_raspored}
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-}
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    networks:
+      backend:
+      dev-proxy:
+        aliases:
+          - fon-raspored
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+
+volumes:
+  mysql-data:
+
+networks:
+  backend:
+    internal: true
+  dev-proxy:
+    external: true
+    name: dev-proxy

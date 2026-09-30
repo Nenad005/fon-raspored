@@ -67,6 +67,57 @@ npm run dev
 ```
 Aplikacija će biti dostupna na adresi: [http://localhost:3000](http://localhost:3000).
 
+### Pokretanje pomoću Docker Compose-a
+
+Docker Compose pokreće aplikaciju, MySQL bazu i jednokratni Prisma servis koji
+sinhronizuje šemu baze pre pokretanja aplikacije.
+
+1. Kreirajte `.env` i podesite MySQL i Clerk vrednosti:
+
+```bash
+cp .env.example .env
+```
+
+2. Kreirajte mrežu koju koristi Nginx Proxy Manager, ukoliko već ne postoji:
+
+```bash
+docker network inspect dev-proxy >/dev/null 2>&1 || docker network create dev-proxy
+```
+
+3. Pokrenite razvojno okruženje sa hot reload podrškom:
+
+```bash
+npm run docker:dev
+```
+
+`compose.yaml` je podrazumevana razvojna konfiguracija i pokreće `next dev` sa
+izvornim kodom montiranim u kontejner.
+
+Za produkcijsku konfiguraciju, koja prvo izvršava `next build` i pokreće
+standalone server iz `compose.prod.yaml`, koristite:
+
+```bash
+npm run docker:prod
+```
+
+Obe komande prvo gase drugi režim, a zatim pokreću izabrani koristeći iste
+nazive kontejnera i isti MySQL volumen. Za gašenje aktivnog režima koristite:
+
+```bash
+npm run docker:down
+```
+
+Aplikacija je lokalno dostupna na `http://localhost:3000` (ili portu iz
+`APP_PORT`). Za Proxy Host u Nginx Proxy Manager-u koristite:
+
+- Forward Hostname/IP: `fon-raspored`
+- Forward Port: `3000`
+- Scheme: `http`
+
+Samo Next.js kontejner je povezan na eksternu `dev-proxy` mrežu. MySQL je
+dostupan isključivo aplikaciji na internoj Docker mreži, a njegovi podaci se
+čuvaju u `mysql-data` volumenu.
+
 ---
 
 ## 📖 Kratko uputstvo za korišćenje

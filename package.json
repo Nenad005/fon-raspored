@@ -10,6 +10,9 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "dev": "next dev",
+    "docker:dev": "docker compose -f compose.prod.yaml down --remove-orphans && docker compose up -d --build --renew-anon-volumes",
+    "docker:prod": "docker compose down --remove-orphans && docker compose -f compose.prod.yaml up -d --build",
+    "docker:down": "docker compose down --remove-orphans && docker compose -f compose.prod.yaml down --remove-orphans",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start"
