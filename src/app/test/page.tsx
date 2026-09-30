@@ -26,7 +26,7 @@ export default function TestPage () {
         slotsv[key] = "available"
       })
 
-      return <div className="flex flex-col w-full p-5 md:w-[600px] items-start">
+      return <div key={predmet} className="flex flex-col w-full p-5 md:w-[600px] items-start">
         <h1 className="text-3xl">Predmet : {predmet}</h1>
         <h2>Termini P: </h2>
         <TimeSlotSelector slots_input={slotsp} termini={termini.year1[predmet].P}></TimeSlotSelector>

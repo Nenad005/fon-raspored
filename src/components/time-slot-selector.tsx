@@ -23,7 +23,7 @@ type Availability = "available" | "unavailable" | "selected" | "occupied"
 export default function Component({slots_input, termini}) {
   const [slots, setSlots] = useState<Record<string, Availability>>(slots_input)
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState<string | null>(null)
 
   const getSlotStatus = (day: string, time: string): Availability => {
     const key = `${day}-${time}`
@@ -58,6 +58,8 @@ export default function Component({slots_input, termini}) {
   }
 
   const TerminDataByKey = () => {
+    if (!selected) return null
+
     const day_time = selected.split("-")
     const dan = day_time[0]
     const od = day_time[1]

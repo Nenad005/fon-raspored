@@ -90,7 +90,7 @@ function UserSettings({user}) {
                     </SelectTrigger>
                     <SelectContent>
                       {year != "" && Object.keys(predmeti[year]).map((smer) => {
-                        return <SelectItem value={smer}>{smer}</SelectItem>
+                        return <SelectItem value={smer} key={smer}>{smer}</SelectItem>
                       })}
                     </SelectContent>
                   </Select>
@@ -130,7 +130,7 @@ function UserSettings({user}) {
                     </SelectTrigger>
                     <SelectContent>
                       {customYear != "" && Object.keys(predmeti[customYear]).map((smer) => {
-                        return <SelectItem value={smer}>{smer}</SelectItem>
+                        return <SelectItem value={smer} key={smer}>{smer}</SelectItem>
                       })}
                     </SelectContent>
                   </Select>
@@ -143,7 +143,7 @@ function UserSettings({user}) {
                     </SelectTrigger>
                     <SelectContent>
                       {customSmer != "" && predmeti[customYear][customSmer].map((predmet) => {
-                        return <SelectItem value={predmet}>{predmet}</SelectItem>
+                        return <SelectItem value={predmet} key={predmet}>{predmet}</SelectItem>
                       })}
                     </SelectContent>
                   </Select>
@@ -165,7 +165,7 @@ function UserSettings({user}) {
       {classesLoading ? <LoadingIndicator></LoadingIndicator> : classesSuccess ? 
       <div>
         {classes.map((classObj) => {
-          return <div>
+           return <div key={classObj.id}>
             <p>{classObj.ime}</p>
           </div>
         })}

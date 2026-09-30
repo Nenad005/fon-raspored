@@ -13,9 +13,9 @@ export default function DaySelect({day, setDay, className = ""}) {
           variant={day == dan ? "default" : "outline"}
           onClick={() => {setDay(dan)}}
           className="py-[5px] h-auto font-light">
-          {daniSkracenice[index].toLocaleLowerCase()}
+          {daniSkracenice[index]!.toLocaleLowerCase()}
         </Button>
       })}
     </div>
   </>
-} 
+}
