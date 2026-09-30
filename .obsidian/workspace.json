@@ -190,6 +190,17 @@
   },
   "active": "4a8bdbc6eeeb885b",
   "lastOpenFiles": [
+    "src/lib/search.ts",
+    "src/state/scheduleModeAtom.ts",
+    "src/lib/schedule-storage.ts",
+    "public/FON-logo-small.png",
+    "src/app/podesavanja/layout.tsx",
+    "src/app/termini/layout.tsx",
+    "src/app/predmeti/layout.tsx",
+    "src/app/termini/page.tsx",
+    "src/app/termini",
+    "src/app/predmeti/page.tsx",
+    "src/app/predmeti",
     "README.md",
     "Beleske.md"
   ]
