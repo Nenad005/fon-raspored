@@ -15,6 +15,7 @@ import { scheduleModeAtom } from "~/state/scheduleModeAtom";
 
 import { Button } from "~/components/ui/button";
 import TimeSlotSelector from "~/components/time-slot-selector";
+import SelectedSlotsCalendar from "~/components/selected-slots-calendar";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +28,13 @@ import termini from "~/data/termini.json";
 import {
   parseStoredSubjects,
   subjectKey,
+  termKey,
+  selectionKeys,
+  retainSubjectTerms,
+  getMultiSessionGroups,
+  getSelectionLimit,
+  getSubjectTerms,
+  type Selections,
   type SelectedSubject,
 } from "~/lib/schedule-storage";
 
@@ -38,7 +46,6 @@ type Term = {
   dan: string;
 };
 type SubjectTerms = { P?: Term[]; V?: Term[] };
-type Selections = Record<string, Record<string, string>>;
 type ExistingSlot = { key: string; type: "P" | "V"; name: string; term: Term };
 
 const yearLabels: Record<string, string> = {
@@ -75,65 +82,81 @@ export default function TerminiPage() {
     }
 
     setSubjects(parsedSubjects);
-    setSelections(
-      Object.fromEntries(
-        parsedSubjects.flatMap((subject) => {
-          const selection =
-            savedSelections[subjectKey(subject)] ??
-            savedSelections[subject.name];
-          return selection ? [[subjectKey(subject), selection]] : [];
-        }),
-      ),
-    );
+    setSelections(retainSubjectTerms(parsedSubjects, savedSelections));
     setLoaded(true);
   }, []);
 
-  const requiredSelections = subjects.reduce((count, subject) => {
-    const types = termsByYear[subject.year]?.[subject.name];
-    return count + (types?.P?.length ? 1 : 0) + (types?.V?.length ? 1 : 0);
-  }, 0);
-  const selectedCount = subjects.reduce(
-    (count, subject) =>
-      count + Object.keys(selections[subjectKey(subject)] ?? {}).length,
-    0,
-  );
-  const complete = subjects.length > 0 && selectedCount > 0;
   const selectedSlots = subjects.flatMap((subject) => {
     const key = subjectKey(subject);
     return (["P", "V"] as const).flatMap((type) => {
-      const term = termsByYear[subject.year]?.[subject.name]?.[type]?.find(
-        (option) =>
-          `${option.dan}|${option.od}|${option.do}|${option.sala}` ===
-          selections[key]?.[type],
-      );
-      return term ? [{ key, type, name: subject.name, term }] : [];
+      return selectionKeys(selections[key]?.[type]).flatMap((value) => {
+        const term = getSubjectTerms(termsByYear, subject.name)[type].find(
+          (option) => termKey(option) === value,
+        );
+        return term ? [{ key, type, name: subject.name, term }] : [];
+      });
     });
   });
-
-  function selectTerm(
-    subject: SelectedSubject,
-    type: string,
-    term: Term | null,
-  ) {
-    const key = subjectKey(subject);
-    if (
-      term &&
-      selections[key]?.[type] !==
-        `${term.dan}|${term.od}|${term.do}|${term.sala}`
-    ) {
-      setPendingRemoval(
-        selectedSlots.filter(
-          (slot) =>
-            !(slot.key === key && slot.type === type) &&
-            slot.term.dan === term.dan &&
-            slot.term.od < term.do &&
-            term.od < slot.term.do,
-        ),
+  const withinLimits = subjects.every((subject) =>
+    (["P", "V"] as const).every((type) => {
+      const chosen = selectedSlots
+        .filter(
+          (slot) => slot.key === subjectKey(subject) && slot.type === type,
+        )
+        .map((slot) => slot.term);
+      return (
+        chosen.length <=
+        getSelectionLimit(
+          getSubjectTerms(termsByYear, subject.name)[type],
+          chosen,
+        )
       );
-    }
+    }),
+  );
+  const complete =
+    subjects.length > 0 && selectedSlots.length > 0 && withinLimits;
+
+  function selectTerms(
+    subject: SelectedSubject,
+    type: "P" | "V",
+    chosen: Term[],
+  ) {
+    if (
+      chosen.length >
+      getSelectionLimit(
+        getSubjectTerms(termsByYear, subject.name)[type],
+        chosen,
+      )
+    )
+      return;
+    const key = subjectKey(subject);
+    const values = chosen.map(termKey);
+    const previous = selectionKeys(selections[key]?.[type]);
+    const added = chosen.filter((term) => !previous.includes(termKey(term)));
+    setPendingRemoval(
+      selectedSlots.filter(
+        (slot) =>
+          (!(slot.key === key && slot.type === type) ||
+            values.includes(termKey(slot.term))) &&
+          added.some(
+            (term) =>
+              !(
+                slot.key === key &&
+                slot.type === type &&
+                termKey(slot.term) === termKey(term)
+              ) &&
+              slot.term.dan === term.dan &&
+              slot.term.od < term.do &&
+              term.od < slot.term.do,
+          ),
+      ),
+    );
+    const multiple =
+      getMultiSessionGroups(getSubjectTerms(termsByYear, subject.name)[type])
+        .size > 0;
     setSelections((current) => {
       const next = { ...current[key] };
-      if (term) next[type] = `${term.dan}|${term.od}|${term.do}|${term.sala}`;
+      if (values.length) next[type] = multiple ? values : values[0]!;
       else delete next[type];
       const updated = { ...current, [key]: next };
       if (!Object.keys(next).length) delete updated[key];
@@ -145,10 +168,15 @@ export default function TerminiPage() {
     setSelections((current) => {
       const next = { ...current };
       for (const slot of pendingRemoval) {
-        const value = `${slot.term.dan}|${slot.term.od}|${slot.term.do}|${slot.term.sala}`;
-        if (next[slot.key]?.[slot.type] !== value) continue;
+        const value = termKey(slot.term);
+        const stored = next[slot.key]?.[slot.type];
+        const keys = selectionKeys(stored);
+        if (!keys.includes(value)) continue;
         const remaining = { ...next[slot.key] };
-        delete remaining[slot.type];
+        const kept = keys.filter((key) => key !== value);
+        if (kept.length)
+          remaining[slot.type] = Array.isArray(stored) ? kept : kept[0]!;
+        else delete remaining[slot.type];
         if (Object.keys(remaining).length) next[slot.key] = remaining;
         else delete next[slot.key];
       }
@@ -191,6 +219,18 @@ export default function TerminiPage() {
         </div>
       </div>
 
+      <SelectedSlotsCalendar slots={selectedSlots} />
+
+      {!withinLimits && (
+        <p
+          role="alert"
+          className="mb-4 text-sm text-amber-600 dark:text-amber-400"
+        >
+          Za neki predmet imaš više izabranih termina nego što grupa ima
+          nedeljno. Ukloni višak pre čuvanja rasporeda.
+        </p>
+      )}
+
       {subjects.length === 0 ? (
         <div className="rounded-xl border border-dashed px-6 py-14 text-center">
           <CalendarDays className="mx-auto mb-4 h-8 w-8 text-muted-foreground" />
@@ -206,7 +246,7 @@ export default function TerminiPage() {
         <div className="space-y-4">
           {subjects.map((subject, index) => {
             const key = subjectKey(subject);
-            const subjectTerms = termsByYear[subject.year]?.[subject.name];
+            const subjectTerms = getSubjectTerms(termsByYear, subject.name);
             const availableTypes = (["P", "V"] as const).filter((type) =>
               Boolean(subjectTerms?.[type]?.length),
             );
@@ -223,7 +263,10 @@ export default function TerminiPage() {
                     <div>
                       <h2 className="font-semibold">{subject.name}</h2>
                       <p className="mt-0.5 text-xs text-muted-foreground">
-                        {yearLabels[subject.year] ?? subject.year}
+                        {Object.keys(termsByYear)
+                          .filter((year) => termsByYear[year]?.[subject.name])
+                          .map((year) => yearLabels[year] ?? year)
+                          .join(" · ")}
                       </p>
                     </div>
                   </div>
@@ -233,27 +276,44 @@ export default function TerminiPage() {
                       <Check className="h-5 w-5 text-green-600" />
                     )}
                 </div>
-                {subjectTerms ? (
+                {availableTypes.length > 0 ? (
                   <div className="divide-y">
                     {(["P", "V"] as const).map((type) => {
                       const options = subjectTerms[type] ?? [];
                       if (options.length === 0) return null;
-                      const value =
-                        options.find(
-                          (term) =>
-                            `${term.dan}|${term.od}|${term.do}|${term.sala}` ===
-                            selections[key]?.[type],
-                        ) ?? null;
-                      const conflicts = value
-                        ? selectedSlots.filter(
-                            (slot) =>
-                              !(slot.key === key && slot.type === type) &&
-                              slot.term.dan === value.dan &&
-                              slot.term.od < value.do &&
-                              value.od < slot.term.do,
-                          )
-                        : [];
+                      const values = selectionKeys(
+                        selections[key]?.[type],
+                      ).flatMap((value) => {
+                        const term = options.find(
+                          (term) => termKey(term) === value,
+                        );
+                        return term ? [term] : [];
+                      });
+                      const multiple = getMultiSessionGroups(options).size > 0;
+                      const conflicts = selectedSlots.filter((slot) =>
+                        values.some(
+                          (value) =>
+                            !(
+                              slot.key === key &&
+                              slot.type === type &&
+                              termKey(slot.term) === termKey(value)
+                            ) &&
+                            slot.term.dan === value.dan &&
+                            slot.term.od < value.do &&
+                            value.od < slot.term.do,
+                        ),
+                      );
                       const warning = `Ovaj termin se preklapa sa: ${conflicts.map((slot) => `${slot.name} (${slot.type === "P" ? "predavanje" : "vežbe"}, ${slot.term.od}-${slot.term.do})`).join(", ")}.`;
+                      const isOccupied = (term: Term) =>
+                        selectedSlots.some(
+                          (selection) =>
+                            !(
+                              selection.key === key && selection.type === type
+                            ) &&
+                            selection.term.dan === term.dan &&
+                            selection.term.od < term.do &&
+                            term.od < selection.term.do,
+                        );
                       return (
                         <div key={type} className="p-5">
                           <p className="mb-3 text-sm font-medium">
@@ -264,29 +324,38 @@ export default function TerminiPage() {
                               slots_input={Object.fromEntries(
                                 options.map((term) => [
                                   `${term.dan}-${term.od}`,
-                                  selectedSlots.some(
-                                    (selection) =>
-                                      !(
-                                        selection.key === key &&
-                                        selection.type === type
-                                      ) &&
-                                      selection.term.dan === term.dan &&
-                                      selection.term.od < term.do &&
-                                      term.od < selection.term.do,
-                                  )
+                                  isOccupied(term)
                                     ? ("occupied" as const)
                                     : ("available" as const),
                                 ]),
                               )}
                               termini={options}
-                              value={value}
-                              onSave={(term) => selectTerm(subject, type, term)}
+                              isOccupied={isOccupied}
+                              value={values[0] ?? null}
+                              values={multiple ? values : undefined}
+                              onSaveMultiple={
+                                multiple
+                                  ? (terms) => selectTerms(subject, type, terms)
+                                  : undefined
+                              }
+                              onSave={(term) =>
+                                selectTerms(subject, type, term ? [term] : [])
+                              }
                               title={`${subject.name}: ${type === "P" ? "predavanje" : "vežbe"}`}
                             />
                             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                              {value
-                                ? `${value.dan} ${value.od}-${value.do}, ${value.sala}`
-                                : "Termin nije izabran"}
+                              {values.length ? (
+                                <span className="flex flex-col gap-1">
+                                  {values.map((value) => (
+                                    <span key={termKey(value)}>
+                                      {value.dan} {value.od}-{value.do},{" "}
+                                      {value.sala}
+                                    </span>
+                                  ))}
+                                </span>
+                              ) : (
+                                "Termin nije izabran"
+                              )}
                               {conflicts.length > 0 && (
                                 <span
                                   title={warning}
@@ -322,9 +391,9 @@ export default function TerminiPage() {
           <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-4">
             <p className="text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">
-                {selectedCount}
+                {selectedSlots.length}
               </span>{" "}
-              izabrano od {requiredSelections} dostupnih termina
+              izabranih termina
             </p>
             <Button onClick={saveTerms} disabled={!complete} className="gap-2">
               Sačuvaj raspored <ChevronRight className="h-4 w-4" />
@@ -348,7 +417,7 @@ export default function TerminiPage() {
           </DialogHeader>
           <ul className="space-y-2 text-sm">
             {pendingRemoval.map((slot) => (
-              <li key={`${slot.key}:${slot.type}`}>
+              <li key={`${slot.key}:${slot.type}:${termKey(slot.term)}`}>
                 <p className="font-medium">
                   {slot.name} ({slot.type === "P" ? "predavanje" : "vežbe"})
                 </p>

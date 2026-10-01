@@ -21,6 +21,11 @@ import { latinToCyrillic } from "~/lib/utils";
 import {
   parseStoredSubjects,
   subjectKey,
+  selectionKeys,
+  retainSubjectTerms,
+  termKey,
+  getSubjectTerms,
+  type Selections,
   type SelectedSubject,
 } from "~/lib/schedule-storage";
 import { isOpenAtom } from "~/state/isOpenAtom";
@@ -88,9 +93,7 @@ export default function Home() {
   const [selectedSubjects, setSelectedSubjects] = useState<SelectedSubject[]>(
     [],
   );
-  const [selectedTerms, setSelectedTerms] = useState<
-    Record<string, Record<string, string>>
-  >({});
+  const [selectedTerms, setSelectedTerms] = useState<Selections>({});
   const scheduleMode = useAtomValue(scheduleModeAtom);
   const [settings, setSettings] = useAtom(settingsAtom);
   const setSettingsOpen = useSetAtom(isOpenAtom);
@@ -107,17 +110,17 @@ export default function Home() {
       setSettings(defaultSettings);
     }
 
-    setSelectedSubjects(
-      parseStoredSubjects(
-        subjectData,
-        window.localStorage.getItem("SELECTED_SUBJECT_YEAR") ?? "year1",
-      ),
+    const subjects = parseStoredSubjects(
+      subjectData,
+      window.localStorage.getItem("SELECTED_SUBJECT_YEAR") ?? "year1",
     );
+    setSelectedSubjects(subjects);
     try {
       setSelectedTerms(
-        termData
-          ? (JSON.parse(termData) as Record<string, Record<string, string>>)
-          : {},
+        retainSubjectTerms(
+          subjects,
+          termData ? (JSON.parse(termData) as unknown) : {},
+        ),
       );
     } catch {
       setSelectedTerms({});
@@ -168,21 +171,19 @@ export default function Home() {
     Record<string, { P?: Term[]; V?: Term[] }>
   >;
   for (const subject of selectedSubjects) {
-    const selections =
-      selectedTerms[subjectKey(subject)] ?? selectedTerms[subject.name];
+    const selections = selectedTerms[subjectKey(subject)];
     for (const type of ["P", "V"] as const) {
-      const value = selections?.[type];
-      if (!value) continue;
-      const term = availableTerms[subject.year]?.[subject.name]?.[type]?.find(
-        (option) =>
-          `${option.dan}|${option.od}|${option.do}|${option.sala}` === value,
-      );
-      if (!term) continue;
-      (accountSchedule[term.dan] ??= []).push({
-        ...term,
-        predmet: subject.name,
-        tip: type,
-      });
+      for (const value of selectionKeys(selections?.[type])) {
+        const term = getSubjectTerms(availableTerms, subject.name)[type].find(
+          (option) => termKey(option) === value,
+        );
+        if (!term) continue;
+        (accountSchedule[term.dan] ??= []).push({
+          ...term,
+          predmet: subject.name,
+          tip: type,
+        });
+      }
     }
   }
   for (const events of Object.values(accountSchedule)) {
