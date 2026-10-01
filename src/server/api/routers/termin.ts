@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "~/server/api/trpc";
 
 export const terminRouter = createTRPCRouter({
   hello: publicProcedure
@@ -11,7 +11,7 @@ export const terminRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query( ({ctx}) => {
-    return ctx.db.termin.findMany()
+  getAll: protectedProcedure.query( ({ctx}) => {
+    return ctx.db.termin.findMany({ where: { userId: ctx.userId } })
   })
 });

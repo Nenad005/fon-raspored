@@ -15,6 +15,7 @@
     "docker:down": "docker compose down --remove-orphans && docker compose -f compose.prod.yaml down --remove-orphans",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "test": "node --test tests/*.test.cjs",
     "start": "next start"
   },
   "dependencies": {
