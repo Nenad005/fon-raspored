@@ -933,6 +933,7 @@ function pageHarness(
     subjects = [theorySubject],
     selections = {},
     terms = catalog,
+    auth = { isLoaded: true, isSignedIn: true },
     localStorage = new Map([
       ["SELECTED_SUBJECTS", JSON.stringify(subjects)],
       ["SELECTED_TERMS", JSON.stringify(selections)],
@@ -944,6 +945,7 @@ function pageHarness(
   let index = 0;
   let effects = [];
   let tree;
+  let initialTree;
   let settings = {};
   let mode = "account";
   const pushes = [];
@@ -984,7 +986,7 @@ function pageHarness(
     "next/navigation": {
       useRouter: () => ({ push: (path) => pushes.push(path) }),
     },
-    "@clerk/nextjs": { useUser: () => ({ isLoaded: true, isSignedIn: true }) },
+    "@clerk/nextjs": { useUser: () => auth },
     jotai: {
       useSetAtom: (atom) =>
         atom === scheduleModeAtom
@@ -1033,6 +1035,7 @@ function pageHarness(
     withWindow(() => {
       index = 0;
       tree = Page();
+      if (initialTree === undefined) initialTree = tree;
       while (effects.length) {
         const pending = effects;
         effects = [];
@@ -1045,6 +1048,8 @@ function pageHarness(
   return {
     localStorage,
     pushes,
+    initialTree,
+    rerender: render,
     get saved() {
       return JSON.parse(localStorage.get("SELECTED_TERMS"));
     },
@@ -1237,7 +1242,7 @@ test("Home passes both restored sessions and legacy scalar terms to the account 
     },
   });
   const schedule = ui.find((node) => node.type === Schedule).props;
-  assert.equal(schedule.label, "Account schedule");
+  assert.equal(schedule.label, "Izabrani raspored");
   assert.deepEqual(schedule.group, { group: "account", year: null });
   const events = Object.values(schedule.raspored.account).flat();
   assert.equal(events.length, 3);
@@ -1515,4 +1520,47 @@ test("PredmetiPage restores duplicate names and saves retained migrated terms, p
     [subject.name]: selections[subject.name],
   });
   assert.deepEqual(selections[`year3:${crossYearName}`], { P: lecture });
+});
+
+test("Home displays a schedule skeleton until local selections have loaded", () => {
+  const ui = pageHarness("src/app/page.tsx", {
+    selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+  });
+  const initialNodes = nodes(ui.initialTree);
+  assert.equal(
+    initialNodes.filter((node) => node.props.role === "status").length,
+    1,
+  );
+  assert.equal(initialNodes.filter((node) => node.type === Schedule).length, 0);
+  assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+  assert.equal(ui.all((node) => node.type === Schedule).length, 1);
+});
+
+test("Home waits for account loading before replacing its skeleton with the schedule", () => {
+  const auth = { isLoaded: false, isSignedIn: undefined };
+  const ui = pageHarness("src/app/page.tsx", {
+    auth,
+    selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+  });
+  assert.equal(ui.aria("Učitavanje rasporeda").props.role, "status");
+  assert.equal(ui.all((node) => node.type === Schedule).length, 0);
+  assert.equal(
+    ui.all((node) => node.props["aria-labelledby"] === "setup-title").length,
+    0,
+  );
+  auth.isLoaded = true;
+  auth.isSignedIn = true;
+  ui.rerender();
+  assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+  assert.equal(ui.all((node) => node.type === Schedule).length, 1);
+});
+
+test("Home replaces the skeleton with group setup when the loaded account is signed out", () => {
+  const auth = { isLoaded: false, isSignedIn: false };
+  const ui = pageHarness("src/app/page.tsx", { auth });
+  assert.equal(ui.all((node) => node.props.role === "status").length, 1);
+  auth.isLoaded = true;
+  ui.rerender();
+  assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+  assert.ok(ui.button("Podesi pretragu"));
 });

@@ -205,6 +205,48 @@ export default function Home() {
         </p>
       </div>
 
+      {!ready && (
+        <section
+          role="status"
+          aria-label="Učitavanje rasporeda"
+          className="w-full"
+        >
+          <span className="sr-only">Učitavanje rasporeda...</span>
+          <div
+            aria-hidden="true"
+            className="flex w-full animate-pulse flex-col items-center motion-reduce:animate-none"
+          >
+            <div className="h-5 w-40 rounded bg-secondary" />
+            <div className="my-5 flex gap-2">
+              {Array.from({ length: 5 }, (_, index) => (
+                <div key={index} className="h-8 w-12 rounded-md bg-secondary" />
+              ))}
+            </div>
+            <div className="mb-2 flex gap-2">
+              <div className="h-7 w-28 rounded-full bg-secondary" />
+              <div className="h-7 w-20 rounded-full bg-secondary" />
+            </div>
+            <div className="mb-20 w-full md:w-[500px]">
+              {Array.from({ length: 3 }, (_, index) => (
+                <div key={index} className="flex flex-col gap-3 px-5 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-3 w-3 shrink-0 rounded-full bg-secondary" />
+                    <div
+                      className={`h-6 rounded bg-secondary ${index === 1 ? "w-3/5" : "w-4/5"}`}
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="h-6 w-28 rounded-full bg-secondary" />
+                    <div className="h-6 w-16 rounded-full bg-secondary" />
+                    <div className="h-6 w-20 rounded-full bg-secondary" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {ready && !accountMode && (
         <>
           {!group.group && (
@@ -291,7 +333,7 @@ export default function Home() {
           <Raspored
             group={{ group: "account", year: null }}
             raspored={{ account: accountSchedule }}
-            label="Account schedule"
+            label="Izabrani raspored"
           />
         </section>
       )}
