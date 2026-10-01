@@ -8,6 +8,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fon-ispiti.vercel.app"),
   title: {
     default: "Moj raspored | FON",
     template: "%s | FON Raspored",
@@ -15,9 +16,16 @@ export const metadata: Metadata = {
   description:
     "Personalizovani raspored predavanja i vežbi za studente Fakulteta organizacionih nauka.",
   icons: {
-    icon: "/logo.webp",
-    shortcut: "/logo.webp",
-    apple: "/logo.webp",
+    icon: "/FON-logo-small.png",
+    shortcut: "/FON-logo-small.png",
+    apple: "/FON-logo-small.png",
+  },
+  openGraph: {
+    images: [{ url: "/FON-logo-small.png", alt: "FON logo" }],
+  },
+  twitter: {
+    card: "summary",
+    images: ["/FON-logo-small.png"],
   },
 };
 
