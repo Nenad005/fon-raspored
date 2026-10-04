@@ -1,19 +1,21 @@
 services:
-  mysql:
-    container_name: fon-raspored-mysql
-    image: mysql:8.4
+  postgres:
+    container_name: fon-raspored-postgres
+    image: postgres:17-bookworm
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-fon_raspored}
-      MYSQL_USER: ${MYSQL_USER:-fon}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-fon_password}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change_this_root_password}
+      POSTGRES_DB: ${POSTGRES_DB:-fon_raspored}
+      POSTGRES_USER: ${POSTGRES_USER:-fon}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fon_password}
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     networks:
       - backend
+      - db-access
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      test: ["CMD-SHELL", "PGPASSWORD=\"$$POSTGRES_PASSWORD\" psql -h 127.0.0.1 -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\" -c 'SELECT 1' >/dev/null"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -25,11 +27,12 @@ services:
       context: .
       target: migrate
     environment:
-      DATABASE_URL: mysql://${MYSQL_USER:-fon}:${MYSQL_PASSWORD:-fon_password}@mysql:3306/${MYSQL_DATABASE:-fon_raspored}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-fon}:${POSTGRES_PASSWORD:-fon_password}@postgres:5432/${POSTGRES_DB:-fon_raspored}?schema=public
+      DIRECT_URL: postgresql://${POSTGRES_USER:-fon}:${POSTGRES_PASSWORD:-fon_password}@postgres:5432/${POSTGRES_DB:-fon_raspored}?schema=public
     networks:
       - backend
     depends_on:
-      mysql:
+      postgres:
         condition: service_healthy
     restart: "no"
 
@@ -41,7 +44,8 @@ services:
     restart: unless-stopped
     command: npm run dev -- --hostname 0.0.0.0
     environment:
-      DATABASE_URL: mysql://${MYSQL_USER:-fon}:${MYSQL_PASSWORD:-fon_password}@mysql:3306/${MYSQL_DATABASE:-fon_raspored}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-fon}:${POSTGRES_PASSWORD:-fon_password}@postgres:5432/${POSTGRES_DB:-fon_raspored}?schema=public
+      DIRECT_URL: postgresql://${POSTGRES_USER:-fon}:${POSTGRES_PASSWORD:-fon_password}@postgres:5432/${POSTGRES_DB:-fon_raspored}?schema=public
       CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-}
     volumes:
@@ -60,11 +64,12 @@ services:
         condition: service_completed_successfully
 
 volumes:
-  mysql-data:
+  postgres-data:
 
 networks:
   backend:
     internal: true
+  db-access:
   dev-proxy:
     external: true
     name: dev-proxy

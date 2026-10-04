@@ -17,9 +17,12 @@ import { cn } from "~/lib/utils";
 import {
   getMultiSessionGroups,
   getSelectionLimit,
+  getWeeklySessionCounts,
   intervalKey,
   termKey,
+  termGroups,
   type Term,
+  type WeeklySessions,
 } from "~/lib/schedule-storage";
 
 const days_short = ["pon", "uto", "sre", "čet", "pet"];
@@ -31,6 +34,7 @@ type Availability = "available" | "unavailable" | "selected" | "occupied";
 export default function Component({
   slots_input,
   termini,
+  weeklySessions,
   value = null,
   values,
   onSave,
@@ -40,6 +44,7 @@ export default function Component({
 }: {
   slots_input: Record<string, Availability>;
   termini: Term[];
+  weeklySessions?: WeeklySessions;
   value?: Term | null;
   values?: Term[];
   onSave?: (term: Term | null) => void;
@@ -52,13 +57,16 @@ export default function Component({
   const [activeCell, setActiveCell] = useState<string | null>(null);
   const [pendingSlot, setPendingSlot] = useState<Term | null>(null);
   const cellKey = (term: Term) => `${term.dan}-${term.od}`;
-  const groups = getMultiSessionGroups(termini);
+  const counts = weeklySessions?.counts ?? getWeeklySessionCounts(termini);
+  const groups =
+    weeklySessions?.multiSessionGroups ??
+    getMultiSessionGroups(termini, counts);
   const multiple = groups.size > 0 && Boolean(onSaveMultiple);
   const selectionLimit = (choices: Term[]) =>
-    multiple ? getSelectionLimit(termini, choices) : 1;
+    multiple ? getSelectionLimit(termini, choices, counts) : 1;
   const limit = selectionLimit(selected);
   const eligible = (term: Term) =>
-    term.grupe.some((group) => groups.has(group));
+    termGroups(term).some((group) => groups.has(group));
   const initial = multiple
     ? (values ?? (value ? [value] : []))
     : value

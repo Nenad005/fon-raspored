@@ -3,29 +3,146 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Termin {
-  id      String @id @default(cuid()) @db.VarChar(255)
-  predmet String @db.VarChar(255)
-  tip     String @db.VarChar(1)
-  grupe   String @db.VarChar(50)
-  od      String @db.VarChar(5)
-  do      String @db.VarChar(5)
-  sala    String @db.VarChar(50)
-  dan     Int    @db.TinyInt()
-  userId  String @db.VarChar(255)
-
-  @@index([userId])
+enum TimeslotType {
+  P
+  V
 }
 
-model Predmeti {
-  id      String  @db.VarChar(255) @id @default(cuid())
-  userId  String  @db.VarChar(255)
-  godina  Int     @db.TinyInt()
-  ime     String  @db.VarChar(255)  
+model Subject {
+  id        String           @id @default(cuid()) @db.VarChar(30)
+  name      String           @unique @db.VarChar(191)
+  programs  SubjectProgram[]
+  timeslots Timeslot[]
+  users     UserSubject[]
 
-  @@index([userId])
+  @@map("subjects")
+}
+
+model Program {
+  id       String              @id @default(cuid()) @db.VarChar(30)
+  name     String              @unique @db.VarChar(191)
+  subjects SubjectProgram[]
+  filters  UserProgramFilter[]
+
+  @@map("programs")
+}
+
+model SubjectProgram {
+  subjectId String  @db.VarChar(30)
+  programId String  @db.VarChar(30)
+  year      Int     @db.SmallInt
+  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@id([subjectId, programId, year])
+  @@index([year, programId, subjectId])
+  @@index([programId])
+  @@map("subject_programs")
+}
+
+model StudyGroup {
+  id        String          @id @default(cuid()) @db.VarChar(30)
+  name      String          @db.VarChar(191)
+  year      Int             @db.SmallInt
+  timeslots TimeslotGroup[]
+  users     UserSettings[]
+
+  @@unique([year, name])
+  @@map("study_groups")
+}
+
+model Timeslot {
+  id        String          @id @default(cuid()) @db.VarChar(30)
+  subjectId String          @db.VarChar(30)
+  subject   Subject         @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  type      TimeslotType
+  day       Int             @db.SmallInt
+  startTime String          @db.Char(5)
+  endTime   String          @db.Char(5)
+  room      String          @db.VarChar(191)
+  groups    TimeslotGroup[]
+  users     UserTimeslot[]
+
+  @@unique([subjectId, type, day, startTime, endTime, room])
+  @@index([day, startTime])
+  @@map("timeslots")
+}
+
+model TimeslotGroup {
+  timeslotId String     @db.VarChar(30)
+  groupId    String     @db.VarChar(30)
+  timeslot   Timeslot   @relation(fields: [timeslotId], references: [id], onDelete: Cascade)
+  group      StudyGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@id([timeslotId, groupId])
+  @@index([groupId, timeslotId])
+  @@map("timeslot_groups")
+}
+
+enum AccountMode {
+  account
+  search
+}
+
+enum AccountTheme {
+  system
+  light
+  dark
+}
+
+model UserSettings {
+  userId      String              @id @db.VarChar(255)
+  revision    Int                 @default(0)
+  mode        AccountMode         @default(account)
+  theme       AccountTheme        @default(system)
+  catalogYear Int                 @default(1) @db.SmallInt
+  groupId     String?             @db.VarChar(30)
+  group       StudyGroup?         @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  subjects    UserSubject[]
+  timeslots   UserTimeslot[]
+  filters     UserProgramFilter[]
+
+  @@index([groupId])
+  @@map("user_settings")
+}
+
+model UserSubject {
+  userId    String       @db.VarChar(255)
+  subjectId String       @db.VarChar(30)
+  position  Int?
+  user      UserSettings @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  subject   Subject      @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+
+  @@id([userId, subjectId])
+  @@index([subjectId])
+  @@index([userId, position])
+  @@map("user_subjects")
+}
+
+model UserTimeslot {
+  userId     String       @db.VarChar(255)
+  timeslotId String       @db.VarChar(30)
+  user       UserSettings @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  timeslot   Timeslot     @relation(fields: [timeslotId], references: [id], onDelete: Restrict)
+
+  @@id([userId, timeslotId])
+  @@index([timeslotId])
+  @@map("user_timeslots")
+}
+
+model UserProgramFilter {
+  userId    String       @db.VarChar(255)
+  year      Int          @db.SmallInt
+  programId String       @db.VarChar(30)
+  user      UserSettings @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  program   Program      @relation(fields: [programId], references: [id], onDelete: Restrict)
+
+  @@id([userId, year])
+  @@index([programId])
+  @@map("user_program_filters")
 }

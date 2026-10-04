@@ -14,9 +14,13 @@ import { cn } from "~/lib/utils";
 import { useEffect, useState } from "react";
 import { errorAtom } from "~/state/errorAtom";
 import { useSetAtom } from "jotai";
+import type { RouterOutputs } from "~/trpc/react";
 
-function danUSrpskom(danEng) {
-  const dani = {
+type ScheduleEvent =
+  RouterOutputs["schedule"]["getSchedule"]["schedule"][string][number];
+
+function danUSrpskom(danEng: string) {
+  const dani: Record<string, string> = {
     Monday: "Ponedeljak",
     Tuesday: "Utorak",
     Wednesday: "Sreda",
@@ -25,7 +29,7 @@ function danUSrpskom(danEng) {
     Saturday: "Subota",
     Sunday: "Nedelja",
   };
-  return dani[danEng];
+  return dani[danEng] ?? "Ponedeljak";
 }
 
 function nazivDana() {
@@ -39,7 +43,7 @@ function nazivDana() {
   return danNaSrpskom;
 }
 
-function yearName(year) {
+function yearName(year: string | null) {
   switch (year) {
     case "year1":
       return "G1";
@@ -54,11 +58,20 @@ function yearName(year) {
   }
 }
 
-export default function Raspored({ raspored, group, label = "" }) {
+export default function Raspored({
+  raspored,
+  group,
+  label = "",
+}: {
+  raspored: Record<string, Record<string, ScheduleEvent[]>>;
+  group: { group: string | null; year: string | null };
+  label?: string;
+}) {
   const [day, setDay] = useState(nazivDana());
   const setError = useSetAtom(errorAtom);
   useEffect(() => setError(false), [setError]);
-  const dailySchedule = raspored[group.group]?.[day] ?? [];
+  const dailySchedule =
+    (group.group ? raspored[group.group]?.[day] : undefined) ?? [];
 
   return (
     <>
@@ -95,10 +108,10 @@ export default function Raspored({ raspored, group, label = "" }) {
       )}
       <div className="mb-20 flex w-full flex-col items-center">
         {dailySchedule.length > 0 ? (
-          dailySchedule.map((predavanje, index) => {
+          dailySchedule.map((predavanje) => {
             return (
               <div
-                key={index}
+                key={predavanje.id}
                 className="flex w-full justify-between px-5 py-4 md:w-[500px]"
               >
                 <div className="flex flex-col gap-2">
