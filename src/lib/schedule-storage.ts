@@ -8,6 +8,8 @@ export function subjectKey(subject: SelectedSubject) {
 }
 
 export type Term = {
+  id?: string;
+  groupKeys?: string[];
   dan: string;
   od: string;
   do: string;
@@ -15,16 +17,66 @@ export type Term = {
   grupe: string[];
 };
 
+export function termGroups(term: Term) {
+  return term.groupKeys ?? term.grupe;
+}
+
 export function termKey(term: Term) {
   return `${term.dan}|${term.od}|${term.do}|${term.sala}`;
 }
 
 export type Selections = Record<string, Record<string, string | string[]>>;
 
-export function getSubjectTerms(
-  catalog: Record<string, Record<string, { P?: Term[]; V?: Term[] }>>,
-  name: string,
-) {
+export type TermCatalog = Record<
+  string,
+  Record<string, { P?: Term[]; V?: Term[] }>
+>;
+
+export type WeeklySessions = {
+  counts: ReadonlyMap<string, number>;
+  multiSessionGroups: ReadonlySet<string>;
+};
+
+type IndexedTerms = {
+  terms: Term[];
+  byKey: ReadonlyMap<string, Term>;
+  weeklySessions: WeeklySessions;
+};
+
+export function createCatalogIndex(catalog: TermCatalog) {
+  const yearsBySubject = new Map<string, string[]>();
+  for (const [year, subjects] of Object.entries(catalog)) {
+    for (const name of Object.keys(subjects)) {
+      const years = yearsBySubject.get(name) ?? [];
+      years.push(year);
+      yearsBySubject.set(name, years);
+    }
+  }
+  const index = new Map<
+    string,
+    { years: string[]; P: IndexedTerms; V: IndexedTerms }
+  >();
+  for (const [name, years] of yearsBySubject) {
+    const merged = getSubjectTerms(catalog, name);
+    const types = {} as Record<"P" | "V", IndexedTerms>;
+    for (const type of ["P", "V"] as const) {
+      const terms = merged[type];
+      const counts = getWeeklySessionCounts(terms);
+      types[type] = {
+        terms,
+        byKey: new Map(terms.map((term) => [termKey(term), term])),
+        weeklySessions: {
+          counts,
+          multiSessionGroups: getMultiSessionGroups(terms, counts),
+        },
+      };
+    }
+    index.set(name, { years, ...types });
+  }
+  return index;
+}
+
+export function getSubjectTerms(catalog: TermCatalog, name: string) {
   const result: { P: Term[]; V: Term[] } = { P: [], V: [] };
   for (const type of ["P", "V"] as const) {
     const unique = new Map<string, Term>();
@@ -50,7 +102,7 @@ export function intervalKey(term: Term) {
 export function getWeeklySessionCounts(terms: Term[]) {
   const intervals = new Map<string, Set<string>>();
   for (const term of terms) {
-    for (const group of term.grupe) {
+    for (const group of termGroups(term)) {
       const sessions = intervals.get(group) ?? new Set<string>();
       sessions.add(intervalKey(term));
       intervals.set(group, sessions);
@@ -61,20 +113,27 @@ export function getWeeklySessionCounts(terms: Term[]) {
   );
 }
 
-export function getMultiSessionGroups(terms: Term[]) {
+export function getMultiSessionGroups(
+  terms: Term[],
+  counts: ReadonlyMap<string, number> = getWeeklySessionCounts(terms),
+) {
   return new Set(
-    [...getWeeklySessionCounts(terms)]
-      .filter(([, count]) => count > 1)
-      .map(([group]) => group),
+    [...counts].filter(([, count]) => count > 1).map(([group]) => group),
   );
 }
 
-export function getSelectionLimit(terms: Term[], choices: Term[]) {
-  const counts = getWeeklySessionCounts(terms);
+export function getSelectionLimit(
+  terms: Term[],
+  choices: Term[],
+  counts: ReadonlyMap<string, number> = getWeeklySessionCounts(terms),
+) {
   return choices.length
     ? Math.min(
         ...choices.map((term) =>
-          Math.max(1, ...term.grupe.map((group) => counts.get(group) ?? 1)),
+          Math.max(
+            1,
+            ...termGroups(term).map((group) => counts.get(group) ?? 1),
+          ),
         ),
       )
     : Math.max(1, ...counts.values());

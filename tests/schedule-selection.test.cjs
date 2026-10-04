@@ -107,6 +107,40 @@ test("term identity distinguishes simultaneous rooms and different durations", (
   assert.notEqual(termKey(options[0]), termKey({ ...options[0], do: "09:00" }));
 });
 
+test("catalog index matches merged terms and weekly metadata for every subject and type", () => {
+  const original = JSON.stringify(catalog);
+  const index = storage.createCatalogIndex(catalog);
+  const names = new Set(Object.values(catalog).flatMap(Object.keys));
+  assert.equal(index.size, names.size);
+  for (const name of names) {
+    const indexed = index.get(name);
+    assert.deepEqual(
+      indexed.years,
+      Object.keys(catalog).filter((year) => catalog[year][name]),
+    );
+    const merged = storage.getSubjectTerms(catalog, name);
+    for (const type of ["P", "V"]) {
+      const entry = indexed[type];
+      assert.deepEqual(entry.terms, merged[type]);
+      assert.equal(entry.byKey.size, entry.terms.length);
+      for (const term of entry.terms) {
+        assert.strictEqual(entry.byKey.get(termKey(term)), term);
+      }
+      assert.deepEqual(
+        entry.weeklySessions.counts,
+        storage.getWeeklySessionCounts(merged[type]),
+      );
+      assert.deepEqual(
+        entry.weeklySessions.multiSessionGroups,
+        storage.getMultiSessionGroups(merged[type]),
+      );
+      assert.equal(entry.byKey.get("unavailable"), undefined);
+    }
+  }
+  assert.equal(index.get("unavailable"), undefined);
+  assert.equal(JSON.stringify(catalog), original);
+});
+
 const shortSession = {
   dan: "Ponedeljak",
   od: "08:15",
@@ -123,6 +157,54 @@ const longSession = {
 };
 const regularSession = { ...longSession, dan: "Petak", grupe: ["G2"] };
 const multiOptions = [shortSession, longSession, regularSession];
+
+test("catalog index merges cross-year groups while keeping type and room alternatives distinct", () => {
+  const alternateRoom = { ...shortSession, sala: "3" };
+  const index = storage.createCatalogIndex({
+    year1: { Example: { P: [shortSession], V: [shortSession, alternateRoom] } },
+    year2: {
+      Example: {
+        V: [{ ...shortSession, grupe: ["G2"] }, longSession],
+      },
+      Empty: {},
+    },
+  });
+  const subject = index.get("Example");
+  assert.deepEqual(subject.years, ["year1", "year2"]);
+  assert.deepEqual(subject.P.byKey.get(termKey(shortSession)).grupe, ["G1"]);
+  assert.deepEqual(subject.V.byKey.get(termKey(shortSession)).grupe, [
+    "G1",
+    "G2",
+  ]);
+  assert.equal(subject.V.terms.length, 3);
+  assert.deepEqual(
+    [...subject.V.weeklySessions.counts],
+    [
+      ["G1", 2],
+      ["G2", 1],
+    ],
+  );
+  assert.deepEqual([...subject.V.weeklySessions.multiSessionGroups], ["G1"]);
+  assert.equal(
+    storage.getSelectionLimit(
+      subject.V.terms,
+      [],
+      subject.V.weeklySessions.counts,
+    ),
+    2,
+  );
+  assert.equal(
+    storage.getSelectionLimit(
+      subject.V.terms,
+      [subject.V.byKey.get(termKey(shortSession))],
+      subject.V.weeklySessions.counts,
+    ),
+    2,
+  );
+  assert.deepEqual(index.get("Empty").P.terms, []);
+  assert.equal(index.get("Empty").V.byKey.size, 0);
+  assert.equal(storage.createCatalogIndex({}).size, 0);
+});
 
 test("multi-session detection identifies distinct 45/105-minute sessions per group", () => {
   assert.deepEqual([...getMultiSessionGroups(multiOptions)], ["G1"]);
@@ -543,6 +625,26 @@ test("Teorija sistema cannot select a third exercise from another group", () => 
   assert.deepEqual(ui.saved, chosen);
 });
 
+test("selector preserves selection limits using indexed weekly-session metadata", () => {
+  const indexed = storage.createCatalogIndex(catalog).get("Teorija sistema").V;
+  const chosen = indexed.terms.filter((term) => term.grupe.includes("C1"));
+  const third = indexed.terms.find(
+    (term) => term.grupe.includes("C7") && term.od === "09:15",
+  );
+  const ui = harness({
+    termini: indexed.terms,
+    weeklySessions: indexed.weeklySessions,
+    values: chosen,
+    onSaveMultiple: () => {},
+  });
+  assert.ok(ui.hasText("Izabrano: 2/2"));
+  assert.equal(ui.cell(third).props.disabled, true);
+  ui.click(ui.cell(chosen[0]));
+  assert.equal(ui.cell(third).props.disabled, false);
+  ui.click(ui.button("Sačuvaj"));
+  assert.deepEqual(ui.saved, [chosen[1]]);
+});
+
 test("a three-session group allows three choices but not a smaller group's extra session", () => {
   const third = { ...shortSession, dan: "Sreda" };
   const otherShort = { ...shortSession, dan: "Četvrtak", grupe: ["G3"] };
@@ -923,9 +1025,65 @@ const theoryKey = storage.subjectKey(theorySubject);
 const theoryPair = catalog.year3[theorySubject.name].V.filter((term) =>
   term.grupe.includes("C1"),
 );
+const slotId = (name, type, term) => `slot:${name}:${type}:${termKey(term)}`;
+const dbTerm = (name, type, term) => ({
+  ...term,
+  id: slotId(name, type, term),
+  groupKeys: term.grupe,
+});
+const dbTheoryPair = theoryPair.map((term) =>
+  dbTerm(theorySubject.name, "V", term),
+);
 const PageSelector = () => null;
 const PageCalendar = () => null;
 const Schedule = () => null;
+const dbCatalog = load("src/lib/schedule-catalog.ts", {
+  "~/lib/schedule-storage": storage,
+});
+
+function catalogFixture(terms) {
+  const merged = storage.createCatalogIndex(terms);
+  const programs = new Map();
+  const memberships = new Map();
+  for (const [yearKey, entries] of Object.entries(subjectCatalog)) {
+    const year = Number(yearKey.slice(4));
+    for (const [name, names] of Object.entries(entries)) {
+      const program = programs.get(name) ?? { id: name, name, years: [] };
+      program.years.push(year);
+      programs.set(name, program);
+      for (const subject of names) {
+        const entries = memberships.get(subject) ?? [];
+        entries.push({ year, programId: program.id });
+        memberships.set(subject, entries);
+      }
+    }
+  }
+  const names = new Set([...merged.keys(), ...memberships.keys()]);
+  return {
+    programs: [...programs.values()],
+    subjects: [...names].map((name) => {
+      const indexed = merged.get(name);
+      return {
+        id: `subject:${name}`,
+        name,
+        years: indexed?.years.map((year) => Number(year.slice(4))) ?? [
+          ...new Set(memberships.get(name).map((entry) => entry.year)),
+        ],
+        memberships: memberships.get(name) ?? [],
+        terms: Object.fromEntries(
+          ["P", "V"].map((type) => [
+            type,
+            (indexed?.[type].terms ?? []).map((term) => ({
+              ...term,
+              id: `slot:${name}:${type}:${termKey(term)}`,
+              groupKeys: term.grupe,
+            })),
+          ]),
+        ),
+      };
+    }),
+  };
+}
 
 function pageHarness(
   file,
@@ -933,11 +1091,16 @@ function pageHarness(
     subjects = [theorySubject],
     selections = {},
     terms = catalog,
+    mode = "account",
+    groupSchedules = {},
+    scheduleQuery,
     auth = { isLoaded: true, isSignedIn: true },
-    localStorage = new Map([
-      ["SELECTED_SUBJECTS", JSON.stringify(subjects)],
-      ["SELECTED_TERMS", JSON.stringify(selections)],
-    ]),
+    group = null,
+    catalogData = catalogFixture(terms),
+    catalogQuery = {},
+    accountQuery = {},
+    mutationError = false,
+    deferSave = false,
   } = {},
 ) {
   const state = [];
@@ -947,14 +1110,93 @@ function pageHarness(
   let tree;
   let initialTree;
   let settings = {};
-  let mode = "account";
   const pushes = [];
+  const scheduleQueries = [];
+  const catalogQueries = [];
+  let retries = 0;
   const setSettings = (value) => {
     settings = value;
   };
   const scheduleModeAtom = {};
   const settingsAtom = {};
   const isOpenAtom = {};
+  const indexedCatalog = dbCatalog.createScheduleCatalog(catalogData.subjects);
+  const retained = retainSubjectTerms(subjects, selections);
+  let accountData = {
+    revision: 7,
+    preferences: {
+      mode,
+      group,
+      catalogYear: 1,
+      programFilters: [],
+      theme: "system",
+    },
+    subjectIds: [
+      ...new Set(subjects.map((subject) => `subject:${subject.name}`)),
+    ],
+    timeslotIds: catalogData.subjects.flatMap((subject) =>
+      ["P", "V"].flatMap((type) =>
+        subject.terms[type]
+          .filter((term) =>
+            selectionKeys(retained[subject.name]?.[type]).includes(
+              termKey(term),
+            ),
+          )
+          .map((term) => term.id),
+      ),
+    ),
+  };
+  const saves = [];
+  let pendingSave;
+  let mounted = true;
+  const mutation = { isPending: false, isError: false };
+  const accountResult = () => ({
+    data: accountData,
+    isError: false,
+    refetch: () => {
+      retries++;
+    },
+    ...accountQuery,
+  });
+  const useMutation = (kind) => (options) => ({
+    ...mutation,
+    mutate(input, callbacks) {
+      saves.push({ kind, input });
+      mutation.isPending = true;
+      pendingSave = () => {
+        mutation.isPending = false;
+        mutation.isError = mutationError;
+        if (mutationError) return;
+        const subjectIds = input.subjectIds ?? accountData.subjectIds;
+        accountData = {
+          ...accountData,
+          revision: accountData.revision + 1,
+          subjectIds,
+          timeslotIds:
+            input.timeslotIds ??
+            accountData.timeslotIds.filter((id) =>
+              catalogData.subjects.some(
+                (subject) =>
+                  subjectIds.includes(subject.id) &&
+                  ["P", "V"].some((type) =>
+                    subject.terms[type].some((term) => term.id === id),
+                  ),
+              ),
+            ),
+          preferences: {
+            ...accountData.preferences,
+            catalogYear:
+              input.catalogYear ?? accountData.preferences.catalogYear,
+            programFilters:
+              input.programFilters ?? accountData.preferences.programFilters,
+          },
+        };
+        options.onSuccess(accountData);
+        if (mounted) callbacks.onSuccess(accountData);
+      };
+      if (!deferSave) pendingSave();
+    },
+  });
   const Page = load(file, {
     react: {
       ...React,
@@ -986,7 +1228,15 @@ function pageHarness(
     "next/navigation": {
       useRouter: () => ({ push: (path) => pushes.push(path) }),
     },
-    "@clerk/nextjs": { useUser: () => auth },
+    "@clerk/nextjs": { useUser: () => auth, SignInButton: () => null },
+    "~/hooks/use-schedule-state": {
+      useScheduleState: () => ({
+        ...auth,
+        account: accountResult(),
+        mode: auth.isSignedIn ? mode : "search",
+        group,
+      }),
+    },
     jotai: {
       useSetAtom: (atom) =>
         atom === scheduleModeAtom
@@ -1011,17 +1261,81 @@ function pageHarness(
     "~/data/termini.json": terms,
     "~/data/predmeti.json": subjectCatalog,
     "~/data/raspored_grupa.json": {},
-    "~/data/raspored_nastave.json": {},
+    "~/data/raspored_nastave.json": groupSchedules,
     "~/lib/schedule-storage": storage,
+    "~/lib/schedule-catalog": { ...dbCatalog },
     "~/lib/utils": { latinToCyrillic: (value) => value },
     "~/lib/search": { LAST_NAME_SEARCH_ENABLED: false },
+    "~/trpc/react": {
+      api: {
+        useUtils: () => ({
+          account: {
+            get: {
+              setData: (_input, data) => {
+                accountData = data;
+              },
+            },
+          },
+        }),
+        catalog: {
+          get: {
+            useQuery: (input, options) => {
+              catalogQueries.push({ input, options });
+              return {
+                data: catalogData,
+                isError: false,
+                refetch: () => {
+                  retries++;
+                },
+                ...catalogQuery,
+              };
+            },
+          },
+        },
+        account: {
+          saveSubjects: { useMutation: useMutation("subjects") },
+          saveTimeslots: { useMutation: useMutation("timeslots") },
+        },
+        schedule: {
+          getSchedule: {
+            useQuery(input, options) {
+              scheduleQueries.push({ input, options });
+              return {
+                data: options.enabled
+                  ? {
+                      group: input.group,
+                      year: input.year,
+                      schedule: groupSchedules[input.group] ?? {},
+                    }
+                  : undefined,
+                isError: false,
+                isFetching: false,
+                refetch: () => {
+                  retries++;
+                },
+                ...scheduleQuery,
+              };
+            },
+          },
+        },
+      },
+    },
   }).default;
   const withWindow = (action) => {
     const previous = global.window;
     global.window = {
       localStorage: {
-        getItem: (key) => localStorage.get(key) ?? null,
-        setItem: (key, value) => localStorage.set(key, value),
+        getItem: () => {
+          throw new Error("Pages must not read localStorage");
+        },
+        setItem: () => {
+          throw new Error("Pages must not write localStorage");
+        },
+      },
+      location: {
+        reload: () => {
+          retries++;
+        },
       },
     };
     try {
@@ -1046,12 +1360,32 @@ function pageHarness(
     });
   render();
   return {
-    localStorage,
+    saves,
+    catalogData,
+    get accountData() {
+      return accountData;
+    },
+    completeSave() {
+      pendingSave();
+      render();
+    },
+    unmount() {
+      mounted = false;
+    },
+    failSave(value) {
+      mutationError = value;
+    },
     pushes,
+    indexedCatalog,
+    scheduleQueries,
+    catalogQueries,
+    get retries() {
+      return retries;
+    },
     initialTree,
     rerender: render,
     get saved() {
-      return JSON.parse(localStorage.get("SELECTED_TERMS"));
+      return accountData.timeslotIds;
     },
     find(predicate) {
       const node = nodes(tree).find(predicate);
@@ -1128,27 +1462,51 @@ test("TerminiPage exposes multi props only for detected multi-session subjects a
   }
 });
 
-test("TerminiPage saves and reloads both chosen sessions as an array", () => {
+test("TerminiPage reuses indexed terms and weekly metadata across selection changes", () => {
+  const ui = pageHarness("src/app/termini/page.tsx");
+  const indexed = ui.indexedCatalog.get(theorySubject.name).V;
+  const before = ui.selector(theorySubject).props;
+  assert.strictEqual(before.termini, indexed.terms);
+  assert.strictEqual(before.weeklySessions, indexed.weeklySessions);
+  ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+  const after = ui.selector(theorySubject).props;
+  assert.strictEqual(after.termini, before.termini);
+  assert.strictEqual(after.weeklySessions, before.weeklySessions);
+  for (const slot of ui.slots()) {
+    assert.strictEqual(slot.term, indexed.byKey.get(termKey(slot.term)));
+  }
+  ui.rerender();
+  assert.strictEqual(ui.selector(theorySubject).props.termini, indexed.terms);
+});
+
+test("TerminiPage saves and reloads both chosen sessions by database ID", () => {
   assert.equal(theoryPair.length, 2);
   const ui = pageHarness("src/app/termini/page.tsx");
   ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
-  assert.deepEqual(ui.selector(theorySubject).props.values, theoryPair);
+  assert.deepEqual(ui.selector(theorySubject).props.values, dbTheoryPair);
   assert.deepEqual(
     ui.slots().map((slot) => slot.term),
-    theoryPair,
+    dbTheoryPair,
   );
   const save = ui.button("Sačuvaj raspored");
   assert.equal(save.props.disabled, false);
   ui.invoke(save, "onClick");
-  assert.deepEqual(ui.saved, { [theoryKey]: { V: theoryPair.map(termKey) } });
+  assert.deepEqual(
+    ui.saved,
+    dbTheoryPair.map((term) => term.id),
+  );
+  assert.deepEqual(ui.saves[0].input, {
+    timeslotIds: ui.saved,
+    expectedRevision: 7,
+  });
   assert.deepEqual(ui.pushes, ["/"]);
   const restored = pageHarness("src/app/termini/page.tsx", {
-    localStorage: ui.localStorage,
+    accountQuery: { data: ui.accountData },
   });
-  assert.deepEqual(restored.selector(theorySubject).props.values, theoryPair);
+  assert.deepEqual(restored.selector(theorySubject).props.values, dbTheoryPair);
   assert.deepEqual(
     restored.slots().map((slot) => slot.term),
-    theoryPair,
+    dbTheoryPair,
   );
 });
 
@@ -1174,10 +1532,13 @@ test("TerminiPage rejects oversized drafts and requires old oversized saves to b
   );
   assert.equal(restored.button("Sačuvaj raspored").props.disabled, false);
   restored.invoke(restored.button("Sačuvaj raspored"), "onClick");
-  assert.deepEqual(restored.saved[theoryKey].V, theoryPair.map(termKey));
+  assert.deepEqual(
+    restored.saved,
+    dbTheoryPair.map((term) => term.id),
+  );
 });
 
-test("TerminiPage restores legacy scalar choices without selecting related sessions", () => {
+test("TerminiPage restores database choices without selecting related sessions", () => {
   const ui = pageHarness("src/app/termini/page.tsx", {
     subjects: [theorySubject, subject],
     selections: {
@@ -1185,15 +1546,18 @@ test("TerminiPage restores legacy scalar choices without selecting related sessi
       "year1:Menadžment": { V: termKey(options[1]) },
     },
   });
-  assert.deepEqual(ui.selector(theorySubject).props.values, [theoryPair[0]]);
-  assert.deepEqual(ui.selector(theorySubject).props.value, theoryPair[0]);
-  assert.deepEqual(ui.selector(subject).props.value, options[1]);
+  assert.deepEqual(ui.selector(theorySubject).props.values, [dbTheoryPair[0]]);
+  assert.deepEqual(ui.selector(theorySubject).props.value, dbTheoryPair[0]);
+  assert.deepEqual(
+    ui.selector(subject).props.value,
+    dbTerm(subject.name, "V", options[1]),
+  );
   assert.equal(ui.slots().length, 2);
   ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
-  assert.deepEqual(ui.saved, {
-    [theoryKey]: { V: termKey(theoryPair[0]) },
-    [key]: { V: termKey(options[1]) },
-  });
+  assert.deepEqual(
+    new Set(ui.saved),
+    new Set([dbTheoryPair[0].id, slotId(subject.name, "V", options[1])]),
+  );
 });
 
 test("TerminiPage removes only the conflicting member of a saved session array", () => {
@@ -1221,19 +1585,19 @@ test("TerminiPage removes only the conflicting member of a saved session array",
   );
   ui.invoke(ui.button("Ukloni prethodne"), "onClick");
   assert.equal(ui.warning().props.open, false);
-  assert.deepEqual(ui.selector(theorySubject).props.values, [theoryPair[1]]);
+  assert.deepEqual(ui.selector(theorySubject).props.values, [dbTheoryPair[1]]);
   assert.deepEqual(
     ui.slots().map((slot) => slot.term),
-    [theoryPair[1], conflict],
+    [dbTheoryPair[1], dbTerm(subject.name, "V", conflict)],
   );
   ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
-  assert.deepEqual(ui.saved, {
-    [theoryKey]: { V: [termKey(theoryPair[1])] },
-    [key]: { V: termKey(conflict) },
-  });
+  assert.deepEqual(
+    new Set(ui.saved),
+    new Set([dbTheoryPair[1].id, slotId(subject.name, "V", conflict)]),
+  );
 });
 
-test("Home passes both restored sessions and legacy scalar terms to the account schedule", () => {
+test("Home resolves all saved timeslot IDs to the account schedule", () => {
   const ui = pageHarness("src/app/page.tsx", {
     subjects: [theorySubject, subject],
     selections: {
@@ -1250,7 +1614,7 @@ test("Home passes both restored sessions and legacy scalar terms to the account 
     assert.deepEqual(
       events.find((event) => termKey(event) === termKey(term)),
       {
-        ...term,
+        ...dbTerm(theorySubject.name, "V", term),
         predmet: theorySubject.name,
         tip: "V",
       },
@@ -1259,7 +1623,7 @@ test("Home passes both restored sessions and legacy scalar terms to the account 
   assert.deepEqual(
     events.find((event) => event.predmet === subject.name),
     {
-      ...options[1],
+      ...dbTerm(subject.name, "V", options[1]),
       predmet: subject.name,
       tip: "V",
     },
@@ -1358,7 +1722,7 @@ test("TerminiPage restores duplicate cross-year subjects as one section without 
   for (const type of ["P", "V"]) {
     assert.deepEqual(
       ui.selector(crossYearSubjects[0], type).props.termini,
-      terms[type],
+      terms[type].map((term) => dbTerm(crossYearName, type, term)),
     );
   }
   assert.equal(ui.slots().length, 1);
@@ -1370,10 +1734,10 @@ test("TerminiPage restores duplicate cross-year subjects as one section without 
   ui.invoke(ui.selector(crossYearSubjects[0], "P"), "onSave", lecture);
   assert.equal(ui.warning().props.open, false);
   ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
-  assert.deepEqual(ui.saved, { [crossYearName]: { P: termKey(lecture) } });
+  assert.deepEqual(ui.saved, [slotId(crossYearName, "P", lecture)]);
 });
 
-test("TerminiPage and Home retain old-year picks even when that source year is omitted", () => {
+test("TerminiPage and Home resolve saved IDs independently of legacy source years", () => {
   for (const [selected, oldYear] of [
     [crossYearSubjects[0], "year4"],
     [crossYearSubjects[1], "year3"],
@@ -1387,13 +1751,16 @@ test("TerminiPage and Home retain old-year picks even when that source year is o
       subjects: [selected],
       selections,
     });
-    assert.deepEqual(ui.selector(selected).props.value, term);
+    assert.deepEqual(
+      ui.selector(selected).props.value,
+      dbTerm(crossYearName, "V", term),
+    );
     assert.deepEqual(
       ui.slots().map((slot) => slot.term),
-      [term],
+      [dbTerm(crossYearName, "V", term)],
     );
     ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
-    assert.deepEqual(ui.saved, { [crossYearName]: { V: termKey(term) } });
+    assert.deepEqual(ui.saved, [slotId(crossYearName, "V", term)]);
     const home = pageHarness("src/app/page.tsx", {
       subjects: [selected],
       selections,
@@ -1401,7 +1768,9 @@ test("TerminiPage and Home retain old-year picks even when that source year is o
     const events = Object.values(
       home.find((node) => node.type === Schedule).props.raspored.account,
     ).flat();
-    assert.deepEqual(events, [{ ...term, predmet: crossYearName, tip: "V" }]);
+    assert.deepEqual(events, [
+      { ...dbTerm(crossYearName, "V", term), predmet: crossYearName, tip: "V" },
+    ]);
   }
 });
 
@@ -1418,7 +1787,9 @@ test("Home emits one event for duplicate saved cross-year subject picks", () => 
   const events = Object.values(
     ui.find((node) => node.type === Schedule).props.raspored.account,
   ).flat();
-  assert.deepEqual(events, [{ ...term, predmet: crossYearName, tip: "P" }]);
+  assert.deepEqual(events, [
+    { ...dbTerm(crossYearName, "P", term), predmet: crossYearName, tip: "P" },
+  ]);
 });
 
 test("PredmetiPage filters never add subjects until an explicit catalog click", () => {
@@ -1450,10 +1821,15 @@ test("PredmetiPage filters never add subjects until an explicit catalog click", 
     "MiO",
   );
   ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
-  assert.deepEqual(JSON.parse(ui.localStorage.get("SELECTED_SUBJECTS")), [
-    subject,
-    { year: "year2", name: "Marketing" },
-  ]);
+  assert.deepEqual(ui.saves[0].input, {
+    subjectIds: [`subject:${subject.name}`, "subject:Marketing"],
+    catalogYear: 1,
+    programFilters: [
+      { year: 1, programId: "MiO" },
+      { year: 2, programId: "ISiT" },
+    ],
+    expectedRevision: 7,
+  });
   assert.deepEqual(ui.pushes, ["/termini"]);
 });
 
@@ -1480,12 +1856,10 @@ test("PredmetiPage cannot readd a name across years; upper-list removal enables 
   assert.equal(ui.aria(`Dodaj ${crossYearName}`).props.disabled, false);
   ui.invoke(ui.aria(`Dodaj ${crossYearName}`), "onClick");
   ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
-  assert.deepEqual(JSON.parse(ui.localStorage.get("SELECTED_SUBJECTS")), [
-    crossYearSubjects[1],
-  ]);
+  assert.deepEqual(ui.accountData.subjectIds, [`subject:${crossYearName}`]);
 });
 
-test("PredmetiPage restores duplicate names and saves retained migrated terms, pruning only removed subjects", () => {
+test("PredmetiPage saves subject IDs and accepts server-pruned timeslots", () => {
   const lecture = termKey(catalog.year3[crossYearName].P[0]);
   const exercise = termKey(catalog.year4[crossYearName].V[0]);
   const selections = {
@@ -1511,19 +1885,25 @@ test("PredmetiPage restores duplicate names and saves retained migrated terms, p
   ui.year("II godina");
   ui.program("MiO");
   ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
-  assert.deepEqual(JSON.parse(ui.localStorage.get("SELECTED_SUBJECTS")), [
-    crossYearSubjects[0],
-    subject,
+  assert.deepEqual(ui.accountData.subjectIds, [
+    `subject:${crossYearName}`,
+    `subject:${subject.name}`,
   ]);
-  assert.deepEqual(ui.saved, {
-    [crossYearName]: { P: lecture, V: exercise },
-    [subject.name]: selections[subject.name],
-  });
+  assert.deepEqual(
+    new Set(ui.saved),
+    new Set([
+      `slot:${crossYearName}:P:${lecture}`,
+      `slot:${crossYearName}:V:${exercise}`,
+      slotId(subject.name, "V", options[0]),
+    ]),
+  );
   assert.deepEqual(selections[`year3:${crossYearName}`], { P: lecture });
 });
 
-test("Home displays a schedule skeleton until local selections have loaded", () => {
+test("Home displays a schedule skeleton until the account query has loaded", () => {
+  const accountQuery = { data: undefined };
   const ui = pageHarness("src/app/page.tsx", {
+    accountQuery,
     selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
   });
   const initialNodes = nodes(ui.initialTree);
@@ -1532,6 +1912,8 @@ test("Home displays a schedule skeleton until local selections have loaded", () 
     1,
   );
   assert.equal(initialNodes.filter((node) => node.type === Schedule).length, 0);
+  accountQuery.data = ui.accountData;
+  ui.rerender();
   assert.equal(ui.all((node) => node.props.role === "status").length, 0);
   assert.equal(ui.all((node) => node.type === Schedule).length, 1);
 });
@@ -1563,4 +1945,550 @@ test("Home replaces the skeleton with group setup when the loaded account is sig
   ui.rerender();
   assert.equal(ui.all((node) => node.props.role === "status").length, 0);
   assert.ok(ui.button("Podesi pretragu"));
+});
+
+for (const isSignedIn of [true, false]) {
+  const accountState = isSignedIn ? "signed in" : "signed out";
+
+  test(`Home search mode waits for auth then shows public setup when ${accountState}`, () => {
+    const auth = { isLoaded: false, isSignedIn: undefined };
+    const ui = pageHarness("src/app/page.tsx", {
+      mode: "search",
+      auth,
+      selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+    });
+    assert.equal(
+      nodes(ui.initialTree).filter((node) => node.props.role === "status")
+        .length,
+      1,
+    );
+    for (const resolved of [true]) {
+      if (resolved) {
+        auth.isLoaded = true;
+        auth.isSignedIn = isSignedIn;
+        ui.rerender();
+      }
+      assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+      assert.ok(ui.button("Podesi pretragu"));
+      assert.equal(ui.all((node) => node.type === Schedule).length, 0);
+      assert.equal(
+        ui.all((node) => node.props["aria-labelledby"] === "setup-title")
+          .length,
+        0,
+      );
+    }
+  });
+
+  test(`Home search mode renders the URL group during auth loading and remains available when ${accountState}`, () => {
+    const auth = { isLoaded: false, isSignedIn: undefined };
+    const groupSchedules = {
+      G1: {
+        Ponedeljak: [{ ...shortSession, predmet: subject.name, tip: "P" }],
+      },
+    };
+    const ui = pageHarness("src/app/page.tsx", {
+      mode: "search",
+      auth,
+      groupSchedules,
+      group: { id: "group:G1", year: 1, name: "G1" },
+    });
+    const initialNodes = nodes(ui.initialTree);
+    assert.equal(
+      initialNodes.filter((node) => node.props.role === "status").length,
+      0,
+    );
+    assert.equal(
+      initialNodes.filter((node) => node.type === Schedule).length,
+      1,
+    );
+    auth.isLoaded = true;
+    auth.isSignedIn = isSignedIn;
+    ui.rerender();
+    const schedule = ui.find((node) => node.type === Schedule).props;
+    assert.deepEqual(schedule.group, {
+      group: "G1",
+      year: "year1",
+    });
+    assert.deepEqual(schedule.raspored, groupSchedules);
+    assert.equal(schedule.label, undefined);
+    for (const resolved of [true]) {
+      if (resolved) {
+        auth.isLoaded = true;
+        auth.isSignedIn = isSignedIn;
+        ui.rerender();
+      }
+      assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+      assert.equal(ui.all((node) => node.type === Schedule).length, 1);
+      assert.deepEqual(
+        ui.find((node) => node.type === Schedule).props,
+        schedule,
+      );
+      assert.equal(
+        ui.all((node) => node.props["aria-labelledby"] === "setup-title")
+          .length,
+        0,
+      );
+      assert.equal(
+        ui.all(
+          (node) =>
+            node.type === controls.Button && text(node) === "Podesi pretragu",
+        ).length,
+        0,
+      );
+    }
+  });
+}
+
+function guestHome(scheduleQuery, overrides = {}) {
+  return pageHarness("src/app/page.tsx", {
+    auth: { isLoaded: true, isSignedIn: false },
+    scheduleQuery,
+    group: { name: "C1", year: 3 },
+    ...overrides,
+  });
+}
+
+test("Home fetches the guest schedule using URL-derived year and group", () => {
+  const schedule = {
+    Ponedeljak: [
+      {
+        id: "db-slot",
+        predmet: "DB subject",
+        tip: "V",
+        od: "08:15",
+        do: "09:00",
+        sala: "13",
+        grupe: ["C1"],
+      },
+    ],
+  };
+  const ui = guestHome({ data: { group: "C1", year: 3, schedule } });
+  const enabled = ui.scheduleQueries.filter((query) => query.options.enabled);
+  assert.ok(enabled.length > 0);
+  assert.deepEqual(enabled[0].input, { year: 3, group: "C1" });
+  assert.deepEqual(ui.find((node) => node.type === Schedule).props.raspored, {
+    C1: schedule,
+  });
+  assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+});
+
+test("Home keeps the loading skeleton until the database schedule arrives", () => {
+  const query = { data: undefined };
+  const ui = guestHome(query);
+  assert.equal(ui.aria("Učitavanje rasporeda").props.role, "status");
+  assert.equal(ui.all((node) => node.type === Schedule).length, 0);
+  assert.equal(ui.all((node) => node.props.role === "alert").length, 0);
+  query.data = { group: "C1", year: 3, schedule: { Utorak: [] } };
+  ui.rerender();
+  assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+  assert.deepEqual(ui.find((node) => node.type === Schedule).props.raspored, {
+    C1: { Utorak: [] },
+  });
+});
+
+for (const code of ["NOT_FOUND", "INTERNAL_SERVER_ERROR"]) {
+  test(`Home shows ${code} as a recoverable error, not a free day`, () => {
+    const ui = guestHome({
+      data: undefined,
+      isError: true,
+      error: { data: { code } },
+    });
+    assert.equal(ui.all((node) => node.type === Schedule).length, 0);
+    assert.equal(ui.all((node) => node.props.role === "status").length, 0);
+    assert.equal(ui.all((node) => node.props.role === "alert").length, 1);
+    assert.ok(ui.button("Podesi pretragu"));
+    ui.invoke(ui.button("Pokušaj ponovo"), "onClick");
+    assert.equal(ui.retries, 1);
+  });
+}
+
+test("Home does not fetch a schedule until a group is configured", () => {
+  const ui = guestHome(undefined, { group: null });
+  assert.ok(ui.button("Podesi pretragu"));
+  assert.equal(
+    ui.scheduleQueries.some((query) => query.options.enabled),
+    false,
+  );
+});
+
+test("Home fetches signed-in group search from the database too", () => {
+  const groupSchedules = { C1: { Ponedeljak: [] } };
+  const ui = guestHome(undefined, {
+    auth: { isLoaded: true, isSignedIn: true },
+    mode: "search",
+    groupSchedules,
+  });
+  assert.equal(
+    ui.scheduleQueries.some((query) => query.options.enabled),
+    true,
+  );
+  assert.deepEqual(
+    ui.find((node) => node.type === Schedule).props.raspored,
+    groupSchedules,
+  );
+});
+
+test("Home resolves signed-in account IDs from the catalog and disables the public query", () => {
+  const ui = pageHarness("src/app/page.tsx", {
+    selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+  });
+  assert.equal(
+    ui.scheduleQueries.some((query) => query.options.enabled),
+    false,
+  );
+  assert.equal(
+    ui.find((node) => node.type === Schedule).props.label,
+    "Izabrani raspored",
+  );
+});
+
+for (const file of ["src/app/predmeti/page.tsx", "src/app/termini/page.tsx"]) {
+  const saveLabel = file.includes("predmeti")
+    ? "Sačuvaj i nastavi"
+    : "Sačuvaj raspored";
+  test(`${file} gates editing on auth, account and catalog readiness`, () => {
+    const auth = { isLoaded: false, isSignedIn: false };
+    const accountQuery = { data: undefined };
+    const catalogQuery = { data: undefined };
+    const ui = pageHarness(file, { auth, accountQuery, catalogQuery });
+    assert.equal(ui.all((node) => node.props.role === "status").length, 1);
+    assert.equal(ui.catalogQueries.at(-1).options.enabled, false);
+    auth.isLoaded = true;
+    ui.rerender();
+    assert.ok(ui.button("Prijava"));
+    assert.equal(
+      ui.all(
+        (node) => node.type === controls.Button && text(node) === saveLabel,
+      ).length,
+      0,
+    );
+    auth.isSignedIn = true;
+    ui.rerender();
+    assert.equal(ui.all((node) => node.props.role === "status").length, 1);
+    assert.deepEqual(ui.catalogQueries.at(-1), {
+      input: undefined,
+      options: { enabled: true, staleTime: 300000, retry: false },
+    });
+    accountQuery.data = ui.accountData;
+    ui.rerender();
+    assert.equal(ui.all((node) => node.props.role === "status").length, 1);
+    catalogQuery.data = ui.catalogData;
+    ui.rerender();
+    assert.ok(ui.button(saveLabel));
+  });
+
+  test(`${file} query errors offer a retry instead of an empty editor`, () => {
+    const ui = pageHarness(file, {
+      catalogQuery: { data: undefined, isError: true },
+    });
+    assert.equal(ui.all((node) => node.props.role === "alert").length, 1);
+    ui.invoke(ui.button("Pokušaj ponovo"), "onClick");
+    assert.equal(ui.retries, 2);
+  });
+
+  test(`${file} keeps a stale revision and preserves drafts when server subjects change`, () => {
+    const accountQuery = {};
+    const catalogQuery = {};
+    const ui = pageHarness(file, { accountQuery, catalogQuery });
+    if (file.includes("predmeti")) {
+      ui.year("I godina");
+      ui.program("ISiT");
+      ui.invoke(ui.aria(`Dodaj ${subject.name}`), "onClick");
+    } else ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+    accountQuery.data = {
+      ...ui.accountData,
+      revision: 99,
+      subjectIds: [],
+      timeslotIds: [],
+    };
+    catalogQuery.data = {
+      ...ui.catalogData,
+      subjects: ui.catalogData.subjects.map((subject) => ({ ...subject })),
+    };
+    ui.rerender();
+    if (file.includes("predmeti"))
+      assert.deepEqual(ui.selectedSubjects(), [
+        theorySubject.name,
+        subject.name,
+      ]);
+    else assert.equal(ui.slots().length, 2);
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.saves[0].input.expectedRevision, 7);
+  });
+
+  test(`${file} rebases theme-only revisions with normalized baseline order without replacing drafts`, () => {
+    const initial = {
+      revision: 7,
+      preferences: {
+        mode: "account",
+        group: null,
+        catalogYear: 1,
+        programFilters: [
+          { year: 1, programId: "ISiT" },
+          { year: 3, programId: "ISiT" },
+        ],
+        theme: "system",
+      },
+      subjectIds: [`subject:${theorySubject.name}`, `subject:${subject.name}`],
+      timeslotIds: dbTheoryPair.map((term) => term.id),
+    };
+    const accountQuery = { data: initial };
+    const ui = pageHarness(file, { accountQuery });
+    if (file.includes("predmeti")) {
+      ui.invoke(ui.aria(`Ukloni ${subject.name}`), "onClick");
+      ui.year("II godina");
+      ui.program("MiO");
+    } else
+      ui.invoke(ui.selector(theorySubject), "onSaveMultiple", [theoryPair[0]]);
+    accountQuery.data = {
+      ...initial,
+      revision: 99,
+      subjectIds: file.includes("predmeti")
+        ? initial.subjectIds
+        : [...initial.subjectIds].reverse(),
+      timeslotIds: [...initial.timeslotIds].reverse(),
+      preferences: {
+        ...initial.preferences,
+        theme: "dark",
+        programFilters: [...initial.preferences.programFilters].reverse(),
+      },
+    };
+    ui.rerender();
+    if (file.includes("predmeti")) {
+      assert.deepEqual(ui.selectedSubjects(), [theorySubject.name]);
+      assert.equal(
+        ui.find((node) => node.type === controls.Select).props.value,
+        "MiO",
+      );
+    } else
+      assert.deepEqual(
+        ui.slots().map((slot) => slot.term.id),
+        [dbTheoryPair[0].id],
+      );
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.saves[0].input.expectedRevision, 99);
+    if (file.includes("predmeti")) {
+      assert.equal(ui.saves[0].input.catalogYear, 2);
+      assert.deepEqual(ui.saves[0].input.programFilters, [
+        { year: 1, programId: "ISiT" },
+        { year: 2, programId: "MiO" },
+        { year: 3, programId: "ISiT" },
+      ]);
+    }
+    assert.equal(initial.revision, 7);
+    assert.deepEqual(initial.subjectIds, [
+      `subject:${theorySubject.name}`,
+      `subject:${subject.name}`,
+    ]);
+  });
+
+  test(`${file} rebases unrelated mode/group preference changes without replacing drafts`, () => {
+    const accountQuery = {};
+    const ui = pageHarness(file, { accountQuery });
+    if (file.includes("predmeti")) {
+      ui.year("II godina");
+      ui.program("MiO");
+      ui.invoke(ui.aria("Dodaj Marketing"), "onClick");
+    } else ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+    accountQuery.data = {
+      ...ui.accountData,
+      revision: 8,
+      preferences: {
+        ...ui.accountData.preferences,
+        mode: "search",
+        group: { id: "group:C1", name: "C1", year: 3 },
+      },
+    };
+    ui.rerender();
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.saves[0].input.expectedRevision, 8);
+    if (file.includes("predmeti"))
+      assert.deepEqual(ui.saves[0].input.subjectIds, [
+        `subject:${theorySubject.name}`,
+        "subject:Marketing",
+      ]);
+    else
+      assert.deepEqual(
+        ui.saves[0].input.timeslotIds,
+        dbTheoryPair.map((term) => term.id),
+      );
+  });
+
+  const relevantChanges = file.includes("predmeti")
+    ? ["catalogYear", "programFilters"]
+    : ["timeslotIds"];
+  for (const field of relevantChanges) {
+    test(`${file} does not rebase when server ${field} changes`, () => {
+      const accountQuery = {};
+      const ui = pageHarness(file, { accountQuery, mutationError: true });
+      if (file.includes("termini"))
+        ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+      const data = ui.accountData;
+      accountQuery.data =
+        field === "timeslotIds"
+          ? { ...data, revision: 99, timeslotIds: [dbTheoryPair[1].id] }
+          : {
+              ...data,
+              revision: 99,
+              preferences: {
+                ...data.preferences,
+                [field]:
+                  field === "catalogYear"
+                    ? 2
+                    : [{ year: 1, programId: "ISiT" }],
+              },
+            };
+      ui.rerender();
+      ui.invoke(ui.button(saveLabel), "onClick");
+      assert.equal(ui.saves[0].input.expectedRevision, 7);
+      assert.deepEqual(ui.pushes, []);
+      if (file.includes("termini")) assert.equal(ui.slots().length, 2);
+      else assert.deepEqual(ui.selectedSubjects(), [theorySubject.name]);
+    });
+  }
+
+  test(`${file} save failures retain edits, do not navigate and can be retried`, () => {
+    const ui = pageHarness(file, { mutationError: true });
+    if (file.includes("termini"))
+      ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.deepEqual(ui.pushes, []);
+    assert.equal(ui.accountData.revision, 7);
+    assert.equal(ui.all((node) => node.props.role === "alert").length, 1);
+    ui.invoke(ui.button("Ponovo učitaj i odbaci izmene"), "onClick");
+    assert.equal(ui.retries, 1);
+    ui.failSave(false);
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.accountData.revision, 8);
+    assert.equal(ui.pushes.length, 1);
+  });
+
+  test(`${file} disables pending saves and suppresses old-identity navigation after unmount`, () => {
+    const ui = pageHarness(file, { deferSave: true });
+    if (file.includes("termini"))
+      ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.button(saveLabel).props.disabled, true);
+    assert.equal(
+      ui.find((node) => node.type === "fieldset").props.disabled,
+      true,
+    );
+    ui.invoke(ui.button(saveLabel), "onClick");
+    assert.equal(ui.saves.length, 1);
+    ui.unmount();
+    const nextIdentity = pageHarness(file, { subjects: [] });
+    ui.completeSave();
+    assert.deepEqual(ui.pushes, []);
+    assert.deepEqual(nextIdentity.accountData.subjectIds, []);
+    assert.deepEqual(nextIdentity.accountData.timeslotIds, []);
+  });
+}
+
+test("PredmetiPage can clear all persisted subjects and return home", () => {
+  const ui = pageHarness("src/app/predmeti/page.tsx");
+  ui.invoke(ui.aria(`Ukloni ${theorySubject.name}`), "onClick");
+  assert.equal(ui.button("Sačuvaj i nastavi").props.disabled, false);
+  ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
+  assert.deepEqual(ui.saves[0].input.subjectIds, []);
+  assert.deepEqual(ui.pushes, ["/"]);
+});
+
+test("PredmetiPage does not overwrite subject order changed by another editor", () => {
+  const accountQuery = {};
+  const ui = pageHarness("src/app/predmeti/page.tsx", {
+    subjects: [theorySubject, subject],
+    accountQuery,
+  });
+  accountQuery.data = {
+    ...ui.accountData,
+    revision: 99,
+    subjectIds: [...ui.accountData.subjectIds].reverse(),
+  };
+  ui.rerender();
+  ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
+  assert.equal(ui.saves[0].input.expectedRevision, 7);
+});
+
+test("TerminiPage can clear all saved owned timeslots and persist an empty selection", () => {
+  const ui = pageHarness("src/app/termini/page.tsx", {
+    selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+  });
+  assert.deepEqual(
+    ui.slots().map((slot) => slot.term.id),
+    dbTheoryPair.map((term) => term.id),
+  );
+  ui.invoke(ui.selector(theorySubject), "onSaveMultiple", []);
+  assert.deepEqual(ui.slots(), []);
+  assert.equal(ui.button("Sačuvaj raspored").props.disabled, false);
+  ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
+  assert.deepEqual(ui.saves[0].input, { timeslotIds: [], expectedRevision: 7 });
+  assert.deepEqual(ui.saved, []);
+  assert.deepEqual(ui.pushes, ["/"]);
+});
+
+test("TerminiPage onboarding still requires a valid term after adding and clearing a draft", () => {
+  const ui = pageHarness("src/app/termini/page.tsx");
+  assert.equal(ui.button("Sačuvaj raspored").props.disabled, true);
+  ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
+  ui.invoke(ui.selector(theorySubject), "onSaveMultiple", theoryPair);
+  assert.equal(ui.button("Sačuvaj raspored").props.disabled, false);
+  ui.invoke(ui.selector(theorySubject), "onSaveMultiple", []);
+  assert.equal(ui.button("Sačuvaj raspored").props.disabled, true);
+  ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
+  assert.deepEqual(ui.saves, []);
+  assert.deepEqual(ui.pushes, []);
+});
+
+test("PredmetiPage treats same-name database subjects as distinct IDs", () => {
+  const catalogData = catalogFixture(catalog);
+  const original = catalogData.subjects.find(
+    (item) => item.name === subject.name,
+  );
+  catalogData.subjects = [original, { ...original, id: "distinct-subject" }];
+  const ui = pageHarness("src/app/predmeti/page.tsx", {
+    subjects: [],
+    catalogData,
+  });
+  ui.program("ISiT");
+  const add = () =>
+    ui.all((node) => node.props["aria-label"] === `Dodaj ${subject.name}`);
+  ui.invoke(add()[0], "onClick");
+  assert.equal(add()[0].props.disabled, true);
+  assert.equal(add()[1].props.disabled, false);
+  ui.invoke(add()[1], "onClick");
+  ui.invoke(ui.button("Sačuvaj i nastavi"), "onClick");
+  assert.deepEqual(ui.saves[0].input.subjectIds, [
+    original.id,
+    "distinct-subject",
+  ]);
+});
+
+test("TerminiPage labels subjects with catalog years, not legacy selection source years", () => {
+  const ui = pageHarness("src/app/termini/page.tsx", {
+    subjects: [{ name: crossYearName, year: "year2" }],
+  });
+  const section = ui.find((node) => node.type === "section");
+  const label = nodes(section).find(
+    (node) => node.type === "p" && text(node).includes("godina"),
+  );
+  assert.equal(text(label), "III godina · IV godina");
+});
+
+test("TerminiPage uses database group keys rather than shared display names for session limits", () => {
+  const catalogData = catalogFixture(catalog);
+  const selected = catalogData.subjects.find(
+    (item) => item.name === theorySubject.name,
+  );
+  const first = { ...dbTheoryPair[0], grupe: ["G1"], groupKeys: ["year3:G1"] };
+  const second = { ...dbTheoryPair[1], grupe: ["G1"], groupKeys: ["year4:G1"] };
+  selected.terms.V = [first, second];
+  const ui = pageHarness("src/app/termini/page.tsx", { catalogData });
+  assert.equal(ui.selector(theorySubject).props.onSaveMultiple, undefined);
+  assert.deepEqual(
+    [...ui.selector(theorySubject).props.weeklySessions.counts],
+    [
+      ["year3:G1", 1],
+      ["year4:G1", 1],
+    ],
+  );
 });

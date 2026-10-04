@@ -34,7 +34,7 @@ RUN npm run build
 FROM dependencies AS migrate
 
 ENV NODE_ENV=production
-CMD ["npx", "prisma", "db", "push", "--skip-generate"]
+CMD ["npx", "prisma", "migrate", "deploy"]
 
 FROM base AS runner
 

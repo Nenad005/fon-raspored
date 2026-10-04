@@ -1,10 +1,12 @@
-import { terminRouter } from "~/server/api/routers/termin";
+import { scheduleRouter } from "~/server/api/routers/schedule";
+import { catalogRouter } from "~/server/api/routers/catalog";
+import { accountRouter } from "~/server/api/routers/account";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
-import { settingsRouter } from "./routers/settings";
 
 export const appRouter = createTRPCRouter({
-  termin: terminRouter,
-  settings: settingsRouter
+  schedule: scheduleRouter,
+  catalog: catalogRouter,
+  account: accountRouter,
 });
 
 export type AppRouter = typeof appRouter;
