@@ -6,6 +6,7 @@ import React from "react";
 import Footer from "~/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TRPCReactProvider } from "~/trpc/react";
+import ScheduleUpdateNotice from "~/components/schedule-update-notice";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fon-ispiti.vercel.app"),
@@ -41,6 +42,7 @@ export default function RootLayout({
           <TRPCReactProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Header></Header>
+              <ScheduleUpdateNotice />
               {children}
               <Footer></Footer>
             </ThemeProvider>

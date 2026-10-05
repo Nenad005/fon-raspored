@@ -22,7 +22,10 @@ export const scheduleRouter = createTRPCRouter({
     .input(z.object({ year: yearInput }))
     .query(async ({ ctx, input }) => {
       const groups = await ctx.db.studyGroup.findMany({
-        where: { year: input.year, timeslots: { some: {} } },
+        where: {
+          year: input.year,
+          timeslots: { some: { timeslot: { active: true } } },
+        },
         select: { id: true, name: true },
       });
       return groups.sort((a, b) =>
@@ -44,7 +47,7 @@ export const scheduleRouter = createTRPCRouter({
       if (!group) throw new TRPCError({ code: "NOT_FOUND" });
 
       const timeslots = await ctx.db.timeslot.findMany({
-        where: { groups: { some: { groupId: group.id } } },
+        where: { active: true, groups: { some: { groupId: group.id } } },
         select: {
           id: true,
           day: true,

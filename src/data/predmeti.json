@@ -10,8 +10,8 @@
             "Osnovi organizacije"
         ],
         "MiO": [
-            "Menadžment",
             "Matematika 1",
+            "Menadžment",
             "Osnove informaciono komunikacionih tehnologija",
             "Osnovi organizacije",
             "Ekonomija"
@@ -19,8 +19,8 @@
     },
     "year2": {
         "ISiT": [
-            "Diskretne matematičke strukture",
             "Programiranje 1 (NA)",
+            "Diskretne matematičke strukture",
             "Arhitektura računara i operativni sistemi",
             "Teorija verovatnoće",
             "Marketing",
@@ -60,9 +60,9 @@
         "Menadžment kvaliteta i standardizacija": [
             "Teorija odlučivanja",
             "Osnove finansijskog menadžmenta",
-            "Upravljanje projektima",
             "Operaciona istraživanja 1",
-            "Upravljanje kvalitetom"
+            "Upravljanje kvalitetom",
+            "Upravljanje projektima"
         ],
         "Marketing menadžment i komunikacije": [
             "Osnove finansijskog menadžmenta",
@@ -80,8 +80,8 @@
         ],
         "Projektni menadžment": [
             "Upravljanje projektima",
-            "Teorija odlučivanja",
             "Lin proizvodnja i usluge",
+            "Teorija odlučivanja",
             "Operaciona istraživanja 1",
             "Osnove finansijskog menadžmenta"
         ]
@@ -89,15 +89,29 @@
     "year4": {
         "Informacioni sistemi": [
             "Implementacija IS (projekat)",
-            "Uvod u softverske arhitekture IS",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
+            "Multimediji",
+            "Teorija odlučivanja",
+            "Baze podataka 2",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa",
             "Internet tehnologije"
         ],
         "Informacione tehnologije": [
+            "Pravo i etika obrade podataka",
+            "Distribuirani računarski sistemi",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
+            "Teorija odlučivanja",
+            "Multimedijalna produkcija",
+            "Multimediji",
+            "Baze podataka 2",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa",
             "Internet tehnologije"
         ],
@@ -105,25 +119,60 @@
             "Modelovanje poslovnih procesa",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
+            "Teorija odlučivanja",
+            "Multimediji",
+            "Napredna analiza podataka",
+            "Baze podataka 2",
+            "Programiranje 3",
+            "Napredne .NET tehnologije",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Internet tehnologije"
         ],
         "Tehnologije elektronskog poslovanja": [
+            "Pravo i etika obrade podataka",
             "Internet tehnologije",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
+            "Teorija odlučivanja",
+            "Multimediji",
+            "Baze podataka 2",
+            "Napredne .NET tehnologije",
+            "E-obrazovanje",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa"
         ],
         "Poslovna analitika": [
+            "Pravo i etika obrade podataka",
+            "Analitika lanaca snabdevanja",
             "Korporativne komunikacije",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
             "Modelovanje poslovnih procesa",
+            "Teorija odlučivanja",
+            "Multimediji",
+            "Baze podataka 2",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Internet tehnologije",
             "Projektovanje organizacije"
         ],
         "Informaciono inženjerstvo": [
+            "Pravo i etika obrade podataka",
+            "Distribuirani računarski sistemi",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
+            "Multimediji",
+            "Teorija odlučivanja",
+            "Baze podataka 2",
+            "Alati za izveštavanje i vizuelizaciju podataka",
+            "Softverski paterni",
+            "Internet marketing i društveni mediji",
+            "Dinamika organizacionih sistema",
             "Internet tehnologije",
             "Modelovanje poslovnih procesa"
         ],
@@ -131,6 +180,7 @@
             "Teorija odlučivanja",
             "Korporativne finansije",
             "Bankarski menadžment",
+            "Finansijsko izveštavanje",
             "Projektovanje organizacije",
             "Brend menadžment"
         ],
@@ -147,6 +197,7 @@
             "Elektronsko poslovanje (NA)",
             "Menadžment totalnog kvaliteta",
             "Inženjering kvaliteta",
+            "E-obrazovanje",
             "Sistem menadžmenta zdravlja i bezbednosti na radu i životne sredine"
         ],
         "Marketing menadžment i komunikacije": [
@@ -167,9 +218,9 @@
         "Projektni menadžment": [
             "Upravljački sistemi",
             "Elektronsko poslovanje (NA)",
-            "Modelovanje poslovnih procesa",
             "Korporativne komunikacije",
             "Softverska podrška upravljanju projektima",
+            "Modelovanje poslovnih procesa",
             "Upravljanje inovacionim projektima",
             "Projektovanje organizacije"
         ]

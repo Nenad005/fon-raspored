@@ -1,7 +1,15 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { timeslotSelect, type CatalogSlot } from "~/server/api/catalog-data";
+import {
+  serializeTerm,
+  timeslotSelect,
+  type CatalogSlot,
+} from "~/server/api/catalog-data";
+import {
+  getScheduleVersion,
+  lockScheduleVersion,
+} from "~/server/api/schedule-version";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 const year = z.number().int().min(1).max(4);
@@ -26,6 +34,7 @@ const preferences = z
   .strict();
 const stateSelect = {
   revision: true,
+  acknowledgedScheduleVersion: true,
   mode: true,
   theme: true,
   catalogYear: true,
@@ -38,7 +47,19 @@ const stateSelect = {
     select: { subjectId: true },
     orderBy: [{ position: "asc" }, { subjectId: "asc" }],
   },
-  timeslots: { select: { timeslotId: true }, orderBy: { timeslotId: "asc" } },
+  timeslots: {
+    select: {
+      timeslotId: true,
+      timeslot: {
+        select: {
+          ...timeslotSelect,
+          active: true,
+          subject: { select: { name: true } },
+        },
+      },
+    },
+    orderBy: { timeslotId: "asc" },
+  },
 } satisfies Prisma.UserSettingsSelect;
 
 async function readState(db: Prisma.TransactionClient, userId: string) {
@@ -46,6 +67,7 @@ async function readState(db: Prisma.TransactionClient, userId: string) {
     where: { userId },
     select: stateSelect,
   });
+  const release = await getScheduleVersion(db);
   return {
     revision: row?.revision ?? 0,
     preferences: {
@@ -56,7 +78,25 @@ async function readState(db: Prisma.TransactionClient, userId: string) {
       theme: row?.theme ?? "system",
     },
     subjectIds: row?.subjects.map((item) => item.subjectId) ?? [],
-    timeslotIds: row?.timeslots.map((item) => item.timeslotId) ?? [],
+    timeslotIds:
+      row?.timeslots
+        .filter((item) => item.timeslot.active)
+        .map((item) => item.timeslotId) ?? [],
+    scheduleVersion: release.version,
+    scheduleUpdate: {
+      pending: Boolean(
+        row && row.acknowledgedScheduleVersion < release.version,
+      ),
+      publishedAt: release.publishedAt,
+      removedTimeslots:
+        row?.timeslots
+          .filter((item) => !item.timeslot.active)
+          .map(({ timeslot }) => ({
+            ...serializeTerm(timeslot),
+            subjectName: timeslot.subject.name,
+            type: timeslot.type,
+          })) ?? [],
+    },
   };
 }
 
@@ -92,9 +132,10 @@ async function claim(
   expectedRevision: number,
 ) {
   // The upsert and CAS share the transaction: a failed first save cannot leave a new row.
+  const release = await lockScheduleVersion(db);
   await db.userSettings.upsert({
     where: { userId },
-    create: { userId },
+    create: { userId, acknowledgedScheduleVersion: release.version },
     update: {},
   });
   const updated = await db.userSettings.updateMany({
@@ -213,7 +254,7 @@ export const accountRouter = createTRPCRouter({
         await claim(db, ctx.userId, input.expectedRevision);
         const subjectIds = [...new Set(input.subjectIds)];
         const subjects = await db.subject.findMany({
-          where: { id: { in: subjectIds } },
+          where: { id: { in: subjectIds }, active: true },
           select: { id: true },
         });
         if (subjects.length !== subjectIds.length) bad("Unknown subject");
@@ -246,19 +287,24 @@ export const accountRouter = createTRPCRouter({
       z
         .object({
           timeslotIds: z.array(id).max(200),
+          expectedScheduleVersion: revision.default(0),
           expectedRevision: revision,
         })
         .strict(),
     )
     .mutation(({ ctx, input }) =>
       mutate(ctx.db, async (db) => {
+        await lockScheduleVersion(db, input.expectedScheduleVersion);
         await claim(db, ctx.userId, input.expectedRevision);
         const owned = await db.userSubject.findMany({
           where: { userId: ctx.userId },
           select: { subjectId: true },
         });
         const all = await db.timeslot.findMany({
-          where: { subjectId: { in: owned.map((item) => item.subjectId) } },
+          where: {
+            subjectId: { in: owned.map((item) => item.subjectId) },
+            active: true,
+          },
           select: timeslotSelect,
         });
         const ids = new Set(input.timeslotIds);
@@ -275,7 +321,25 @@ export const accountRouter = createTRPCRouter({
           });
         await db.userSettings.update({
           where: { userId: ctx.userId },
-          data: { mode: "account" },
+          data: {
+            mode: "account",
+            acknowledgedScheduleVersion: input.expectedScheduleVersion,
+          },
+        });
+        return readState(db, ctx.userId);
+      }),
+    ),
+  acknowledgeSchedule: protectedProcedure
+    .input(z.object({ expectedScheduleVersion: revision }).strict())
+    .mutation(({ ctx, input }) =>
+      mutate(ctx.db, async (db) => {
+        await lockScheduleVersion(db, input.expectedScheduleVersion);
+        await db.userSettings.updateMany({
+          where: {
+            userId: ctx.userId,
+            acknowledgedScheduleVersion: { lt: input.expectedScheduleVersion },
+          },
+          data: { acknowledgedScheduleVersion: input.expectedScheduleVersion },
         });
         return readState(db, ctx.userId);
       }),

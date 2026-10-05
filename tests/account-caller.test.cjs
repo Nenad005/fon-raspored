@@ -41,6 +41,8 @@ const defaults = {
   },
   subjectIds: [],
   timeslotIds: [],
+  scheduleVersion: 0,
+  scheduleUpdate: { pending: false, publishedAt: null, removedTimeslots: [] },
 };
 const slot = (
   id,
@@ -79,6 +81,8 @@ function fixture(slots = []) {
       return state[owner];
     }
     return {
+      $queryRaw: async () => [],
+      scheduleVersion: { findUnique: async () => null },
       userSettings: {
         async findUnique(args) {
           record("get", args);
@@ -86,6 +90,7 @@ function fixture(slots = []) {
           return row
             ? {
                 ...row,
+                timeslots: row.timeslots.map((item) => ({ ...item, timeslot: { ...slots.find((slot) => slot.id === item.timeslotId), active: true, subject: { name: "Subject" } } })),
                 group: row.groupId
                   ? { id: row.groupId, name: "G1", year: 1 }
                   : null,
@@ -98,6 +103,7 @@ function fixture(slots = []) {
           assert.equal(args.create.userId, owner);
           state[owner] ??= {
             revision: 0,
+            acknowledgedScheduleVersion: args.create.acknowledgedScheduleVersion,
             mode: "account",
             theme: "system",
             catalogYear: 1,
@@ -492,6 +498,8 @@ test("catalog serializes DB rows only, preserves IDs and deduplicates labels, an
   const timeslot = slot("t1", "s1", 4);
   timeslot.groups.push({ group: { id: "y2-g1", name: "G1" } });
   const db = {
+    scheduleVersion: { findUnique: async () => null },
+    $transaction: async (run) => run(db),
     program: {
       findMany: async () => [
         {
@@ -518,6 +526,7 @@ test("catalog serializes DB rows only, preserves IDs and deduplicates labels, an
     headers: new Headers(),
   });
   assert.deepEqual(await c.catalog.get(), {
+    scheduleVersion: 0,
     programs: [{ id: "p1", name: "Program", years: [1, 2] }],
     subjects: [
       {

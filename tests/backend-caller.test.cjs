@@ -100,7 +100,7 @@ const groupLookup = (year, name) => ({
   select: { id: true, name: true },
 });
 const slotQuery = (year, groupId) => ({
-  where: { groups: { some: { groupId } } },
+  where: { active: true, groups: { some: { groupId } } },
   select: {
     id: true,
     day: true,
@@ -147,7 +147,7 @@ test("public groups query scopes by year and populated groups, then sorts natura
       assert.deepEqual(call, {
         path: "studyGroup.findMany",
         args: {
-          where: { year: 2, timeslots: { some: {} } },
+          where: { year: 2, timeslots: { some: { timeslot: { active: true } } } },
           select: { id: true, name: true },
         },
       });
@@ -392,6 +392,7 @@ test("protected handlers receive Clerk identity despite spoofed headers and inpu
 
 test("app router exposes schedule queries and retired procedure paths are unavailable", async () => {
   assert.deepEqual(Object.keys(appRouter._def.procedures).sort(), [
+    "account.acknowledgeSchedule",
     "account.get",
     "account.saveSubjects",
     "account.saveTimeslots",

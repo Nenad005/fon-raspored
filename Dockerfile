@@ -33,10 +33,14 @@ RUN npm run build
 
 FROM dependencies AS migrate
 
+COPY scripts/import-catalog.mjs ./scripts/import-catalog.mjs
+COPY src/lib/schedule-storage.ts ./src/lib/schedule-storage.ts
+COPY src/data ./src/data
+
 ENV NODE_ENV=production
 CMD ["npx", "prisma", "migrate", "deploy"]
 
-FROM base AS runner
+FROM dependencies AS runner
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -47,11 +51,12 @@ RUN groupadd --system --gid 1001 nodejs \
   && useradd --system --uid 1001 --gid nodejs nextjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.js ./next.config.js
+COPY --from=builder --chown=nextjs:nodejs /app/src/env.js ./src/env.js
 
 USER nextjs
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start", "--", "--hostname", "0.0.0.0"]

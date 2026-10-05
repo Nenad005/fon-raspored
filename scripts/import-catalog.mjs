@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { createHash } from "node:crypto";
 import { z } from "zod";
 import { createCatalogIndex, termKey } from "../src/lib/schedule-storage.ts";
 
@@ -95,16 +96,67 @@ export async function importCatalog(db, catalog) {
       let timeslots = 0;
       const subjectIds = [];
       const timeslotIds = [];
-      const programsByName = new Map();
-      const groupsByKey = new Map();
+      // Avoid hundreds of sequential no-op upserts across a hosted DB connection.
+      const names = catalog.map((subject) => subject.name);
+      const [storedSubjects, storedPrograms, storedGroups, storedSlots] =
+        await Promise.all([
+          tx.subject.findMany({
+            where: { name: { in: names } },
+            select: { id: true, name: true },
+          }),
+          tx.program.findMany({ select: { id: true, name: true } }),
+          tx.studyGroup.findMany({
+            select: { id: true, year: true, name: true },
+          }),
+          tx.timeslot.findMany({
+            where: { subject: { name: { in: names } } },
+            select: {
+              id: true,
+              subjectId: true,
+              type: true,
+              day: true,
+              startTime: true,
+              endTime: true,
+              room: true,
+            },
+          }),
+        ]);
+      const subjectsByName = new Map(
+        storedSubjects.map((subject) => [subject.name, subject]),
+      );
+      const programsByName = new Map(
+        storedPrograms.map((program) => [program.name, program]),
+      );
+      const groupsByKey = new Map(
+        storedGroups.map((group) => [
+          JSON.stringify({ year: group.year, name: group.name }),
+          group,
+        ]),
+      );
+      const slotKey = (slot) =>
+        JSON.stringify([
+          slot.subjectId,
+          slot.type,
+          slot.day,
+          slot.startTime,
+          slot.endTime,
+          slot.room,
+        ]);
+      const slotsByKey = new Map(
+        storedSlots.map((slot) => [slotKey(slot), slot]),
+      );
       const memberships = [];
       const groupLinks = [];
       for (const { name, programs, timeslots: slots } of catalog) {
-        const subject = await tx.subject.upsert({
-          where: { name },
-          create: { name },
-          update: {},
-        });
+        let subject = subjectsByName.get(name);
+        if (!subject) {
+          subject = await tx.subject.upsert({
+            where: { name },
+            create: { name },
+            update: {},
+          });
+          subjectsByName.set(name, subject);
+        }
         subjectIds.push(subject.id);
         for (const [year, names] of Object.entries(programs)) {
           for (const name of names) {
@@ -127,11 +179,16 @@ export async function importCatalog(db, catalog) {
         for (const slot of slots) {
           const { groups, ...identity } = slot;
           const key = { subjectId: subject.id, ...identity };
-          const timeslot = await tx.timeslot.upsert({
-            where: { subjectId_type_day_startTime_endTime_room: key },
-            create: key,
-            update: {},
-          });
+          const identityKey = slotKey(key);
+          let timeslot = slotsByKey.get(identityKey);
+          if (!timeslot) {
+            timeslot = await tx.timeslot.upsert({
+              where: { subjectId_type_day_startTime_endTime_room: key },
+              create: key,
+              update: {},
+            });
+            slotsByKey.set(identityKey, timeslot);
+          }
           timeslotIds.push(timeslot.id);
           for (const group of groups) {
             const groupKey = JSON.stringify(group);
@@ -170,6 +227,152 @@ export async function importCatalog(db, catalog) {
   );
 }
 
+// Canonical content, not source order or generated IDs, determines a new release.
+export function catalogHash(catalog) {
+  const sorted = (items) =>
+    items.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+  const canonical = sorted(
+    catalog.map(({ name, programs, timeslots }) => ({
+      name,
+      programs: sorted(
+        Object.entries(programs).flatMap(([year, names]) =>
+          [...new Set(names)].map((name) => [year, name]),
+        ),
+      ),
+      timeslots: sorted(
+        timeslots.map(({ type, day, startTime, endTime, room, groups }) => ({
+          type,
+          day,
+          startTime,
+          endTime,
+          room,
+          groups: sorted(groups.map(({ year, name }) => [year, name])),
+        })),
+      ),
+    })),
+  );
+  return createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
+}
+
+export async function publishCatalog(db, catalog) {
+  if (!catalog.length) throw new Error("Cannot publish an empty catalog");
+  const hash = catalogHash(catalog);
+  return db.$transaction(
+    async (tx) => {
+      // Serialize releases and account saves against the same singleton row.
+      await tx.$queryRaw`SELECT id FROM schedule_version WHERE id = 1 FOR UPDATE`;
+      const release = await tx.scheduleVersion.findUniqueOrThrow({
+        where: { id: 1 },
+      });
+      let previousHash = release.contentHash;
+      if (!previousHash) {
+        const previous = await tx.subject.findMany({
+          where: { active: true },
+          include: {
+            programs: { include: { program: true } },
+            timeslots: {
+              where: { active: true },
+              include: { groups: { include: { group: true } } },
+            },
+          },
+        });
+        previousHash = catalogHash(
+          previous.map(({ name, programs, timeslots }) => ({
+            name,
+            programs: Object.fromEntries(
+              [1, 2, 3, 4].map((year) => [
+                `year${year}`,
+                programs
+                  .filter((item) => item.year === year)
+                  .map((item) => item.program.name),
+              ]),
+            ),
+            timeslots: timeslots.map(
+              ({ type, day, startTime, endTime, room, groups }) => ({
+                type,
+                day,
+                startTime,
+                endTime,
+                room,
+                groups: groups.map(({ group }) => ({
+                  year: group.year,
+                  name: group.name,
+                })),
+              }),
+            ),
+          })),
+        );
+      }
+      const changed = previousHash !== hash;
+      const result = await importCatalog(
+        { $transaction: (run) => run(tx) },
+        catalog,
+      );
+      const subjects = await tx.subject.findMany({
+        where: { name: { in: catalog.map((item) => item.name) } },
+        select: { id: true },
+      });
+      const subjectIds = subjects.map((item) => item.id);
+      const slots = await tx.timeslot.findMany({
+        where: { subjectId: { in: subjectIds } },
+        select: {
+          id: true,
+          subject: { select: { name: true } },
+          type: true,
+          day: true,
+          startTime: true,
+          endTime: true,
+          room: true,
+        },
+      });
+      const key = (name, slot) =>
+        JSON.stringify([
+          name,
+          slot.type,
+          slot.day,
+          slot.startTime,
+          slot.endTime,
+          slot.room,
+        ]);
+      const included = new Set(
+        catalog.flatMap((subject) =>
+          subject.timeslots.map((slot) => key(subject.name, slot)),
+        ),
+      );
+      const slotIds = slots
+        .filter((slot) => included.has(key(slot.subject.name, slot)))
+        .map((slot) => slot.id);
+      await tx.subject.updateMany({
+        where: { id: { in: subjectIds } },
+        data: { active: true },
+      });
+      await tx.subject.updateMany({
+        where: { id: { notIn: subjectIds } },
+        data: { active: false },
+      });
+      await tx.timeslot.updateMany({
+        where: { id: { in: slotIds } },
+        data: { active: true },
+      });
+      await tx.timeslot.updateMany({
+        where: { id: { notIn: slotIds } },
+        data: { active: false },
+      });
+      const next = await tx.scheduleVersion.update({
+        where: { id: 1 },
+        data: {
+          contentHash: hash,
+          ...(changed
+            ? { version: { increment: 1 }, publishedAt: new Date() }
+            : {}),
+        },
+      });
+      return { ...result, changed, version: next.version };
+    },
+    { maxWait: 10_000, timeout: 120_000 },
+  );
+}
+
 async function main() {
   const args = process.argv.slice(2);
   if (args.some((arg) => arg !== "--dry-run")) {
@@ -201,9 +404,9 @@ async function main() {
     },
   });
   try {
-    const result = await importCatalog(db, catalog);
+    const result = await publishCatalog(db, catalog);
     console.log(
-      `Imported ${result.subjects} subjects and ${result.timeslots} timeslots.`,
+      `Imported ${result.subjects} subjects and ${result.timeslots} timeslots. Schedule version ${result.version}: ${result.changed ? "published an update" : "unchanged"}.`,
     );
   } finally {
     await db.$disconnect();

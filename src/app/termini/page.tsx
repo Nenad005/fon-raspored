@@ -66,24 +66,29 @@ export default function TerminiPage() {
   const [selections, setSelections] = useState<Selections>({});
   const [revision, setRevision] = useState<number | null>(null);
   const [baseline, setBaseline] = useState<string | null>(null);
+  const [scheduleVersion, setScheduleVersion] = useState<number | null>(null);
   const [hadSavedTimeslots, setHadSavedTimeslots] = useState(false);
   const [outdated, setOutdated] = useState(false);
   const [pendingRemoval, setPendingRemoval] = useState<ExistingSlot[]>([]);
+  const { data: catalogData, refetch: refetchCatalog } = catalog;
 
   useEffect(() => {
-    if (!account.data || !catalog.data) return;
+    if (!account.data || !catalogData) return;
     const data = account.data;
+    const catalogVersion = catalogData.scheduleVersion ?? 0;
+    if (catalogVersion !== (data.scheduleVersion ?? 0)) {
+      void refetchCatalog();
+      return;
+    }
     const latestBaseline = timeslotBaseline(data);
-    if (revision !== null) {
+    if (revision !== null && scheduleVersion === catalogVersion) {
       // Preference-only updates can advance the revision without replacing drafts.
       if (latestBaseline === baseline && data.revision > revision)
         setRevision(data.revision);
       return;
     }
     const restored = data.subjectIds.flatMap((id) => {
-      const subject = catalog.data.subjects.find(
-        (subject) => subject.id === id,
-      );
+      const subject = catalogData.subjects.find((subject) => subject.id === id);
       return subject ? [subject] : [];
     });
     const savedIds = new Set(data.timeslotIds);
@@ -101,13 +106,24 @@ export default function TerminiPage() {
     }
     setSubjects(restored);
     setSelections(savedSelections);
-    setHadSavedTimeslots(resolved > 0);
+    setHadSavedTimeslots(
+      resolved > 0 || (data.scheduleUpdate?.removedTimeslots.length ?? 0) > 0,
+    );
     setOutdated(
       restored.length !== data.subjectIds.length || resolved !== savedIds.size,
     );
     setRevision(data.revision);
+    setScheduleVersion(catalogVersion);
+    setPendingRemoval([]);
     setBaseline(latestBaseline);
-  }, [account.data, catalog.data, revision, baseline]);
+  }, [
+    account.data,
+    catalogData,
+    revision,
+    baseline,
+    scheduleVersion,
+    refetchCatalog,
+  ]);
 
   const selectedSlots = subjects.flatMap((subject) => {
     const key = subject.id;
@@ -217,6 +233,7 @@ export default function TerminiPage() {
       {
         timeslotIds: selectedSlots.map((slot) => slot.term.id),
         expectedRevision: revision,
+        expectedScheduleVersion: scheduleVersion ?? 0,
       },
       { onSuccess: () => router.push("/") },
     );
@@ -278,6 +295,30 @@ export default function TerminiPage() {
         <p role="alert">
           Neki sačuvani predmeti ili termini više nisu dostupni u katalogu.
         </p>
+      )}
+      {(account.data?.scheduleUpdate?.removedTimeslots.length ?? 0) > 0 && (
+        <section
+          role="alert"
+          className="mb-6 rounded-xl border border-amber-500/40 bg-amber-500/10 p-5"
+        >
+          <h2 className="font-semibold">Izaberi zamenu za uklonjene termine</h2>
+          <p className="mt-2 text-sm">
+            Nepromenjeni izbori su sačuvani. Sledeći stari termini više nisu deo
+            rasporeda i neće biti prikazani u tvom kalendaru:
+          </p>
+          <ul className="mt-3 space-y-2 text-sm">
+            {account.data?.scheduleUpdate.removedTimeslots.map((slot) => (
+              <li key={slot.id}>
+                <strong>{slot.subjectName}</strong> (
+                {slot.type === "P" ? "predavanje" : "vežbe"}) — {slot.dan},{" "}
+                {slot.od}–{slot.do}, sala {slot.sala}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-sm">
+            Upozorenje nestaje kada sačuvaš novi izbor termina.
+          </p>
+        </section>
       )}
       {save.isError && (
         <p role="alert">

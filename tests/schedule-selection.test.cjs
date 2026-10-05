@@ -1114,6 +1114,7 @@ function pageHarness(
   const scheduleQueries = [];
   const catalogQueries = [];
   let retries = 0;
+  const refetchCatalog = () => { retries++; };
   const setSettings = (value) => {
     settings = value;
   };
@@ -1284,9 +1285,7 @@ function pageHarness(
               return {
                 data: catalogData,
                 isError: false,
-                refetch: () => {
-                  retries++;
-                },
+                refetch: refetchCatalog,
                 ...catalogQuery,
               };
             },
@@ -1498,6 +1497,7 @@ test("TerminiPage saves and reloads both chosen sessions by database ID", () => 
   assert.deepEqual(ui.saves[0].input, {
     timeslotIds: ui.saved,
     expectedRevision: 7,
+    expectedScheduleVersion: 0,
   });
   assert.deepEqual(ui.pushes, ["/"]);
   const restored = pageHarness("src/app/termini/page.tsx", {
@@ -2421,7 +2421,7 @@ test("TerminiPage can clear all saved owned timeslots and persist an empty selec
   assert.deepEqual(ui.slots(), []);
   assert.equal(ui.button("Sačuvaj raspored").props.disabled, false);
   ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
-  assert.deepEqual(ui.saves[0].input, { timeslotIds: [], expectedRevision: 7 });
+  assert.deepEqual(ui.saves[0].input, { timeslotIds: [], expectedRevision: 7, expectedScheduleVersion: 0 });
   assert.deepEqual(ui.saved, []);
   assert.deepEqual(ui.pushes, ["/"]);
 });
@@ -2437,6 +2437,50 @@ test("TerminiPage onboarding still requires a valid term after adding and cleari
   ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
   assert.deepEqual(ui.saves, []);
   assert.deepEqual(ui.pushes, []);
+});
+
+test("TerminiPage preserves valid choices after a release and lists removed terms with a versioned save", () => {
+  const accountQuery = {};
+  const catalogData = catalogFixture(catalog);
+  const ui = pageHarness("src/app/termini/page.tsx", {
+    selections: { [theoryKey]: { V: theoryPair.map(termKey) } },
+    accountQuery,
+    catalogData,
+  });
+  const removed = dbTheoryPair[1];
+  catalogData.scheduleVersion = 2;
+  const theory = catalogData.subjects.find((item) => item.name === theorySubject.name);
+  theory.terms.V = theory.terms.V.filter((term) => term.id !== removed.id);
+  accountQuery.data = {
+    ...ui.accountData,
+    scheduleVersion: 2,
+    timeslotIds: [dbTheoryPair[0].id],
+    scheduleUpdate: { pending: false, removedTimeslots: [{ ...removed, subjectName: theorySubject.name, type: "V" }] },
+  };
+  ui.rerender();
+  assert.deepEqual(ui.slots().map((slot) => slot.term.id), [dbTheoryPair[0].id]);
+  const warning = ui.all((node) => node.props.role === "alert").map(text).join(" ");
+  assert.match(warning, /Izaberi zamenu za uklonjene termine/);
+  assert.ok(warning.includes(removed.sala));
+  ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
+  assert.equal(ui.saves[0].input.expectedScheduleVersion, 2);
+  assert.deepEqual(ui.saves[0].input.timeslotIds, [dbTheoryPair[0].id]);
+});
+
+test("TerminiPage allows clearing a schedule when every saved term was removed", () => {
+  const accountQuery = {};
+  const ui = pageHarness("src/app/termini/page.tsx", { accountQuery });
+  accountQuery.data = {
+    ...ui.accountData,
+    scheduleUpdate: { pending: false, removedTimeslots: [{ ...dbTheoryPair[0], subjectName: theorySubject.name, type: "V" }] },
+  };
+  // A new release restores the latest server selections, including an empty one.
+  ui.catalogData.scheduleVersion = 1;
+  accountQuery.data.scheduleVersion = 1;
+  ui.rerender();
+  assert.equal(ui.button("Sačuvaj raspored").props.disabled, false);
+  ui.invoke(ui.button("Sačuvaj raspored"), "onClick");
+  assert.deepEqual(ui.saves[0].input.timeslotIds, []);
 });
 
 test("PredmetiPage treats same-name database subjects as distinct IDs", () => {

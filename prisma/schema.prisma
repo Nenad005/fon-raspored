@@ -15,6 +15,7 @@ enum TimeslotType {
 
 model Subject {
   id        String           @id @default(cuid()) @db.VarChar(30)
+  active    Boolean          @default(true)
   name      String           @unique @db.VarChar(191)
   programs  SubjectProgram[]
   timeslots Timeslot[]
@@ -58,6 +59,7 @@ model StudyGroup {
 
 model Timeslot {
   id        String          @id @default(cuid()) @db.VarChar(30)
+  active    Boolean         @default(true)
   subjectId String          @db.VarChar(30)
   subject   Subject         @relation(fields: [subjectId], references: [id], onDelete: Restrict)
   type      TimeslotType
@@ -96,19 +98,29 @@ enum AccountTheme {
 }
 
 model UserSettings {
-  userId      String              @id @db.VarChar(255)
-  revision    Int                 @default(0)
-  mode        AccountMode         @default(account)
-  theme       AccountTheme        @default(system)
-  catalogYear Int                 @default(1) @db.SmallInt
-  groupId     String?             @db.VarChar(30)
-  group       StudyGroup?         @relation(fields: [groupId], references: [id], onDelete: SetNull)
-  subjects    UserSubject[]
-  timeslots   UserTimeslot[]
-  filters     UserProgramFilter[]
+  userId                      String              @id @db.VarChar(255)
+  acknowledgedScheduleVersion Int                 @default(0)
+  revision                    Int                 @default(0)
+  mode                        AccountMode         @default(account)
+  theme                       AccountTheme        @default(system)
+  catalogYear                 Int                 @default(1) @db.SmallInt
+  groupId                     String?             @db.VarChar(30)
+  group                       StudyGroup?         @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  subjects                    UserSubject[]
+  timeslots                   UserTimeslot[]
+  filters                     UserProgramFilter[]
 
   @@index([groupId])
   @@map("user_settings")
+}
+
+model ScheduleVersion {
+  id          Int      @id @default(1)
+  version     Int      @default(0)
+  contentHash String?   @db.VarChar(64)
+  publishedAt DateTime @default(now())
+
+  @@map("schedule_version")
 }
 
 model UserSubject {
