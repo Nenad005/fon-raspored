@@ -13,6 +13,7 @@ type SelectedSlot = {
 };
 
 const days = ["Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak"];
+const shortDays = ["Pon", "Uto", "Sre", "Čet", "Pet"];
 const defaultTimes = ["08:15", "10:15", "12:15", "14:15", "16:15", "18:15"];
 
 export default function SelectedSlotsCalendar({
@@ -22,6 +23,7 @@ export default function SelectedSlotsCalendar({
 }) {
   const [hoveredCell, setHoveredCell] = useState<string | null>(null);
   const [pinnedCell, setPinnedCell] = useState<string | null>(null);
+  const [selectedDay, setSelectedDay] = useState(days[0]!);
   const minutes = (time: string) => {
     const [hours = 0, minutes = 0] = time.split(":").map(Number);
     return hours * 60 + minutes;
@@ -80,22 +82,27 @@ export default function SelectedSlotsCalendar({
 
   return (
     <section
-      className="mb-8 rounded-xl border bg-card"
+      className="mb-8 min-w-0 overflow-hidden rounded-xl border bg-card"
       aria-labelledby="weekly-calendar-title"
     >
-      <div className="flex flex-wrap items-center justify-between gap-4 p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3 sm:gap-4 sm:p-5">
         <div>
           <h2
             id="weekly-calendar-title"
-            className="flex items-center gap-2 text-xl font-semibold"
+            className="flex items-center gap-2 text-lg font-semibold sm:text-xl"
           >
             <CalendarDays className="h-5 w-5" /> Pregled nedelje
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Pređi mišem ili klikni na termin za detalje.
+            <span className="sm:hidden">
+              Izaberi dan i dodirni termin za detalje.
+            </span>
+            <span className="hidden sm:inline">
+              Pređi mišem ili klikni na termin za detalje.
+            </span>
           </p>
         </div>
-        <div className="flex gap-3 text-xs text-muted-foreground">
+        <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
             Predavanje
@@ -107,16 +114,48 @@ export default function SelectedSlotsCalendar({
         </div>
       </div>
 
+      <div
+        role="group"
+        aria-label="Dan u mobilnom kalendaru"
+        className="mb-3 grid grid-cols-5 gap-1 px-3 sm:hidden"
+      >
+        {days.map((day, index) => {
+          const count = slots.filter((slot) => slot.term.dan === day).length;
+          return (
+            <button
+              key={day}
+              type="button"
+              aria-label={`${day}, broj izabranih termina: ${count}`}
+              aria-pressed={selectedDay === day}
+              onClick={() => {
+                setSelectedDay(day);
+                setHoveredCell(null);
+                setPinnedCell(null);
+              }}
+              className={cn(
+                "flex min-h-11 min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                selectedDay === day
+                  ? "bg-foreground text-background"
+                  : "bg-secondary text-muted-foreground hover:bg-accent hover:text-foreground",
+              )}
+            >
+              {shortDays[index]}
+              <span className="text-[10px] leading-none">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
       <div className="overflow-x-auto px-3 pb-3 sm:px-5">
         <div
           role="table"
           aria-label="Nedeljni pregled izabranih predavanja i vežbi"
-          className="w-full min-w-[600px] text-sm"
+          className="w-full min-w-0 text-sm sm:min-w-[600px]"
         >
           <div role="rowgroup">
             <div
               role="row"
-              className="grid grid-cols-[3.5rem_repeat(5,minmax(0,1fr))] gap-x-1"
+              className="grid grid-cols-[3rem_minmax(0,1fr)] gap-x-1 sm:grid-cols-[3.5rem_repeat(5,minmax(0,1fr))]"
             >
               <div role="columnheader">
                 <span className="sr-only">Vreme</span>
@@ -125,7 +164,10 @@ export default function SelectedSlotsCalendar({
                 <div
                   key={day}
                   role="columnheader"
-                  className="pb-2 text-center font-medium"
+                  className={cn(
+                    "pb-2 text-center font-medium",
+                    day !== selectedDay && "hidden sm:block",
+                  )}
                 >
                   {day}
                 </div>
@@ -137,7 +179,7 @@ export default function SelectedSlotsCalendar({
               <div
                 role="row"
                 key={time}
-                className="mb-1 grid w-full grid-cols-[3.5rem_repeat(5,minmax(0,1fr))] gap-x-1"
+                className="mb-1 grid w-full grid-cols-[3rem_minmax(0,1fr)] gap-x-1 sm:grid-cols-[3.5rem_repeat(5,minmax(0,1fr))]"
                 style={{ height: 96 }}
               >
                 <div
@@ -150,7 +192,10 @@ export default function SelectedSlotsCalendar({
                   <div
                     role="cell"
                     key={day}
-                    className="min-h-0 overflow-hidden rounded-md"
+                    className={cn(
+                      "min-h-0 min-w-0 overflow-hidden rounded-md",
+                      day !== selectedDay && "hidden sm:block",
+                    )}
                   >
                     {cells
                       .filter(
@@ -289,7 +334,7 @@ export default function SelectedSlotsCalendar({
       </div>
 
       <div
-        className="min-h-24 border-t p-5"
+        className="min-h-24 min-w-0 break-words border-t p-3 sm:p-5"
         aria-live="polite"
         aria-atomic="true"
       >
@@ -314,8 +359,8 @@ export default function SelectedSlotsCalendar({
                       <Clock3 className="h-3.5 w-3.5" />
                       {slot.term.od}-{slot.term.do}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="h-3.5 w-3.5" />
+                    <span className="flex min-w-0 max-w-full items-center gap-1">
+                      <MapPin className="h-3.5 w-3.5 shrink-0" />
                       {slot.term.sala}
                     </span>
                     <span>{slot.term.grupe.join(", ")}</span>

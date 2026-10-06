@@ -761,6 +761,17 @@ function calendarHarness(slots) {
   };
   render();
   return {
+    dayButton(day) {
+      const button = nodes(tree).find(
+        (node) =>
+          node.type === "button" &&
+          node.props["aria-label"]?.startsWith(
+            `${day}, broj izabranih termina:`,
+          ),
+      );
+      assert.ok(button, "Mobile calendar day control exists");
+      return button;
+    },
     cell(day, time) {
       const cell = nodes(tree).find(
         (node) =>
@@ -833,6 +844,24 @@ test("click pins details after hover ends and a second click unpins", () => {
   assert.ok(ui.details().includes("Menadžment"));
   ui.event(ui.cell("Sreda", "08:15"), "onClick");
   assert.equal(ui.cell("Sreda", "08:15").props["aria-pressed"], false);
+});
+
+test("mobile day navigation clears pinned details and retains selected slots", () => {
+  const ui = calendarHarness([calendarSlot]);
+  assert.equal(ui.dayButton("Ponedeljak").props["aria-pressed"], true);
+  ui.event(ui.dayButton("Sreda"), "onClick");
+  assert.equal(ui.dayButton("Sreda").props["aria-pressed"], true);
+  assert.equal(ui.dayButton("Ponedeljak").props["aria-pressed"], false);
+  assert.ok(ui.dayButton("Sreda").props["aria-label"].endsWith(": 1"));
+  ui.event(ui.cell("Sreda", "08:15"), "onClick");
+  assert.ok(ui.details().includes("Menadžment"));
+  ui.event(ui.dayButton("Petak"), "onClick");
+  assert.equal(ui.cell("Sreda", "08:15").props["aria-pressed"], false);
+  assert.ok(ui.details().includes("Izaberi polje"));
+  ui.event(ui.dayButton("Sreda"), "onClick");
+  assert.equal(ui.cell("Sreda", "08:15").props.disabled, false);
+  ui.event(ui.cell("Sreda", "08:15"), "onClick");
+  assert.ok(ui.details().includes(options[0].sala));
 });
 
 test("calendar displays every overlapping selection and marks the conflict", () => {

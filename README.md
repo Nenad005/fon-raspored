@@ -21,6 +21,105 @@ Aplikacija je izgrađena na **T3 Stack-u** i koristi sledeće tehnologije:
 
 ## 🛠️ Kako pokrenuti aplikaciju lokalno
 
+### Brzi pregled važnih komandi
+
+Sve komande pokreću se iz korena projekta. Koristi **Node.js 24**, Docker za
+Compose okruženja i Python 3 za preuzimanje zvaničnog rasporeda.
+
+#### Docker: razvoj i produkcija
+
+| Komanda | Namena |
+| --- | --- |
+| `npm run docker:dev` | Lokalni PostgreSQL, migracije i razvojni sajt sa hot reload-om. |
+| `npm run docker:prod` | Production build, migracije na hostovanoj bazi i `npm run start`. |
+| `npm run docker:down` | Gašenje trenutnog Compose okruženja uz očuvanje lokalnog DB volumena. |
+| `npm run docker:db` | Pokretanje samo lokalnog PostgreSQL servisa. |
+| `npm run docker:import:dev` | Objavljivanje kataloga iz trenutnih JSON fajlova na lokalnoj bazi. |
+| `npm run docker:migrate:prod` | Primena migracija na hostovanoj bazi bez pokretanja sajta. |
+| `npm run docker:import:prod` | Objavljivanje kataloga na hostovanoj bazi bez pokretanja sajta. |
+
+Development i production koriste isti lokalni port: pokretanje jednog režima
+gasi drugi. Sajt je dostupan na `http://localhost:3000`, odnosno portu iz
+`APP_PORT`. Docker NPM komande učitavaju `.env` i `.env.local`; development
+sam postavlja URL-ove lokalne baze u svojim kontejnerima.
+
+#### Preuzimanje i ažuriranje rasporeda
+
+| Komanda | Namena |
+| --- | --- |
+| `npm run schedule:download` | Preuzimanje DOCX dokumenata i pregled promena, bez izmene `src/data`. |
+| `npm run schedule:download -- --write` | Preuzimanje i upis kompletnog novog rasporeda u `src/data`. |
+| `npm run db:import -- --dry-run` | Provera JSON kataloga bez povezivanja sa bazom. |
+
+Uobičajeni postupak za novo FON ažuriranje:
+
+```bash
+npm run schedule:download -- --write
+npm run db:import -- --dry-run
+
+# Lokalna provera
+npm run docker:dev
+npm run docker:import:dev
+
+# Objavljivanje na produkcionoj bazi
+npm run docker:migrate:prod
+npm run docker:import:prod
+```
+
+Objavljivanje podataka u bazi osvežava i Vercel sajt. Za izmene aplikacionog
+koda potreban je novi Vercel deploy. Uvoz identičnog rasporeda ne povećava
+verziju i ne ponavlja obaveštenje korisnicima.
+
+#### Pokretanje bez Docker aplikacije i Prisma alati
+
+| Komanda | Namena |
+| --- | --- |
+| `npm ci` | Instalacija verzija zavisnosti iz `package-lock.json`; generiše i Prisma klijent. |
+| `npm run dev` | Next.js razvojni server. |
+| `npm run build` | Production build sa TypeScript i lint proverama. |
+| `npm run start` | Pokretanje prethodno napravljenog production build-a. |
+| `npm run db:generate` | Generisanje Prisma klijenta nakon izmene šeme. |
+| `npm run db:validate` | Provera ispravnosti Prisma šeme. |
+| `npm run db:migrate` | Primena postojećih migracija na bazi iz env promenljivih. |
+| `npm run db:import` | Objavljivanje kataloga na bazi iz env promenljivih. |
+| `npm run db:studio` | Otvaranje Prisma Studio interfejsa za pregled i izmenu podataka. |
+| `npm run db:push` | Usklađivanje razvojne baze sa šemom bez pravljenja migracionog fajla. |
+
+Ove DB komande učitavaju `.env` i `.env.local` i koriste njihove URL-ove.
+U trenutnoj konfiguraciji oni pokazuju na Neon. Za lokalnu bazu koristi
+Docker komande sa `:dev` ili postavi lokalne `DATABASE_URL` i `DIRECT_URL`.
+Production izmene šeme primenjuju se preko migracija.
+
+#### Testiranje i dijagnostika
+
+| Komanda | Namena |
+| --- | --- |
+| `npm test` | JavaScript testovi; integracioni DB testovi se uključuju odgovarajućim test env promenljivama. |
+| `node --test tests/schedule-selection.test.cjs` | Ciljani testovi izbora termina i nedeljnog kalendara. |
+| `python3 tests/download-schedule.test.py` | Testovi preuzimanja, obrade DOCX podataka i normalizacije sala. |
+| `npm run lint` | ESLint provera. |
+| `npx tsc --noEmit` | Samostalna TypeScript provera bez generisanja fajlova. |
+| `docker ps -a --filter name=fon-raspored` | Status aplikacionih i migracionih kontejnera. |
+| `docker logs -f fon-raspored` | Praćenje logova trenutno pokrenutog sajta. |
+| `docker logs fon-raspored-db-init` | Rezultat migracija pri pokretanju Compose okruženja. |
+
+Detaljne komande za integracione testove na zasebnim PostgreSQL bazama nalaze
+se u sekciji **Ažuriranje rasporeda i obaveštavanje korisnika** ispod.
+
+#### Vercel deploy iz Git-a
+
+Produkcijska grana projekta je `prod`. Nakon provere izmena:
+
+```bash
+git status --short
+git add <putanje-izmenjenih-fajlova>
+git commit -m "Opis izmene"
+git push origin prod
+```
+
+Push na `prod` pokreće Vercel production deploy. Migracije i objavljivanje
+rasporeda izvršavaju se navedenim DB/Docker komandama.
+
 Pratite sledeće korake da biste pokrenuli aplikaciju u svom lokalnom okruženju:
 
 ### 1. Kloniranje repozitorijuma i instalacija zavisnosti
