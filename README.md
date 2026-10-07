@@ -376,15 +376,16 @@ su samo izvor za uvoz i testove, ne izvor podataka u aplikaciji.
 - `account.saveSubjects`, `account.saveTimeslots`, `account.updatePreferences`: zasticene transakcione izmene, sa proverom verzije podataka.
 
 Tabele `user_settings`, `user_subjects`, `user_timeslots` i
-`user_program_filters` cuvaju izbore, prikaz rasporeda, grupu, filtere i temu
+`user_program_filters` cuvaju izbore, prikaz rasporeda, grupu i filtere
 po Clerk nalogu. Server uzima identitet iskljucivo iz verifikovane sesije.
 Promena naloga uklanja prethodni klijentski kes. Nepotvrdjene izmene ostaju
 u nacrtu do uspesnog cuvanja; promena iz drugog taba ili uredjaja ne moze
 neprimetno prepisati nove izbore.
 
 Za goste, godina i grupa su u URL-u, npr. `/?year=3&group=C1`. Ne kreiraju se
-anonimni korisnicki zapisi. Gost moze privremeno promeniti izgled aplikacije;
-za prijavljenog korisnika, tema iz baze je merodavna.
+anonimni korisnicki zapisi. Tema se za sve korisnike cuva lokalno u pregledacu,
+preko `next-themes` u `localStorage` kljucu `theme`. Promena teme je trenutna,
+ne salje API zahtev i ostaje sacuvana nakon osvezavanja, prijave ili odjave.
 
 Stari neoznaceni localStorage izbori se ne prebacuju automatski na nalog, jer
 njihov vlasnik nije poznat. Katalog se kesira pet minuta; privatni podaci su

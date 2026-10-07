@@ -37,16 +37,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="sr-Latn">
+      <html lang="sr-Latn" suppressHydrationWarning>
         <body className={`relative min-h-screen antialiased`}>
-          <TRPCReactProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <TRPCReactProvider>
               <Header></Header>
               <ScheduleUpdateNotice />
               {children}
               <Footer></Footer>
-            </ThemeProvider>
-          </TRPCReactProvider>
+            </TRPCReactProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

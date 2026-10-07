@@ -14,7 +14,6 @@ function accountState(mode = "search", group = null, revision = 7) {
       group,
       catalogYear: 1,
       programFilters: [],
-      theme: "system",
     },
     subjectIds: ["subject"],
     timeslotIds: ["slot"],

@@ -92,18 +92,11 @@ enum AccountMode {
   search
 }
 
-enum AccountTheme {
-  system
-  light
-  dark
-}
-
 model UserSettings {
   userId                      String              @id @db.VarChar(255)
   acknowledgedScheduleVersion Int                 @default(0)
   revision                    Int                 @default(0)
   mode                        AccountMode         @default(account)
-  theme                       AccountTheme        @default(system)
   catalogYear                 Int                 @default(1) @db.SmallInt
   groupId                     String?             @db.VarChar(30)
   group                       StudyGroup?         @relation(fields: [groupId], references: [id], onDelete: SetNull)

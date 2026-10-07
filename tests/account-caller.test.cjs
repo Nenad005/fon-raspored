@@ -37,7 +37,6 @@ const defaults = {
     group: null,
     catalogYear: 1,
     programFilters: [],
-    theme: "system",
   },
   subjectIds: [],
   timeslotIds: [],
@@ -105,7 +104,6 @@ function fixture(slots = []) {
             revision: 0,
             acknowledgedScheduleVersion: args.create.acknowledgedScheduleVersion,
             mode: "account",
-            theme: "system",
             catalogYear: 1,
             groupId: null,
             subjects: [],
@@ -368,14 +366,12 @@ test("strict preference patch preserves omitted values and clears nullable group
     expectedRevision: 0,
     mode: "search",
     groupId: "y1-g1",
-    theme: "dark",
     catalogYear: 4,
     programFilters: [{ year: 2, programId: "p2" }],
   });
   assert.deepEqual(first.preferences, {
     mode: "search",
     group: { id: "y1-g1", name: "G1", year: 1 },
-    theme: "dark",
     catalogYear: 4,
     programFilters: [{ year: 2, programId: "p2" }],
   });
@@ -390,7 +386,7 @@ test("strict preference patch preserves omitted values and clears nullable group
     programFilters: [],
   });
   await assert.rejects(
-    c.updatePreferences({ expectedRevision: 2, theme: "invalid" }),
+    c.updatePreferences({ expectedRevision: 2, theme: "dark" }),
     code("BAD_REQUEST"),
   );
   await assert.rejects(

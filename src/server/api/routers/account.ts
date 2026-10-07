@@ -29,14 +29,12 @@ const preferences = z
     groupId: id.nullable().optional(),
     catalogYear: year.optional(),
     programFilters: filters.optional(),
-    theme: z.enum(["system", "light", "dark"]).optional(),
   })
   .strict();
 const stateSelect = {
   revision: true,
   acknowledgedScheduleVersion: true,
   mode: true,
-  theme: true,
   catalogYear: true,
   group: { select: { id: true, name: true, year: true } },
   filters: {
@@ -79,7 +77,6 @@ async function readState(
       group: row?.group ?? null,
       catalogYear: row?.catalogYear ?? 1,
       programFilters: row?.filters ?? [],
-      theme: row?.theme ?? "system",
     },
     subjectIds: row?.subjects.map((item) => item.subjectId) ?? [],
     timeslotIds:
@@ -380,7 +377,6 @@ export const accountRouter = createTRPCRouter({
             mode: input.mode,
             groupId: input.groupId,
             catalogYear: input.catalogYear,
-            theme: input.theme,
           },
         });
         return readState(db, ctx.userId, release);

@@ -1159,7 +1159,6 @@ function pageHarness(
       group,
       catalogYear: 1,
       programFilters: [],
-      theme: "system",
     },
     subjectIds: [
       ...new Set(subjects.map((subject) => `subject:${subject.name}`)),
@@ -2245,7 +2244,7 @@ for (const file of ["src/app/predmeti/page.tsx", "src/app/termini/page.tsx"]) {
     assert.equal(ui.saves[0].input.expectedRevision, 7);
   });
 
-  test(`${file} rebases theme-only revisions with normalized baseline order without replacing drafts`, () => {
+  test(`${file} rebases equivalent revisions with normalized baseline order without replacing drafts`, () => {
     const initial = {
       revision: 7,
       preferences: {
@@ -2256,7 +2255,6 @@ for (const file of ["src/app/predmeti/page.tsx", "src/app/termini/page.tsx"]) {
           { year: 1, programId: "ISiT" },
           { year: 3, programId: "ISiT" },
         ],
-        theme: "system",
       },
       subjectIds: [`subject:${theorySubject.name}`, `subject:${subject.name}`],
       timeslotIds: dbTheoryPair.map((term) => term.id),
@@ -2278,7 +2276,6 @@ for (const file of ["src/app/predmeti/page.tsx", "src/app/termini/page.tsx"]) {
       timeslotIds: [...initial.timeslotIds].reverse(),
       preferences: {
         ...initial.preferences,
-        theme: "dark",
         programFilters: [...initial.preferences.programFilters].reverse(),
       },
     };
