@@ -62,12 +62,16 @@ const stateSelect = {
   },
 } satisfies Prisma.UserSettingsSelect;
 
-async function readState(db: Prisma.TransactionClient, userId: string) {
+async function readState(
+  db: Prisma.TransactionClient,
+  userId: string,
+  lockedRelease?: Awaited<ReturnType<typeof getScheduleVersion>>,
+) {
   const row = await db.userSettings.findUnique({
     where: { userId },
     select: stateSelect,
   });
-  const release = await getScheduleVersion(db);
+  const release = lockedRelease ?? (await getScheduleVersion(db));
   return {
     revision: row?.revision ?? 0,
     preferences: {
@@ -130,9 +134,10 @@ async function claim(
   db: Prisma.TransactionClient,
   userId: string,
   expectedRevision: number,
+  expectedScheduleVersion?: number,
 ) {
   // The upsert and CAS share the transaction: a failed first save cannot leave a new row.
-  const release = await lockScheduleVersion(db);
+  const release = await lockScheduleVersion(db, expectedScheduleVersion);
   await db.userSettings.upsert({
     where: { userId },
     create: { userId, acknowledgedScheduleVersion: release.version },
@@ -147,6 +152,7 @@ async function claim(
       code: "CONFLICT",
       message: "Account state has changed",
     });
+  return release;
 }
 
 async function validateFilters(
@@ -251,7 +257,7 @@ export const accountRouter = createTRPCRouter({
     )
     .mutation(({ ctx, input }) =>
       mutate(ctx.db, async (db) => {
-        await claim(db, ctx.userId, input.expectedRevision);
+        const release = await claim(db, ctx.userId, input.expectedRevision);
         const subjectIds = [...new Set(input.subjectIds)];
         const subjects = await db.subject.findMany({
           where: { id: { in: subjectIds }, active: true },
@@ -279,7 +285,7 @@ export const accountRouter = createTRPCRouter({
           where: { userId: ctx.userId },
           data: { catalogYear: input.catalogYear },
         });
-        return readState(db, ctx.userId);
+        return readState(db, ctx.userId, release);
       }),
     ),
   saveTimeslots: protectedProcedure
@@ -294,8 +300,12 @@ export const accountRouter = createTRPCRouter({
     )
     .mutation(({ ctx, input }) =>
       mutate(ctx.db, async (db) => {
-        await lockScheduleVersion(db, input.expectedScheduleVersion);
-        await claim(db, ctx.userId, input.expectedRevision);
+        const release = await claim(
+          db,
+          ctx.userId,
+          input.expectedRevision,
+          input.expectedScheduleVersion,
+        );
         const owned = await db.userSubject.findMany({
           where: { userId: ctx.userId },
           select: { subjectId: true },
@@ -326,14 +336,17 @@ export const accountRouter = createTRPCRouter({
             acknowledgedScheduleVersion: input.expectedScheduleVersion,
           },
         });
-        return readState(db, ctx.userId);
+        return readState(db, ctx.userId, release);
       }),
     ),
   acknowledgeSchedule: protectedProcedure
     .input(z.object({ expectedScheduleVersion: revision }).strict())
     .mutation(({ ctx, input }) =>
       mutate(ctx.db, async (db) => {
-        await lockScheduleVersion(db, input.expectedScheduleVersion);
+        const release = await lockScheduleVersion(
+          db,
+          input.expectedScheduleVersion,
+        );
         await db.userSettings.updateMany({
           where: {
             userId: ctx.userId,
@@ -341,14 +354,14 @@ export const accountRouter = createTRPCRouter({
           },
           data: { acknowledgedScheduleVersion: input.expectedScheduleVersion },
         });
-        return readState(db, ctx.userId);
+        return readState(db, ctx.userId, release);
       }),
     ),
   updatePreferences: protectedProcedure
     .input(preferences)
     .mutation(({ ctx, input }) =>
       mutate(ctx.db, async (db) => {
-        await claim(db, ctx.userId, input.expectedRevision);
+        const release = await claim(db, ctx.userId, input.expectedRevision);
         if (
           input.groupId != null &&
           !(await db.studyGroup.findUnique({
@@ -370,7 +383,7 @@ export const accountRouter = createTRPCRouter({
             theme: input.theme,
           },
         });
-        return readState(db, ctx.userId);
+        return readState(db, ctx.userId, release);
       }),
     ),
 });

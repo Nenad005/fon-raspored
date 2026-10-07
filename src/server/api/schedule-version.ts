@@ -2,7 +2,10 @@ import type { Prisma } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 
 export async function getScheduleVersion(db: Prisma.TransactionClient) {
-  const release = await db.scheduleVersion.findUnique({ where: { id: 1 } });
+  const release = await db.scheduleVersion.findUnique({
+    where: { id: 1 },
+    select: { version: true, publishedAt: true },
+  });
   return {
     version: release?.version ?? 0,
     publishedAt: release?.publishedAt ?? null,

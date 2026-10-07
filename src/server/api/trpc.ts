@@ -17,7 +17,10 @@ import { db } from "~/server/db";
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: { headers: Headers }) => {
+export const createTRPCContext = async (opts: {
+  headers: Headers;
+  cachePublicReads?: boolean;
+}) => {
   const { userId } = auth();
 
   return {

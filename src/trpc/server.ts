@@ -16,6 +16,7 @@ const createContext = cache(() => {
 
   return createTRPCContext({
     headers: heads,
+    cachePublicReads: true,
   });
 });
 

@@ -98,6 +98,9 @@ Production izmene šeme primenjuju se preko migracija.
 | `node --test tests/schedule-selection.test.cjs` | Ciljani testovi izbora termina i nedeljnog kalendara. |
 | `python3 tests/download-schedule.test.py` | Testovi preuzimanja, obrade DOCX podataka i normalizacije sala. |
 | `npm run lint` | ESLint provera. |
+| `npm run perf:api` | Read-only merenje javnih tRPC endpointa na produkciji (5 zahteva po endpointu). |
+| `npm run perf:api -- --db --compare --runs 7` | Naizmenično poređenje Prisma query/join strategija, broj SQL poziva i provera jednakosti odgovora. |
+| `npm run perf:api -- --db --runs 1 --explain` | SQL execution/planning vreme kroz `EXPLAIN ANALYZE`, bez izmene podataka. |
 | `npx tsc --noEmit` | Samostalna TypeScript provera bez generisanja fajlova. |
 | `docker ps -a --filter name=fon-raspored` | Status aplikacionih i migracionih kontejnera. |
 | `docker logs -f fon-raspored` | Praćenje logova trenutno pokrenutog sajta. |
@@ -105,6 +108,37 @@ Production izmene šeme primenjuju se preko migracija.
 
 Detaljne komande za integracione testove na zasebnim PostgreSQL bazama nalaze
 se u sekciji **Ažuriranje rasporeda i obaveštavanje korisnika** ispod.
+
+#### Performanse na Vercelu
+
+Vercel funkcije su podešene na Frankfurt (`fra1`) u `vercel.json`, uz Neon bazu
+u `eu-central-1`. Ako menjaš region baze, uskladi i region funkcija: više
+uzastopnih SQL poziva preko Atlantika znatno usporava i jednostavne upite.
+
+Prisma koristi `relationJoins` da povezane redove učita kroz SQL join umesto
+posebnog mrežnog poziva za svaku relaciju. Posle izmene generatora pokreni
+`npm run db:generate`; ova optimizacija ne zahteva DB migraciju.
+
+Javni katalog, grupe i rasporedi koriste Next.js Data Cache. Svaki HTTP/RSC
+zahtev prvo čita trenutnu verziju rasporeda iz baze, a verzija je deo cache
+ključa. Zato objavljivanje rasporeda preko `db:import` odmah bira novi cache,
+bez čekanja TTL-a ili ručne invalidacije na Vercelu. Privatno stanje naloga
+čita se direktno iz baze. Podatke kataloga menjaj preko versioned importera.
+
+Primer merenja lokalnog production build-a sa hostovanom bazom:
+
+```bash
+npm run build
+npm run start -- --port 3100
+# U drugom terminalu:
+npm run perf:api -- --url http://localhost:3100 --runs 5
+```
+
+DB benchmark zaobilazi Next.js keš kako bi merio stvarne upite. Merenje naloga
+koristi nepostojeći sintetički ID, bez čitanja ličnih izbora korisnika.
+Prvi uzorak može uključiti cold start aplikacije/konekcije/baze; posmatraj i
+pojedinačne uzorke, ne samo medijanu. Izveštaj je u
+[`docs/performance.md`](docs/performance.md).
 
 #### Vercel deploy iz Git-a
 
