@@ -1,0 +1,100 @@
+:root {
+  color-scheme: dark;
+  --bg: #09090b;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --border: #3f3f46;
+  --card: #18181b;
+}
+:root.light {
+  color-scheme: light;
+  --bg: #fff;
+  --fg: #18181b;
+  --muted: #52525b;
+  --border: #d4d4d8;
+  --card: #f4f4f5;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+}
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+h1 {
+  margin-bottom: 12px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  margin: 0 0 8px;
+}
+p {
+  margin: 8px 0;
+}
+#saved-at {
+  color: var(--muted);
+  font-size: 14px;
+}
+.notice {
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0;
+}
+button,
+.action {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  background: var(--card);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+button[aria-pressed="true"] {
+  background: #2563eb;
+  color: #fff;
+}
+article {
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+article p {
+  font-size: 14px;
+  color: var(--muted);
+}
+.action {
+  display: inline-block;
+  text-decoration: none;
+  margin: 24px 0 12px;
+}
+#clear {
+  display: block;
+}
+#clear[hidden] {
+  display: none;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}

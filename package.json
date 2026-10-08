@@ -27,6 +27,7 @@
     "lint": "next lint",
     "test": "node --test tests/*.test.cjs",
     "perf:api": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/benchmark-api.mjs",
+    "pwa:icons": "node scripts/generate-pwa-icons.mjs",
     "start": "next start"
   },
   "dependencies": {

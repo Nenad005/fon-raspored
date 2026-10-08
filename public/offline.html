@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#09090b" />
+    <title>Offline raspored | FON</title>
+    <link rel="icon" href="/pwa-192.png" />
+    <link rel="stylesheet" href="/offline.css" />
+    <script src="/offline.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <img src="/pwa-192.png" width="64" height="64" alt="" />
+      <h1>FON raspored</h1>
+      <p class="notice" role="status">
+        Offline prikaz — poslednji sačuvani podaci. Izmene i osvežavanje
+        zahtevaju internet.
+      </p>
+      <h2 id="schedule-title">Raspored nije sačuvan</h2>
+      <p id="saved-at">
+        Otvori svoj raspored dok imaš internet kako bi bio dostupan ovde.
+      </p>
+      <nav id="days" aria-label="Dan rasporeda"></nav>
+      <section id="events" aria-live="polite"></section>
+      <a class="action" href="/">Otvori aplikaciju / pokušaj ponovo</a>
+      <button id="clear" type="button" hidden>Ukloni lokalni raspored</button>
+      <noscript>Uključi JavaScript za prikaz sačuvanog rasporeda.</noscript>
+    </main>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "~/styles/globals.css";
 import { ThemeProvider } from "~/components/theme-provider";
 import Header from "~/components/header";
@@ -7,9 +7,18 @@ import Footer from "~/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TRPCReactProvider } from "~/trpc/react";
 import ScheduleUpdateNotice from "~/components/schedule-update-notice";
+import PwaControls from "~/components/pwa-controls";
+
+export const viewport: Viewport = { themeColor: "#09090b" };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fon-ispiti.vercel.app"),
+  metadataBase: new URL("https://fon-raspored.vercel.app"),
+  applicationName: "FON Raspored",
+  appleWebApp: {
+    capable: true,
+    title: "FON Raspored",
+    statusBarStyle: "default",
+  },
   title: {
     default: "Moj raspored | FON",
     template: "%s | FON Raspored",
@@ -19,7 +28,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/FON-logo-small.png",
     shortcut: "/FON-logo-small.png",
-    apple: "/FON-logo-small.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     images: [{ url: "/FON-logo-small.png", alt: "FON logo" }],
@@ -45,6 +54,7 @@ export default function RootLayout({
               <ScheduleUpdateNotice />
               {children}
               <Footer></Footer>
+              <PwaControls />
             </TRPCReactProvider>
           </ThemeProvider>
         </body>

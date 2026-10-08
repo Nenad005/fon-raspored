@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { errorAtom } from "~/state/errorAtom";
 import { useSetAtom } from "jotai";
 import type { RouterOutputs } from "~/trpc/react";
+import ScheduleTools from "~/components/schedule-tools";
 
 type ScheduleEvent =
   RouterOutputs["schedule"]["getSchedule"]["schedule"][string][number];
@@ -92,6 +93,14 @@ export default function Raspored({
             {group.group}
           </div>
         </div>
+      )}
+      {group.group && (
+        <ScheduleTools
+          schedule={raspored[group.group] ?? {}}
+          title={
+            label || `FON raspored — ${yearName(group.year)} / ${group.group}`
+          }
+        />
       )}
       <DaySelect day={day} setDay={setDay} className="my-5"></DaySelect>
       {dailySchedule.length > 0 && (

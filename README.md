@@ -4,6 +4,55 @@ Web aplikacija za interaktivni prikaz rasporeda nastave na **Fakultetu organizac
 
 Aplikacija je hostovana i javno dostupna na adresi: **[fon-raspored.vercel.app](https://fon-raspored.vercel.app)**
 
+## 📱 PWA, offline raspored i kalendar
+
+- **Android:** dugme **Instaliraj aplikaciju** pri dnu sajta, ili meni browsera
+  → **Instaliraj aplikaciju / Dodaj na početni ekran**.
+- **iPhone/iPad:** Safari → **Podeli / Share** → **Dodaj na početni ekran / Add
+  to Home Screen**. Uključi **Open as Web App** ako je ponuđeno.
+- **Offline:** nakon instalacije otvori željeni raspored dok imaš internet.
+  Poslednji uspešno prikazan raspored ostaje lokalno sačuvan; kada nema mreže,
+  ponovno otvaranje aplikacije prikazuje taj raspored sa datumom čuvanja i
+  izborom dana. Prijava, izmene izbora i osvežavanje zahtevaju internet.
+  Sačuvani raspored može se ukloniti na offline ekranu, a odjava/promena naloga
+  na online sajtu uklanja lokalni prikaz prethodnog naloga.
+- **Kalendar:** iznad izbora dana klikni **Dodaj raspored u kalendar**, izaberi
+  period od–do i preuzmi `fon-raspored.ics`. Izvozi se cela prikazana nedelja,
+  za izabranu grupu ili lične termine, sa nedeljnim ponavljanjem i vremenskom
+  zonom `Europe/Belgrade` (uključujući promenu letnjeg/zimskog vremena).
+- **Apple Calendar:** otvori preuzeti fajl i dodaj događaje; ako browser na
+  telefonu ne ponudi uvoz, koristi Apple Calendar na Mac-u.
+- **Google Calendar:** u web verziji na računaru otvori **Podešavanja → Uvoz i
+  izvoz → Uvezi**. Događaji se sinhronizuju na telefon prijavljen na isti nalog.
+  Za homescreen prikaz koristi widget svoje kalendarske aplikacije.
+
+`.ics` je **jednokratni uvoz**, ne automatska pretplata. Praznici i pauze nisu
+automatski isključeni. Posle izmene rasporeda ukloni prethodno uvezene termine
+pre novog uvoza, kako bi izbegao duplikate.
+
+PWA ne zahteva dodatne env promenljive, DB migracije ili mobilnu prodavnicu;
+potreban je deploy na HTTPS. Service worker radi u production build-u, ne u
+`npm run dev`. Kešira offline ekran, ikonice i statičke resurse, a ne API,
+autentifikaciju ili personalizovan HTML. Offline raspored je mali lokalni
+snapshot, bez tokena i podataka za prijavu.
+
+Provera i održavanje:
+
+```bash
+npm test
+npm run build
+npm run start -- --port 3100
+# Opciona browser provera, ako je Playwright dostupan:
+node scripts/verify-pwa.mjs http://localhost:3100
+# Ponovno generisanje PNG ikonica:
+npm run pwa:icons
+```
+
+Browser provera koristi samo lokalni server i izolovan guest profil. Ako je
+Playwright instaliran van projekta, `PLAYWRIGHT_MODULE` može pokazivati na
+njegov modul. Posle izmene offline HTML/JS/CSS fajlova povećaj verziju keša u
+`public/sw.js` da postojeće instalacije dobiju novi offline ekran.
+
 ---
 
 ## 🚀 Korišćene Tehnologije
