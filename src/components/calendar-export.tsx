@@ -67,7 +67,6 @@ export default function CalendarExport({
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="mt-6"
           disabled={!Object.values(schedule).some((events) => events.length)}
         >
           <CalendarPlus className="mr-2 h-4 w-4" /> Dodaj raspored u kalendar

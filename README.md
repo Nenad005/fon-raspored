@@ -6,7 +6,7 @@ Aplikacija je hostovana i javno dostupna na adresi: **[fon-raspored.vercel.app](
 
 ## 📱 PWA, offline raspored i kalendar
 
-- **Android:** dugme **Instaliraj aplikaciju** pri dnu sajta, ili meni browsera
+- **Android:** otvori **Podešavanja rasporeda** (zupčanik), pa **Instaliraj aplikaciju**, ili meni browsera
   → **Instaliraj aplikaciju / Dodaj na početni ekran**.
 - **iPhone/iPad:** Safari → **Podeli / Share** → **Dodaj na početni ekran / Add
   to Home Screen**. Uključi **Open as Web App** ako je ponuđeno.
@@ -16,7 +16,7 @@ Aplikacija je hostovana i javno dostupna na adresi: **[fon-raspored.vercel.app](
   izborom dana. Prijava, izmene izbora i osvežavanje zahtevaju internet.
   Sačuvani raspored može se ukloniti na offline ekranu, a odjava/promena naloga
   na online sajtu uklanja lokalni prikaz prethodnog naloga.
-- **Kalendar:** iznad izbora dana klikni **Dodaj raspored u kalendar**, izaberi
+- **Kalendar:** neposredno ispod rasporeda klikni **Dodaj raspored u kalendar**, izaberi
   period od–do i preuzmi `fon-raspored.ics`. Izvozi se cela prikazana nedelja,
   za izabranu grupu ili lične termine, sa nedeljnim ponavljanjem i vremenskom
   zonom `Europe/Belgrade` (uključujući promenu letnjeg/zimskog vremena).

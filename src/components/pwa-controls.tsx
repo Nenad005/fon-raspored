@@ -2,7 +2,13 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Download } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -19,12 +25,22 @@ interface InstallEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
-export default function PwaControls() {
+const PwaContext = createContext<{
+  installPrompt: InstallEvent | null;
+  standalone: boolean;
+  isIOS: boolean;
+  isMobile: boolean;
+  installError: boolean;
+  install: () => Promise<void>;
+} | null>(null);
+
+export default function PwaControls({ children }: { children: ReactNode }) {
   const { isLoaded, user } = useUser();
   const [installPrompt, setInstallPrompt] = useState<InstallEvent | null>(null);
   const [standalone, setStandalone] = useState(true);
   const [offline, setOffline] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [installError, setInstallError] = useState(false);
 
   useEffect(() => {
@@ -56,9 +72,17 @@ export default function PwaControls() {
     };
     updateDisplay();
     updateNetwork();
-    setIsIOS(
+    const ios =
       /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1),
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    setIsIOS(ios);
+    setIsMobile(
+      ios ||
+        /Android/.test(navigator.userAgent) ||
+        Boolean(
+          (navigator as Navigator & { userAgentData?: { mobile: boolean } })
+            .userAgentData?.mobile,
+        ),
     );
     window.addEventListener("beforeinstallprompt", beforeInstall);
     window.addEventListener("appinstalled", installed);
@@ -96,11 +120,21 @@ export default function PwaControls() {
   }
 
   return (
-    <div className={offline || !standalone ? "pb-28" : undefined}>
+    <PwaContext.Provider
+      value={{
+        installPrompt,
+        standalone,
+        isIOS,
+        isMobile,
+        installError,
+        install,
+      }}
+    >
+      {children}
       {offline && (
         <div
           role="status"
-          className="border-b bg-secondary px-5 py-3 text-center text-sm"
+          className="mb-24 border-b bg-secondary px-5 py-3 text-center text-sm"
         >
           Nema internet veze.{" "}
           <a href="/offline.html" className="underline underline-offset-4">
@@ -109,46 +143,50 @@ export default function PwaControls() {
           .
         </div>
       )}
-      {!standalone && (
-        <div className="flex justify-center px-5 pb-8">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                <Download className="mr-2 h-4 w-4" /> Instaliraj aplikaciju
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-h-[90svh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>FON raspored na početnom ekranu</DialogTitle>
-                <DialogDescription>
-                  Otvori raspored kao aplikaciju i pogledaj poslednji učitan
-                  raspored i bez interneta.
-                </DialogDescription>
-              </DialogHeader>
-              {installPrompt && (
-                <Button onClick={() => void install()}>
-                  Instaliraj FON raspored
-                </Button>
-              )}
-              {installError && (
-                <p role="alert" className="text-sm">
-                  Instalacija nije pokrenuta. Koristi meni svog browsera.
-                </p>
-              )}
-              <p className="text-sm">
-                {isIOS
-                  ? "Na iPhone-u ili iPad-u otvori sajt u Safari-ju, dodirni Podeli (Share), zatim Dodaj na početni ekran (Add to Home Screen). Ako se pojavi opcija Open as Web App, uključi je."
-                  : "Na Androidu otvori meni browsera (⋮), pa Instaliraj aplikaciju ili Dodaj na početni ekran. Na računaru koristi ikonicu instalacije u adresnoj traci, ako je dostupna."}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Prvo otvori svoj raspored dok imaš internet da bi bio dostupan
-                offline. Prijava, izmene izbora i osvežavanje podataka zahtevaju
-                internet.
-              </p>
-            </DialogContent>
-          </Dialog>
-        </div>
-      )}
-    </div>
+    </PwaContext.Provider>
+  );
+}
+
+export function PwaInstallButton() {
+  const pwa = useContext(PwaContext);
+  if (!pwa || !pwa.isMobile || pwa.standalone) return null;
+  const { installPrompt, isIOS, installError, install } = pwa;
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="w-full justify-start">
+          <Download className="mr-2 h-4 w-4" /> Instaliraj aplikaciju
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-h-[90svh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>FON raspored na početnom ekranu</DialogTitle>
+          <DialogDescription>
+            Otvori raspored kao aplikaciju i pogledaj poslednji učitan raspored
+            i bez interneta.
+          </DialogDescription>
+        </DialogHeader>
+        {installPrompt && (
+          <Button onClick={() => void install()}>
+            Instaliraj FON raspored
+          </Button>
+        )}
+        {installError && (
+          <p role="alert" className="text-sm">
+            Instalacija nije pokrenuta. Koristi meni svog browsera.
+          </p>
+        )}
+        <p className="text-sm">
+          {isIOS
+            ? "Na iPhone-u ili iPad-u otvori sajt u Safari-ju, dodirni Podeli (Share), zatim Dodaj na početni ekran (Add to Home Screen). Ako se pojavi opcija Open as Web App, uključi je."
+            : "Na Androidu otvori meni browsera (⋮), pa Instaliraj aplikaciju ili Dodaj na početni ekran."}
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Prvo otvori svoj raspored dok imaš internet da bi bio dostupan
+          offline. Prijava, izmene izbora i osvežavanje podataka zahtevaju
+          internet.
+        </p>
+      </DialogContent>
+    </Dialog>
   );
 }

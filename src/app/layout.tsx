@@ -50,11 +50,12 @@ export default function RootLayout({
         <body className={`relative min-h-screen antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <TRPCReactProvider>
-              <Header></Header>
-              <ScheduleUpdateNotice />
-              {children}
-              <Footer></Footer>
-              <PwaControls />
+              <PwaControls>
+                <Header></Header>
+                <ScheduleUpdateNotice />
+                {children}
+                <Footer></Footer>
+              </PwaControls>
             </TRPCReactProvider>
           </ThemeProvider>
         </body>

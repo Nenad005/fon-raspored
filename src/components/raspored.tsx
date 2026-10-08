@@ -94,14 +94,6 @@ export default function Raspored({
           </div>
         </div>
       )}
-      {group.group && (
-        <ScheduleTools
-          schedule={raspored[group.group] ?? {}}
-          title={
-            label || `FON raspored — ${yearName(group.year)} / ${group.group}`
-          }
-        />
-      )}
       <DaySelect day={day} setDay={setDay} className="my-5"></DaySelect>
       {dailySchedule.length > 0 && (
         <div className="flex items-center justify-center gap-2 px-5">
@@ -115,7 +107,7 @@ export default function Raspored({
           </Badge>
         </div>
       )}
-      <div className="mb-20 flex w-full flex-col items-center">
+      <div className="mb-3 flex w-full flex-col items-center">
         {dailySchedule.length > 0 ? (
           dailySchedule.map((predavanje) => {
             return (
@@ -171,6 +163,14 @@ export default function Raspored({
           </>
         )}
       </div>
+      {group.group && (
+        <ScheduleTools
+          schedule={raspored[group.group] ?? {}}
+          title={
+            label || `FON raspored — ${yearName(group.year)} / ${group.group}`
+          }
+        />
+      )}
     </>
   );
 }

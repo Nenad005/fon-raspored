@@ -29,6 +29,7 @@ import { cn } from "~/lib/utils";
 import { useScheduleState } from "~/hooks/use-schedule-state";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { api } from "~/trpc/react";
+import { PwaInstallButton } from "~/components/pwa-controls";
 
 export default function Component() {
   const router = useRouter();
@@ -187,7 +188,7 @@ export default function Component() {
           <Settings2 strokeWidth={1.5} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-h-[90svh] overflow-y-auto sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
             {accountMode ? "Podešavanje mog rasporeda" : "Podešavanje pretrage"}
@@ -387,6 +388,7 @@ export default function Component() {
             </div>
           </TabsContent>
         </Tabs>
+        <PwaInstallButton />
         <DialogFooter>
           <Button disabled={!canSave} onClick={handleSaveChanges}>
             Prikaži raspored

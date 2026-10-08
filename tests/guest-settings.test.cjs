@@ -105,6 +105,7 @@ function harness(options = {}) {
       ],
     },
     "~/hooks/use-schedule-state": { useScheduleState: () => state },
+    "~/components/pwa-controls": { PwaInstallButton: "PwaInstallButton" },
     "next/navigation": {
       useRouter: () => ({ push: (path) => pushes.push(path) }),
     },
