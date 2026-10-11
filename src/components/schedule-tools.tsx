@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
 import CalendarExport from "~/components/calendar-export";
+import ScheduleShare from "~/components/schedule-share";
 import type { WeeklySchedule } from "~/lib/calendar";
 import { saveOfflineSchedule } from "~/lib/offline-schedule";
 
@@ -22,5 +23,10 @@ export default function ScheduleTools({
       /* Storage may be unavailable; online viewing and export still work. */
     }
   }, [isLoaded, isSignedIn, user?.id, title, schedule, user]);
-  return <CalendarExport schedule={schedule} title={title} />;
+  return (
+    <div className="flex flex-wrap justify-center gap-3">
+      <CalendarExport schedule={schedule} title={title} />
+      <ScheduleShare schedule={schedule} title={title} />
+    </div>
+  );
 }

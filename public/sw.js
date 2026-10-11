@@ -3,7 +3,7 @@
 const sw = /** @type {ServiceWorkerGlobalScope} */ (
   /** @type {unknown} */ (self)
 );
-const CACHE = "fon-pwa-v1";
+const CACHE = "fon-pwa-v2";
 const SHELL = [
   "/offline.html",
   "/offline.js",
@@ -51,6 +51,25 @@ sw.addEventListener("fetch", (event) => {
     return;
 
   if (request.mode === "navigate") {
+    // A shared link must never fall back to the recipient's personal offline copy.
+    if (url.pathname.startsWith("/s/")) {
+      event.respondWith(
+        fetch(request).catch(
+          () =>
+            new Response(
+              "Podeljeni raspored nije moguće otvoriti bez internet veze. Pokušaj ponovo kada se povežeš.",
+              {
+                status: 503,
+                headers: {
+                  "Content-Type": "text/plain;charset=utf-8",
+                  "Cache-Control": "no-store",
+                },
+              },
+            ),
+        ),
+      );
+      return;
+    }
     event.respondWith(
       fetch(request)
         .then(async (response) => {

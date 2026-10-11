@@ -152,3 +152,23 @@ model UserProgramFilter {
   @@index([programId])
   @@map("user_program_filters")
 }
+
+model SharedSchedule {
+  token           String   @id @db.VarChar(32)
+  snapshot        Json
+  scheduleVersion Int
+  createdAt       DateTime @default(now())
+  expiresAt       DateTime
+
+  @@index([expiresAt])
+  @@map("shared_schedules")
+}
+
+model ShareRateLimit {
+  key       String   @id @db.VarChar(80)
+  hits      Int
+  expiresAt DateTime
+
+  @@index([expiresAt])
+  @@map("share_rate_limits")
+}

@@ -103,7 +103,7 @@ test("worker precaches the complete offline shell and removes only its obsolete 
     "/pwa-maskable-512.png",
     "/apple-touch-icon.png",
   ])
-    assert.ok(h.stores.get("fon-pwa-v1").has(path));
+    assert.ok(h.stores.get("fon-pwa-v2").has(path));
 });
 
 test("navigation is network-only when online and falls back without storing private HTML", async () => {
@@ -113,13 +113,13 @@ test("navigation is network-only when online and falls back without storing priv
     await (await h.request("/", { mode: "navigate" })).text(),
     "NETWORK",
   );
-  assert.ok(!h.stores.get("fon-pwa-v1").has("/"));
+  assert.ok(!h.stores.get("fon-pwa-v2").has("/"));
   h.offline();
   assert.equal(
     await (await h.request("/termini", { mode: "navigate" })).text(),
     "/offline.html",
   );
-  assert.ok(!h.stores.get("fon-pwa-v1").has("/termini"));
+  assert.ok(!h.stores.get("fon-pwa-v2").has("/termini"));
 });
 
 test("server failures also show the offline shell, while API, POST, RSC and external requests are untouched", async () => {
@@ -150,4 +150,19 @@ test("immutable Next.js assets are cached and available after losing the network
   assert.equal(await (await h.request(path)).text(), "NETWORK");
   assert.equal(h.calls.length, 1);
   assert.equal(await (await h.request("/offline.css")).text(), "/offline.css");
+});
+
+test("shared links never show or cache the recipient's personal offline schedule", async () => {
+  const h = harness();
+  await h.lifecycle("install");
+  const path = "/s/" + "a".repeat(32);
+  assert.equal(
+    await (await h.request(path, { mode: "navigate" })).text(),
+    "NETWORK",
+  );
+  h.offline();
+  const response = await h.request(path, { mode: "navigate" });
+  assert.equal(response.status, 503);
+  assert.match(await response.text(), /Podeljeni raspored.*internet veze/);
+  assert.ok(!h.stores.get("fon-pwa-v2").has(path));
 });

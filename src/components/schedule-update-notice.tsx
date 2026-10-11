@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "~/trpc/react";
 import { Button } from "~/components/ui/button";
@@ -17,9 +17,10 @@ import {
 export default function ScheduleUpdateNotice() {
   const { isLoaded, isSignedIn } = useUser();
   const router = useRouter();
+  const sharedView = usePathname().startsWith("/s/");
   const utils = api.useUtils();
   const account = api.account.get.useQuery(undefined, {
-    enabled: Boolean(isLoaded && isSignedIn),
+    enabled: Boolean(isLoaded && isSignedIn && !sharedView),
     retry: false,
     staleTime: 0,
     refetchOnMount: "always",
@@ -38,6 +39,7 @@ export default function ScheduleUpdateNotice() {
   useEffect(() => {
     if (
       !isLoaded ||
+      sharedView ||
       !isSignedIn ||
       !data?.scheduleUpdate.pending ||
       presentedVersion === data.scheduleVersion
@@ -47,9 +49,10 @@ export default function ScheduleUpdateNotice() {
     void utils.catalog.get.invalidate();
     void utils.schedule.invalidate();
     router.replace("/termini");
-  }, [data, isLoaded, isSignedIn, presentedVersion, router, utils]);
+  }, [data, isLoaded, isSignedIn, presentedVersion, router, utils, sharedView]);
 
-  if (!isLoaded || !isSignedIn || !data?.scheduleUpdate.pending) return null;
+  if (sharedView || !isLoaded || !isSignedIn || !data?.scheduleUpdate.pending)
+    return null;
   const removed = data.scheduleUpdate.removedTimeslots;
   return (
     <Dialog open>

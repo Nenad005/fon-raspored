@@ -9,6 +9,14 @@ const config = {
   async headers() {
     return [
       {
+        source: "/s/:token",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store, max-age=0" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
+      {
         source: "/sw.js",
         headers: [
           {

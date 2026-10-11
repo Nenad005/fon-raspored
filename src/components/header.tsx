@@ -3,6 +3,7 @@
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import { BookOpen, CalendarClock, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import SettingButton from "./settings-button";
 import { Button } from "./ui/button";
@@ -19,6 +20,7 @@ import { ModeToggle } from "./ui/mode-toggle";
 export default function Header() {
   const { isLoaded, isSignedIn, user } = useUser();
   const { signOut } = useClerk();
+  const sharedView = usePathname().startsWith("/s/");
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-lg">
@@ -39,7 +41,7 @@ export default function Header() {
         </Link>
 
         <ModeToggle />
-        <SettingButton />
+        {!sharedView && <SettingButton />}
 
         {isLoaded && isSignedIn && user ? (
           <DropdownMenu>

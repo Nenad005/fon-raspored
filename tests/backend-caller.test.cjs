@@ -400,6 +400,7 @@ test("app router exposes schedule queries and retired procedure paths are unavai
     "catalog.get",
     "schedule.getSchedule",
     "schedule.groups",
+    "share.create",
   ]);
   for (const userId of [null, "verified-user"]) {
     for (const [path, method] of [

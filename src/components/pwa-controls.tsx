@@ -1,6 +1,7 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 import { Download } from "lucide-react";
 import {
   createContext,
@@ -36,6 +37,7 @@ const PwaContext = createContext<{
 
 export default function PwaControls({ children }: { children: ReactNode }) {
   const { isLoaded, user } = useUser();
+  const sharedView = usePathname().startsWith("/s/");
   const [installPrompt, setInstallPrompt] = useState<InstallEvent | null>(null);
   const [standalone, setStandalone] = useState(true);
   const [offline, setOffline] = useState(false);
@@ -44,13 +46,13 @@ export default function PwaControls({ children }: { children: ReactNode }) {
   const [installError, setInstallError] = useState(false);
 
   useEffect(() => {
-    if (!isLoaded) return;
+    if (!isLoaded || sharedView) return;
     try {
       clearOtherOfflineSchedule(localStorage, user?.id ?? "guest");
     } catch {
       /* Browser storage is optional. */
     }
-  }, [isLoaded, user?.id]);
+  }, [isLoaded, user?.id, sharedView]);
 
   useEffect(() => {
     const media = window.matchMedia("(display-mode: standalone)");

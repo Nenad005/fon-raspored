@@ -63,10 +63,12 @@ export default function Raspored({
   raspored,
   group,
   label = "",
+  shared = false,
 }: {
   raspored: Record<string, Record<string, ScheduleEvent[]>>;
   group: { group: string | null; year: string | null };
   label?: string;
+  shared?: boolean;
 }) {
   const [day, setDay] = useState(nazivDana());
   const setError = useSetAtom(errorAtom);
@@ -163,7 +165,7 @@ export default function Raspored({
           </>
         )}
       </div>
-      {group.group && (
+      {group.group && !shared && (
         <ScheduleTools
           schedule={raspored[group.group] ?? {}}
           title={

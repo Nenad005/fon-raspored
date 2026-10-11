@@ -1,12 +1,14 @@
 import { scheduleRouter } from "~/server/api/routers/schedule";
 import { catalogRouter } from "~/server/api/routers/catalog";
 import { accountRouter } from "~/server/api/routers/account";
+import { shareRouter } from "~/server/api/routers/share";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 export const appRouter = createTRPCRouter({
   schedule: scheduleRouter,
   catalog: catalogRouter,
   account: accountRouter,
+  share: shareRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -4,6 +4,24 @@ Web aplikacija za interaktivni prikaz rasporeda nastave na **Fakultetu organizac
 
 Aplikacija je hostovana i javno dostupna na adresi: **[fon-raspored.vercel.app](https://fon-raspored.vercel.app)**
 
+## Deljenje rasporeda
+
+Ispod rasporeda izaberi **Podeli raspored → Napravi link**, pa kopiraj link
+ili koristi sistemsko deljenje. Deli se cela nedelja, za grupu ili lični izbor.
+Svaki link pokazuje zasebnu, nepromenljivu kopiju u bazi, dostupnu bez prijave
+tačno 7 dana. Naknadne izmene izbora ili kataloga ne menjaju kopiju; za izmenjen
+raspored napravi novi link. Primalac vidi upozorenje ako je zvanični katalog
+ažuriran nakon deljenja, može da bira dan i izveze kopiju u kalendar.
+Otvaranje linka ne menja njegov izbor niti offline raspored. Svako ko ima link
+može da ga vidi; uvezene kalendarske događaje istek linka ne uklanja.
+
+Za deploy primeni novu migraciju (`npm run db:migrate`) i podesi `CRON_SECRET`
+(najmanje 16 znakova) u Vercel okruženju. `vercel.json` zakazuje dnevno brisanje
+isteklih kopija i rate-limit zapisa u 03:00 UTC. I bez izvršenog čišćenja,
+istekle kopije nisu dostupne. Van Vercela pozivaj `GET /api/cron/shared-schedules`
+dnevno, uz `Authorization: Bearer <CRON_SECRET>`. Kreiranje je ograničeno na
+20 pokušaja po satu po Vercel IP adresi; van Vercela koristi se zajednički limit.
+
 ## 📱 PWA, offline raspored i kalendar
 
 - **Android:** otvori **Podešavanja rasporeda** (zupčanik), pa **Instaliraj aplikaciju**, ili meni browsera
