@@ -1,0 +1,115 @@
+name: Update FON schedule
+
+on:
+  schedule:
+    - cron: "23 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: production-schedule-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check notification configuration
+        run: python3 scripts/notify-schedule.py --check
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          DATABASE_URL: postgresql://unused:unused@localhost:5432/unused
+          DIRECT_URL: postgresql://unused:unused@localhost:5432/unused
+
+      - name: Test automation
+        run: |
+          python3 tests/download-schedule.test.py
+          python3 tests/notify-schedule.test.py
+          node --test tests/schedule-update-guard.test.cjs
+
+      - name: Download official schedule
+        run: npm run schedule:download -- --write
+
+      - name: Validate generated catalog
+        run: npm run db:import -- --dry-run
+
+      - name: Check production safety limits
+        run: node scripts/check-schedule-update.mjs
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+
+      - name: Publish to production database
+        id: publish
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run db:import | tee .schedule-import/publish-result.txt
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+
+      - name: Commit updated schedule data
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain -- src/data)" ]; then
+            echo "No schedule data changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data
+          git commit -m "chore: update official FON schedule [skip ci]"
+          git push origin "HEAD:${{ github.event.repository.default_branch }}"
+
+      - name: Upload source documents and comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schedule-import-${{ github.run_id }}
+          path: .schedule-import/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Email execution report
+        if: always()
+        run: python3 scripts/notify-schedule.py
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          UPDATE_STATUS: ${{ job.status }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}

@@ -192,10 +192,10 @@ function slotGroups(state, timeslotId) {
 test("import preparation preserves real subjects and merged catalog timeslots", async () => {
   const { prepareCatalog } = await importer;
   const prepared = prepareCatalog(subjects, terms);
-  assert.equal(prepared.length, 63);
+  assert.equal(prepared.length, 66);
   assert.equal(
     prepared.reduce((count, subject) => count + subject.timeslots.length, 0),
-    426,
+    430,
   );
   assert.equal(
     new Set(prepared.map((subject) => subject.name)).size,
@@ -259,7 +259,7 @@ test("CLI dry run succeeds without a reachable database and rejects unknown flag
   };
   const dryRun = spawnSync(process.execPath, [script, "--dry-run"], options);
   assert.equal(dryRun.status, 0, dryRun.stderr);
-  assert.match(dryRun.stdout, /Validated 63 subjects and 426 timeslots/);
+  assert.match(dryRun.stdout, /Validated 66 subjects and 430 timeslots/);
   assert.match(dryRun.stdout, /No database connection made/);
   const invalid = spawnSync(process.execPath, [script, "--invalid"], options);
   assert.equal(invalid.status, 1);

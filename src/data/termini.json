@@ -1,215 +1,5 @@
 {
     "year1": {
-        "Matematika 1": {
-            "P": [
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A9",
-                        "A10",
-                        "A11",
-                        "A12"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A13",
-                        "A14",
-                        "A15"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A16",
-                        "A17",
-                        "A18"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A5",
-                        "A6",
-                        "A7",
-                        "A8"
-                    ],
-                    "dan": "Utorak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A1",
-                        "A2",
-                        "A3",
-                        "A4"
-                    ],
-                    "dan": "Utorak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "13",
-                    "grupe": [
-                        "A17"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "16",
-                    "grupe": [
-                        "A18"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "18",
-                    "grupe": [
-                        "A15"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "16",
-                    "grupe": [
-                        "A13"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "18",
-                    "grupe": [
-                        "A16"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "15",
-                    "grupe": [
-                        "A1"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "16",
-                    "grupe": [
-                        "A2"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "16",
-                    "grupe": [
-                        "A11"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "18",
-                    "grupe": [
-                        "A12"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "14",
-                    "grupe": [
-                        "A6"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "17",
-                    "grupe": [
-                        "A5"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "14",
-                    "grupe": [
-                        "A3"
-                    ],
-                    "dan": "Utorak"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "15",
-                    "grupe": [
-                        "A4"
-                    ],
-                    "dan": "Utorak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "A7",
-                        "A8",
-                        "A14"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "14",
-                    "grupe": [
-                        "A9"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "15",
-                    "grupe": [
-                        "A10"
-                    ],
-                    "dan": "Četvrtak"
-                }
-            ]
-        },
         "Osnove informaciono komunikacionih tehnologija": {
             "P": [
                 {
@@ -662,6 +452,216 @@
                 }
             ]
         },
+        "Matematika 1": {
+            "P": [
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A9",
+                        "A10",
+                        "A11",
+                        "A12"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A13",
+                        "A14",
+                        "A15"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A16",
+                        "A17",
+                        "A18"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A5",
+                        "A6",
+                        "A7",
+                        "A8"
+                    ],
+                    "dan": "Utorak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A1",
+                        "A2",
+                        "A3",
+                        "A4"
+                    ],
+                    "dan": "Utorak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "13",
+                    "grupe": [
+                        "A17"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "16",
+                    "grupe": [
+                        "A18"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "18",
+                    "grupe": [
+                        "A15"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "16",
+                    "grupe": [
+                        "A13"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "18",
+                    "grupe": [
+                        "A16"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "15",
+                    "grupe": [
+                        "A1"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "16",
+                    "grupe": [
+                        "A2"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "16",
+                    "grupe": [
+                        "A11"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "18",
+                    "grupe": [
+                        "A12"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "14",
+                    "grupe": [
+                        "A6"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "17",
+                    "grupe": [
+                        "A5"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "14",
+                    "grupe": [
+                        "A3"
+                    ],
+                    "dan": "Utorak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "15",
+                    "grupe": [
+                        "A4"
+                    ],
+                    "dan": "Utorak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "A7",
+                        "A8",
+                        "A14"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "14",
+                    "grupe": [
+                        "A9"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "15",
+                    "grupe": [
+                        "A10"
+                    ],
+                    "dan": "Četvrtak"
+                }
+            ]
+        },
         "Engleski jezik u informatici": {
             "P": [
                 {
@@ -833,7 +833,7 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "06/07",
+                    "sala": "62/07",
                     "grupe": [
                         "A6"
                     ],
@@ -905,7 +905,7 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "08/09",
+                    "sala": "60/61",
                     "grupe": [
                         "A1"
                     ],
@@ -1032,7 +1032,7 @@
                 {
                     "od": "14:15",
                     "do": "16:00",
-                    "sala": "Čitaonica",
+                    "sala": "21",
                     "grupe": [
                         "A14"
                     ],
@@ -1224,6 +1224,116 @@
         }
     },
     "year2": {
+        "Diskretne matematičke strukture": {
+            "P": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "B5",
+                        "B6"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "Amfiteatar 4",
+                    "grupe": [
+                        "B7",
+                        "B8"
+                    ],
+                    "dan": "Utorak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "Amfiteatar 4",
+                    "grupe": [
+                        "B1",
+                        "B2",
+                        "B3",
+                        "B4"
+                    ],
+                    "dan": "Utorak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "14",
+                    "grupe": [
+                        "B6"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "15",
+                    "grupe": [
+                        "B5"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "16",
+                    "grupe": [
+                        "B2"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "16",
+                    "grupe": [
+                        "B8"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "16",
+                    "grupe": [
+                        "B3"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "16",
+                    "grupe": [
+                        "B1"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "15",
+                    "grupe": [
+                        "B7"
+                    ],
+                    "dan": "Ponedeljak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "16",
+                    "grupe": [
+                        "B4"
+                    ],
+                    "dan": "Ponedeljak"
+                }
+            ]
+        },
         "Programiranje 1 (NA)": {
             "P": [
                 {
@@ -1522,113 +1632,101 @@
                 }
             ]
         },
-        "Diskretne matematičke strukture": {
+        "Marketing": {
             "P": [
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "Amfiteatar 5",
+                    "sala": "Amfiteatar 2",
                     "grupe": [
-                        "B5",
-                        "B6"
+                        "B12",
+                        "B13",
+                        "B14"
                     ],
-                    "dan": "Petak"
+                    "dan": "Ponedeljak"
                 },
                 {
                     "od": "14:15",
                     "do": "16:00",
-                    "sala": "Amfiteatar 4",
-                    "grupe": [
-                        "B7",
-                        "B8"
-                    ],
-                    "dan": "Utorak"
-                },
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "Amfiteatar 4",
+                    "sala": "Amfiteatar 5",
                     "grupe": [
                         "B1",
                         "B2",
                         "B3",
-                        "B4"
+                        "B4",
+                        "B5",
+                        "B6",
+                        "B7",
+                        "B8",
+                        "B9",
+                        "B10",
+                        "B11"
                     ],
-                    "dan": "Utorak"
+                    "dan": "Ponedeljak"
                 }
             ],
             "V": [
                 {
                     "od": "08:15",
                     "do": "10:00",
-                    "sala": "14",
+                    "sala": "Amfiteatar 4",
                     "grupe": [
-                        "B6"
+                        "B1",
+                        "B2",
+                        "B3",
+                        "B4",
+                        "B9",
+                        "B10"
                     ],
                     "dan": "Petak"
                 },
                 {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "15",
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Amfiteatar 1",
                     "grupe": [
-                        "B5"
+                        "B13"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "B5",
+                        "B6",
+                        "B11"
                     ],
                     "dan": "Petak"
                 },
                 {
                     "od": "14:15",
                     "do": "16:00",
-                    "sala": "16",
+                    "sala": "Amfiteatar 1",
                     "grupe": [
-                        "B2"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "16",
-                    "grupe": [
+                        "B7",
                         "B8"
                     ],
                     "dan": "Petak"
                 },
                 {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "16",
-                    "grupe": [
-                        "B3"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "16",
-                    "grupe": [
-                        "B1"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
                     "od": "12:15",
                     "do": "14:00",
-                    "sala": "15",
+                    "sala": "13",
                     "grupe": [
-                        "B7"
+                        "B12"
                     ],
-                    "dan": "Ponedeljak"
+                    "dan": "Utorak"
                 },
                 {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "16",
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "17",
                     "grupe": [
-                        "B4"
+                        "B14"
                     ],
-                    "dan": "Ponedeljak"
+                    "dan": "Utorak"
                 }
             ]
         },
@@ -1731,104 +1829,6 @@
                         "B5"
                     ],
                     "dan": "Sreda"
-                }
-            ]
-        },
-        "Marketing": {
-            "P": [
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Amfiteatar 2",
-                    "grupe": [
-                        "B12",
-                        "B13",
-                        "B14"
-                    ],
-                    "dan": "Ponedeljak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "B1",
-                        "B2",
-                        "B3",
-                        "B4",
-                        "B5",
-                        "B6",
-                        "B7",
-                        "B8",
-                        "B9",
-                        "B10",
-                        "B11"
-                    ],
-                    "dan": "Ponedeljak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "Amfiteatar 4",
-                    "grupe": [
-                        "B1",
-                        "B2",
-                        "B3",
-                        "B4",
-                        "B9",
-                        "B10"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Amfiteatar 1",
-                    "grupe": [
-                        "B13"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "B5",
-                        "B6",
-                        "B11"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "Amfiteatar 1",
-                    "grupe": [
-                        "B7",
-                        "B8"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "13",
-                    "grupe": [
-                        "B12"
-                    ],
-                    "dan": "Utorak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "17",
-                    "grupe": [
-                        "B14"
-                    ],
-                    "dan": "Utorak"
                 }
             ]
         },
@@ -2130,33 +2130,6 @@
         }
     },
     "year3": {
-        "Upravljački sistemi": {
-            "P": [
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "C19",
-                        "D13",
-                        "D21",
-                        "D22"
-                    ],
-                    "dan": "Utorak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "08/09",
-                    "grupe": [
-                        "C19"
-                    ],
-                    "dan": "Ponedeljak"
-                }
-            ]
-        },
         "Lin proizvodnja i usluge": {
             "P": [
                 {
@@ -2201,6 +2174,33 @@
                 }
             ]
         },
+        "Upravljački sistemi": {
+            "P": [
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "C19",
+                        "D13",
+                        "D21",
+                        "D22"
+                    ],
+                    "dan": "Utorak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "08/09",
+                    "grupe": [
+                        "C19"
+                    ],
+                    "dan": "Ponedeljak"
+                }
+            ]
+        },
         "Industrijsko i menadžment inženjerstvo": {
             "P": [
                 {
@@ -2218,7 +2218,7 @@
                 {
                     "od": "12:15",
                     "do": "14:00",
-                    "sala": "18",
+                    "sala": "14",
                     "grupe": [
                         "C13"
                     ],
@@ -2859,6 +2859,90 @@
                 }
             ]
         },
+        "Projektovanje informacionih sistema": {
+            "P": [
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "Amfiteatar 1",
+                    "grupe": [
+                        "C5",
+                        "C6",
+                        "C7"
+                    ],
+                    "dan": "Sreda"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "C1",
+                        "C2",
+                        "C3",
+                        "C4"
+                    ],
+                    "dan": "Sreda"
+                }
+            ],
+            "V": [
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "12",
+                    "grupe": [
+                        "C5"
+                    ],
+                    "dan": "Petak"
+                },
+                {
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "15",
+                    "grupe": [
+                        "C2"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "14",
+                    "grupe": [
+                        "C3"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "Čitaonica",
+                    "grupe": [
+                        "C1"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "Amfiteatar 3",
+                    "grupe": [
+                        "C6",
+                        "C7"
+                    ],
+                    "dan": "Četvrtak"
+                },
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "16",
+                    "grupe": [
+                        "C4"
+                    ],
+                    "dan": "Četvrtak"
+                }
+            ]
+        },
         "Operaciona istraživanja 1": {
             "P": [
                 {
@@ -3039,90 +3123,6 @@
                 }
             ]
         },
-        "Projektovanje informacionih sistema": {
-            "P": [
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "Amfiteatar 1",
-                    "grupe": [
-                        "C5",
-                        "C6",
-                        "C7"
-                    ],
-                    "dan": "Sreda"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "C1",
-                        "C2",
-                        "C3",
-                        "C4"
-                    ],
-                    "dan": "Sreda"
-                }
-            ],
-            "V": [
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "12",
-                    "grupe": [
-                        "C5"
-                    ],
-                    "dan": "Petak"
-                },
-                {
-                    "od": "08:15",
-                    "do": "10:00",
-                    "sala": "15",
-                    "grupe": [
-                        "C2"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "14",
-                    "grupe": [
-                        "C3"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "Čitaonica",
-                    "grupe": [
-                        "C1"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "Amfiteatar 3",
-                    "grupe": [
-                        "C6",
-                        "C7"
-                    ],
-                    "dan": "Četvrtak"
-                },
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "16",
-                    "grupe": [
-                        "C4"
-                    ],
-                    "dan": "Četvrtak"
-                }
-            ]
-        },
         "Elektronsko poslovanje (NA)": {
             "P": [
                 {
@@ -3132,7 +3132,10 @@
                     "grupe": [
                         "C11",
                         "C17",
-                        "C18"
+                        "C18",
+                        "D15",
+                        "D21",
+                        "D22"
                     ],
                     "dan": "Sreda"
                 }
@@ -3141,7 +3144,7 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "60/61",
+                    "sala": "08/09",
                     "grupe": [
                         "C17"
                     ],
@@ -3319,15 +3322,18 @@
         "Elektronsko poslovanje (NA)": {
             "P": [
                 {
-                    "od": "18:15",
-                    "do": "20:00",
-                    "sala": "Amfiteatar 3",
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "Amfiteatar 5",
                     "grupe": [
+                        "C11",
+                        "C17",
+                        "C18",
                         "D15",
                         "D21",
                         "D22"
                     ],
-                    "dan": "Četvrtak"
+                    "dan": "Sreda"
                 }
             ],
             "V": [
@@ -3361,20 +3367,32 @@
                 }
             ]
         },
-        "Teorija odlučivanja": {
+        "Menadžment totalnog kvaliteta": {
             "P": [
                 {
                     "od": "08:15",
                     "do": "10:00",
-                    "sala": "Amfiteatar 3",
+                    "sala": "11",
                     "grupe": [
-                        "D11",
-                        "D13",
-                        "D17",
-                        "D19"
+                        "D15"
                     ],
-                    "dan": "Petak"
-                },
+                    "dan": "Ponedeljak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "11",
+                    "grupe": [
+                        "D15"
+                    ],
+                    "dan": "Ponedeljak"
+                }
+            ]
+        },
+        "Teorija odlučivanja": {
+            "P": [
                 {
                     "od": "08:15",
                     "do": "10:00",
@@ -3389,7 +3407,11 @@
                         "D7",
                         "D8",
                         "D9",
-                        "D10"
+                        "D10",
+                        "D11",
+                        "D13",
+                        "D17",
+                        "D19"
                     ],
                     "dan": "Utorak"
                 }
@@ -3435,14 +3457,15 @@
                 }
             ]
         },
-        "Menadžment totalnog kvaliteta": {
+        "Big data infrastruktura i servisi": {
             "P": [
                 {
                     "od": "08:15",
                     "do": "10:00",
-                    "sala": "11",
+                    "sala": "06",
                     "grupe": [
-                        "D15"
+                        "D6",
+                        "D7"
                     ],
                     "dan": "Ponedeljak"
                 }
@@ -3451,9 +3474,10 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "11",
+                    "sala": "06",
                     "grupe": [
-                        "D15"
+                        "D6",
+                        "D7"
                     ],
                     "dan": "Ponedeljak"
                 }
@@ -3495,6 +3519,30 @@
                 }
             ]
         },
+        "Korporativne finansije": {
+            "P": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "17",
+                    "grupe": [
+                        "D11"
+                    ],
+                    "dan": "Ponedeljak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "17",
+                    "grupe": [
+                        "D11"
+                    ],
+                    "dan": "Ponedeljak"
+                }
+            ]
+        },
         "Analitika lanaca snabdevanja": {
             "P": [
                 {
@@ -3526,7 +3574,7 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "Čitaonica",
+                    "sala": "18",
                     "grupe": [
                         "D19"
                     ],
@@ -3537,7 +3585,7 @@
                 {
                     "od": "12:15",
                     "do": "14:00",
-                    "sala": "Čitaonica",
+                    "sala": "18",
                     "grupe": [
                         "D19"
                     ],
@@ -3545,25 +3593,25 @@
                 }
             ]
         },
-        "Korporativne finansije": {
+        "Upravljanje performansama i zaradama": {
             "P": [
                 {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "17",
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "21",
                     "grupe": [
-                        "D11"
+                        "D13"
                     ],
-                    "dan": "Ponedeljak"
+                    "dan": "Petak"
                 }
             ],
             "V": [
                 {
                     "od": "12:15",
                     "do": "14:00",
-                    "sala": "17",
+                    "sala": "08/09",
                     "grupe": [
-                        "D11"
+                        "D13"
                     ],
                     "dan": "Ponedeljak"
                 }
@@ -3616,30 +3664,6 @@
                     "sala": "13",
                     "grupe": [
                         "D1"
-                    ],
-                    "dan": "Ponedeljak"
-                }
-            ]
-        },
-        "Upravljanje performansama i zaradama": {
-            "P": [
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "21",
-                    "grupe": [
-                        "D13"
-                    ],
-                    "dan": "Petak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "08/09",
-                    "grupe": [
-                        "D13"
                     ],
                     "dan": "Ponedeljak"
                 }
@@ -3908,7 +3932,7 @@
                 {
                     "od": "16:15",
                     "do": "18:00",
-                    "sala": "Amfiteatar 1",
+                    "sala": "Amfiteatar 2",
                     "grupe": [
                         "D1",
                         "D2",
@@ -3966,7 +3990,7 @@
                 {
                     "od": "16:15",
                     "do": "18:00",
-                    "sala": "Amfiteatar 2",
+                    "sala": "Amfiteatar 1",
                     "grupe": [
                         "D1",
                         "D2",
@@ -4201,30 +4225,6 @@
                 }
             ]
         },
-        "Finansijsko izveštavanje": {
-            "P": [
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "12",
-                    "grupe": [
-                        "D11"
-                    ],
-                    "dan": "Utorak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "06",
-                    "grupe": [
-                        "D11"
-                    ],
-                    "dan": "Petak"
-                }
-            ]
-        },
         "Projektovanje proizvodnih i uslužnih sistema": {
             "P": [
                 {
@@ -4256,6 +4256,30 @@
                         "D13"
                     ],
                     "dan": "Utorak"
+                }
+            ]
+        },
+        "Finansijsko izveštavanje": {
+            "P": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "12",
+                    "grupe": [
+                        "D11"
+                    ],
+                    "dan": "Utorak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "06",
+                    "grupe": [
+                        "D11"
+                    ],
+                    "dan": "Petak"
                 }
             ]
         },
@@ -4385,32 +4409,6 @@
                 }
             ]
         },
-        "Brend menadžment": {
-            "P": [
-                {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "D11",
-                        "D17"
-                    ],
-                    "dan": "Utorak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "16:15",
-                    "do": "18:00",
-                    "sala": "Amfiteatar 5",
-                    "grupe": [
-                        "D11",
-                        "D17"
-                    ],
-                    "dan": "Utorak"
-                }
-            ]
-        },
         "Baze podataka 2": {
             "P": [
                 {
@@ -4448,6 +4446,32 @@
                         "D8",
                         "D9",
                         "D10"
+                    ],
+                    "dan": "Utorak"
+                }
+            ]
+        },
+        "Brend menadžment": {
+            "P": [
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "D11",
+                        "D17"
+                    ],
+                    "dan": "Utorak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "Amfiteatar 5",
+                    "grupe": [
+                        "D11",
+                        "D17"
                     ],
                     "dan": "Utorak"
                 }
@@ -4501,15 +4525,15 @@
                 }
             ]
         },
-        "Programiranje 3": {
+        "Meko racunanje": {
             "P": [
                 {
                     "od": "08:15",
                     "do": "10:00",
-                    "sala": "11",
+                    "sala": "06",
                     "grupe": [
-                        "D4",
-                        "D5"
+                        "D8",
+                        "D9"
                     ],
                     "dan": "Sreda"
                 }
@@ -4518,10 +4542,10 @@
                 {
                     "od": "10:15",
                     "do": "12:00",
-                    "sala": "11",
+                    "sala": "06",
                     "grupe": [
-                        "D4",
-                        "D5"
+                        "D8",
+                        "D9"
                     ],
                     "dan": "Sreda"
                 }
@@ -4557,71 +4581,53 @@
                 }
             ]
         },
-        "E-obrazovanje": {
+        "Analiza procesa i Petrijeve mreže": {
             "P": [
                 {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "60",
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "19",
                     "grupe": [
-                        "D6",
-                        "D7",
-                        "D15"
+                        "D8",
+                        "D9"
                     ],
                     "dan": "Sreda"
                 }
             ],
             "V": [
                 {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "60",
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "19",
                     "grupe": [
-                        "D6",
-                        "D7",
-                        "D15"
+                        "D8",
+                        "D9"
                     ],
                     "dan": "Sreda"
                 }
             ]
         },
-        "Softverski paterni": {
+        "Programiranje 3": {
             "P": [
                 {
-                    "od": "14:15",
-                    "do": "16:00",
-                    "sala": "61",
+                    "od": "08:15",
+                    "do": "10:00",
+                    "sala": "11",
                     "grupe": [
-                        "D1",
-                        "D2",
-                        "D3",
                         "D4",
-                        "D5",
-                        "D6",
-                        "D7",
-                        "D8",
-                        "D9",
-                        "D10"
+                        "D5"
                     ],
                     "dan": "Sreda"
                 }
             ],
             "V": [
                 {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "61",
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "11",
                     "grupe": [
-                        "D1",
-                        "D2",
-                        "D3",
                         "D4",
-                        "D5",
-                        "D6",
-                        "D7",
-                        "D8",
-                        "D9",
-                        "D10"
+                        "D5"
                     ],
                     "dan": "Sreda"
                 }
@@ -4669,11 +4675,81 @@
                 }
             ]
         },
-        "Dinamika organizacionih sistema": {
+        "Softverski paterni": {
             "P": [
+                {
+                    "od": "14:15",
+                    "do": "16:00",
+                    "sala": "61",
+                    "grupe": [
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4",
+                        "D5",
+                        "D6",
+                        "D7",
+                        "D8",
+                        "D9",
+                        "D10"
+                    ],
+                    "dan": "Sreda"
+                }
+            ],
+            "V": [
                 {
                     "od": "12:15",
                     "do": "14:00",
+                    "sala": "61",
+                    "grupe": [
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4",
+                        "D5",
+                        "D6",
+                        "D7",
+                        "D8",
+                        "D9",
+                        "D10"
+                    ],
+                    "dan": "Sreda"
+                }
+            ]
+        },
+        "E-obrazovanje": {
+            "P": [
+                {
+                    "od": "16:15",
+                    "do": "18:00",
+                    "sala": "50",
+                    "grupe": [
+                        "D6",
+                        "D7",
+                        "D15"
+                    ],
+                    "dan": "Sreda"
+                }
+            ],
+            "V": [
+                {
+                    "od": "18:15",
+                    "do": "20:00",
+                    "sala": "50",
+                    "grupe": [
+                        "D6",
+                        "D7",
+                        "D15"
+                    ],
+                    "dan": "Sreda"
+                }
+            ]
+        },
+        "Dinamika organizacionih sistema": {
+            "P": [
+                {
+                    "od": "16:15",
+                    "do": "18:00",
                     "sala": "11",
                     "grupe": [
                         "D1",
@@ -4692,8 +4768,8 @@
             ],
             "V": [
                 {
-                    "od": "14:15",
-                    "do": "16:00",
+                    "od": "18:15",
+                    "do": "20:00",
                     "sala": "11",
                     "grupe": [
                         "D1",
@@ -4708,6 +4784,30 @@
                         "D10"
                     ],
                     "dan": "Sreda"
+                }
+            ]
+        },
+        "Sistem menadžmenta zdravlja i bezbednosti na radu i životne sredine": {
+            "P": [
+                {
+                    "od": "10:15",
+                    "do": "12:00",
+                    "sala": "11",
+                    "grupe": [
+                        "D15"
+                    ],
+                    "dan": "Četvrtak"
+                }
+            ],
+            "V": [
+                {
+                    "od": "12:15",
+                    "do": "14:00",
+                    "sala": "11",
+                    "grupe": [
+                        "D15"
+                    ],
+                    "dan": "Četvrtak"
                 }
             ]
         },
@@ -4764,30 +4864,6 @@
                     "sala": "62",
                     "grupe": [
                         "D22"
-                    ],
-                    "dan": "Četvrtak"
-                }
-            ]
-        },
-        "Sistem menadžmenta zdravlja i bezbednosti na radu i životne sredine": {
-            "P": [
-                {
-                    "od": "10:15",
-                    "do": "12:00",
-                    "sala": "11",
-                    "grupe": [
-                        "D15"
-                    ],
-                    "dan": "Četvrtak"
-                }
-            ],
-            "V": [
-                {
-                    "od": "12:15",
-                    "do": "14:00",
-                    "sala": "11",
-                    "grupe": [
-                        "D15"
                     ],
                     "dan": "Četvrtak"
                 }

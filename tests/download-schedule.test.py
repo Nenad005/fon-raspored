@@ -24,6 +24,8 @@ class DownloadScheduleTest(unittest.TestCase):
         self.assertTrue(all("ENG" not in item[1] for item in found))
         legacy = re.sub(r"/(\d)godina\.docx", r"/\1zimski2026.docx", "".join(links))
         self.assertEqual(len(downloader.discover(legacy)), 4)
+        third_week = re.sub(r"/(\d)godina\.docx", r"/\1god3nedelja202627.docx", "".join(links))
+        self.assertEqual(len(downloader.discover(third_week)), 4)
         with self.assertRaises(ValueError):
             downloader.discover("".join(links[:-3]))
 
@@ -48,6 +50,11 @@ class DownloadScheduleTest(unittest.TestCase):
                 with zipfile.ZipFile(path, "w") as archive:
                     archive.writestr("word/document.xml", xml)
                 if day == "Ponedeljak" and time != "invalid":
+                    self.assertEqual(len(downloader.parse_schedule(path, 1)), 1)
+                    legacy = xml.replace("A1", "Akr-2014")
+                    legacy_body = legacy.split("<w:body>")[1].split("</w:body>")[0]
+                    with zipfile.ZipFile(path, "w") as archive:
+                        archive.writestr("word/document.xml", xml.replace("</w:body>", legacy_body + "</w:body>"))
                     self.assertEqual(len(downloader.parse_schedule(path, 1)), 1)
                 else:
                     with self.assertRaises(ValueError):

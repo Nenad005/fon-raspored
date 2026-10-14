@@ -112,6 +112,9 @@ sam postavlja URL-ove lokalne baze u svojim kontejnerima.
 
 #### Preuzimanje i ažuriranje rasporeda
 
+Automatsko nedeljno ažuriranje preko GitHub Actions, produkciona zaštita i
+email izveštaji: [uputstvo za podešavanje](docs/schedule-automation.md).
+
 | Komanda | Namena |
 | --- | --- |
 | `npm run schedule:download` | Preuzimanje DOCX dokumenata i pregled promena, bez izmene `src/data`. |

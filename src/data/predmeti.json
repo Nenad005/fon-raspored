@@ -1,8 +1,8 @@
 {
     "year1": {
         "ISiT": [
-            "Matematika 1",
             "Osnove informaciono komunikacionih tehnologija",
+            "Matematika 1",
             "Engleski jezik u informatici",
             "Elektronsko poslovanje (NA)",
             "Menadžment",
@@ -10,8 +10,8 @@
             "Osnovi organizacije"
         ],
         "MiO": [
-            "Matematika 1",
             "Menadžment",
+            "Matematika 1",
             "Osnove informaciono komunikacionih tehnologija",
             "Osnovi organizacije",
             "Ekonomija"
@@ -19,8 +19,8 @@
     },
     "year2": {
         "ISiT": [
-            "Programiranje 1 (NA)",
             "Diskretne matematičke strukture",
+            "Programiranje 1 (NA)",
             "Arhitektura računara i operativni sistemi",
             "Teorija verovatnoće",
             "Marketing",
@@ -91,11 +91,11 @@
             "Implementacija IS (projekat)",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
-            "Multimediji",
             "Teorija odlučivanja",
+            "Multimediji",
             "Baze podataka 2",
-            "Softverski paterni",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
             "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa",
             "Internet tehnologije"
@@ -109,8 +109,8 @@
             "Multimedijalna produkcija",
             "Multimediji",
             "Baze podataka 2",
-            "Softverski paterni",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
             "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa",
             "Internet tehnologije"
@@ -123,14 +123,15 @@
             "Multimediji",
             "Napredna analiza podataka",
             "Baze podataka 2",
-            "Programiranje 3",
             "Napredne .NET tehnologije",
-            "Softverski paterni",
+            "Programiranje 3",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
             "Dinamika organizacionih sistema",
             "Internet tehnologije"
         ],
         "Tehnologije elektronskog poslovanja": [
+            "Big data infrastruktura i servisi",
             "Pravo i etika obrade podataka",
             "Internet tehnologije",
             "Menadžment ljudskih resursa",
@@ -139,9 +140,9 @@
             "Multimediji",
             "Baze podataka 2",
             "Napredne .NET tehnologije",
-            "E-obrazovanje",
-            "Softverski paterni",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
+            "E-obrazovanje",
             "Dinamika organizacionih sistema",
             "Modelovanje poslovnih procesa"
         ],
@@ -155,8 +156,10 @@
             "Teorija odlučivanja",
             "Multimediji",
             "Baze podataka 2",
-            "Softverski paterni",
+            "Meko racunanje",
+            "Analiza procesa i Petrijeve mreže",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
             "Dinamika organizacionih sistema",
             "Internet tehnologije",
             "Projektovanje organizacije"
@@ -166,12 +169,12 @@
             "Distribuirani računarski sistemi",
             "Menadžment ljudskih resursa",
             "Osnove kvaliteta",
-            "Multimediji",
             "Teorija odlučivanja",
+            "Multimediji",
             "Baze podataka 2",
             "Alati za izveštavanje i vizuelizaciju podataka",
-            "Softverski paterni",
             "Internet marketing i društveni mediji",
+            "Softverski paterni",
             "Dinamika organizacionih sistema",
             "Internet tehnologije",
             "Modelovanje poslovnih procesa"
@@ -201,18 +204,18 @@
             "Sistem menadžmenta zdravlja i bezbednosti na radu i životne sredine"
         ],
         "Marketing menadžment i komunikacije": [
+            "Teorija odlučivanja",
             "Projektovanje organizacije",
             "Brend menadžment",
             "Strateški marketing",
-            "Menadžment prodaje",
-            "Teorija odlučivanja"
+            "Menadžment prodaje"
         ],
         "Operacioni menadžment": [
             "Tehnološko preduzetništvo",
             "Korporativne komunikacije",
+            "Teorija odlučivanja",
             "Računarski integrisana proizvodnja",
             "Modelovanje poslovnih procesa",
-            "Teorija odlučivanja",
             "Projektovanje proizvodnih i uslužnih sistema"
         ],
         "Projektni menadžment": [

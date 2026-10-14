@@ -41,7 +41,7 @@ def discover(page):
     )))
     result = []
     for year, word in enumerate(YEAR_WORDS, 1):
-        schedules = [url for url in links if re.search(rf"/{year}(?:godina|zimski[^/]*)\.docx$", url, re.I)]
+        schedules = [url for url in links if re.search(rf"/{year}(?:godina|god\d+nedelja\d+|zimski[^/]*)\.docx$", url, re.I)]
         groups = [url for url in links if re.search(rf"Grupe-za-nastavu-{word}-godina[^/]*\.docx$", url, re.I)]
         if len(schedules) != 1 or len(groups) != 1:
             raise ValueError(f"Expected one Serbian schedule and group allocation for year {year}: {schedules}, {groups}")
@@ -105,6 +105,9 @@ def parse_schedule(path, year):
             continue
         if not day or len(columns) < 5:
             raise ValueError(f"Unrecognized lesson in {path}: {raw!r}")
+        if columns[2] == "Akr-2014":
+            print(f"Excluded legacy accreditation 2014 lesson: {value}", flush=True)
+            continue
         time = re.fullmatch(r"(\d{2}:\d{2})\s*[-–—]\s*(\d{2}:\d{2})", columns[3])
         groups = [re.sub(r"\s+", "", group).upper() for group in columns[2].split(",")]
         if not time or any(not re.fullmatch(r"[A-D]\d+", group) for group in groups):

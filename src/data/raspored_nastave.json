@@ -183,8 +183,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "08/09",
-                "string": "Elektronsko poslovanje (NA) V A1 10:15-12:00 08/09"
+                "sala": "60/61",
+                "string": "Elektronsko poslovanje (NA) V A1 10:15-12:00 60/61"
             },
             {
                 "predmet": "Engleski jezik u informatici",
@@ -1024,8 +1024,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "06/07",
-                "string": "Elektronsko poslovanje (NA) V A6 10:15-12:00 06/07"
+                "sala": "62/07",
+                "string": "Elektronsko poslovanje (NA) V A6 10:15-12:00 62/07"
             },
             {
                 "predmet": "Ekonomija",
@@ -2526,8 +2526,8 @@
                 ],
                 "od": "14:15",
                 "do": "16:00",
-                "sala": "Čitaonica",
-                "string": "Ekonomija V A14 14:15-16:00 Čitaonica"
+                "sala": "21",
+                "string": "Ekonomija V A14 14:15-16:00 21"
             },
             {
                 "predmet": "Osnovi organizacije",
@@ -6667,12 +6667,15 @@
                 "grupe": [
                     "C11",
                     "C17",
-                    "C18"
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
                 ],
                 "od": "16:15",
                 "do": "18:00",
                 "sala": "Amfiteatar 5",
-                "string": "Elektronsko poslovanje (NA) P C11,C17,C18 16:15-18:00 Amfiteatar 5"
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
             }
         ],
         "Četvrtak": [
@@ -6745,8 +6748,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "18",
-                "string": "Industrijsko i menadžment inženjerstvo V C13 12:15-14:00 18"
+                "sala": "14",
+                "string": "Industrijsko i menadžment inženjerstvo V C13 12:15-14:00 14"
             }
         ],
         "Sreda": [
@@ -7068,12 +7071,15 @@
                 "grupe": [
                     "C11",
                     "C17",
-                    "C18"
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
                 ],
                 "od": "16:15",
                 "do": "18:00",
                 "sala": "Amfiteatar 5",
-                "string": "Elektronsko poslovanje (NA) P C11,C17,C18 16:15-18:00 Amfiteatar 5"
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
             }
         ],
         "Četvrtak": [
@@ -7085,8 +7091,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "60/61",
-                "string": "Elektronsko poslovanje (NA) V C17 10:15-12:00 60/61"
+                "sala": "08/09",
+                "string": "Elektronsko poslovanje (NA) V C17 10:15-12:00 08/09"
             },
             {
                 "predmet": "Upravljanje projektima",
@@ -7204,12 +7210,15 @@
                 "grupe": [
                     "C11",
                     "C17",
-                    "C18"
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
                 ],
                 "od": "16:15",
                 "do": "18:00",
                 "sala": "Amfiteatar 5",
-                "string": "Elektronsko poslovanje (NA) P C11,C17,C18 16:15-18:00 Amfiteatar 5"
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
             }
         ],
         "Četvrtak": [
@@ -7698,8 +7707,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -7718,8 +7727,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -7748,12 +7757,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -7838,26 +7851,6 @@
         ],
         "Sreda": [
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -7898,26 +7891,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -7956,6 +7929,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -8122,8 +8135,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -8142,8 +8155,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -8172,12 +8185,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -8286,26 +8303,6 @@
                 "string": "Multimedijalna produkcija V D2,D3 08:15-10:00 62"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -8346,26 +8343,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -8404,6 +8381,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -8570,8 +8587,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -8590,8 +8607,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -8620,12 +8637,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -8734,26 +8755,6 @@
                 "string": "Multimedijalna produkcija V D2,D3 08:15-10:00 62"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -8794,26 +8795,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -8852,6 +8833,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -8958,8 +8979,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -8978,8 +8999,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             },
             {
                 "predmet": "Modelovanje poslovnih procesa",
@@ -9007,12 +9028,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -9183,26 +9208,6 @@
                 "string": "Programiranje 3 V D4,D5 10:15-12:00 11"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -9243,26 +9248,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -9301,6 +9286,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -9407,8 +9432,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -9427,8 +9452,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -9445,12 +9470,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -9621,26 +9650,6 @@
                 "string": "Programiranje 3 V D4,D5 10:15-12:00 11"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -9681,26 +9690,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -9739,6 +9728,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -9818,6 +9847,30 @@
     "D6": {
         "Ponedeljak": [
             {
+                "predmet": "Big data infrastruktura i servisi",
+                "tip": "P",
+                "grupe": [
+                    "D6",
+                    "D7"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "06",
+                "string": "Big data infrastruktura i servisi P D6,D7 08:15-10:00 06"
+            },
+            {
+                "predmet": "Big data infrastruktura i servisi",
+                "tip": "V",
+                "grupe": [
+                    "D6",
+                    "D7"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "06",
+                "string": "Big data infrastruktura i servisi V D6,D7 10:15-12:00 06"
+            },
+            {
                 "predmet": "Pravo i etika obrade podataka",
                 "tip": "P",
                 "grupe": [
@@ -9879,8 +9932,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -9899,8 +9952,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -9917,12 +9970,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -10047,39 +10104,6 @@
                 "string": "Napredne .NET tehnologije V D4,D5,D6,D7 10:15-12:00 50"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "P",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "60",
-                "string": "E-obrazovanje P D6,D7,D15 12:15-14:00 60"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -10120,39 +10144,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "V",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "60",
-                "string": "E-obrazovanje V D6,D7,D15 14:15-16:00 60"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -10191,6 +10182,72 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "P",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "50",
+                "string": "E-obrazovanje P D6,D7,D15 16:15-18:00 50"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
+            },
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "V",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "50",
+                "string": "E-obrazovanje V D6,D7,D15 18:15-20:00 50"
             }
         ],
         "Četvrtak": [
@@ -10273,6 +10330,30 @@
     "D7": {
         "Ponedeljak": [
             {
+                "predmet": "Big data infrastruktura i servisi",
+                "tip": "P",
+                "grupe": [
+                    "D6",
+                    "D7"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "06",
+                "string": "Big data infrastruktura i servisi P D6,D7 08:15-10:00 06"
+            },
+            {
+                "predmet": "Big data infrastruktura i servisi",
+                "tip": "V",
+                "grupe": [
+                    "D6",
+                    "D7"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "06",
+                "string": "Big data infrastruktura i servisi V D6,D7 10:15-12:00 06"
+            },
+            {
                 "predmet": "Pravo i etika obrade podataka",
                 "tip": "P",
                 "grupe": [
@@ -10334,8 +10415,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -10354,8 +10435,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -10372,12 +10453,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -10502,39 +10587,6 @@
                 "string": "Napredne .NET tehnologije V D4,D5,D6,D7 10:15-12:00 50"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "P",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "60",
-                "string": "E-obrazovanje P D6,D7,D15 12:15-14:00 60"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -10575,39 +10627,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "V",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "60",
-                "string": "E-obrazovanje V D6,D7,D15 14:15-16:00 60"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -10646,6 +10665,72 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "P",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "50",
+                "string": "E-obrazovanje P D6,D7,D15 16:15-18:00 50"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
+            },
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "V",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "50",
+                "string": "E-obrazovanje V D6,D7,D15 18:15-20:00 50"
             }
         ],
         "Četvrtak": [
@@ -10819,8 +10904,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -10839,8 +10924,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -10868,12 +10953,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -10970,24 +11059,52 @@
         ],
         "Sreda": [
             {
-                "predmet": "Dinamika organizacionih sistema",
+                "predmet": "Analiza procesa i Petrijeve mreže",
                 "tip": "P",
                 "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
                     "D8",
-                    "D9",
-                    "D10"
+                    "D9"
                 ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "19",
+                "string": "Analiza procesa i Petrijeve mreže P D8,D9 08:15-10:00 19"
+            },
+            {
+                "predmet": "Meko racunanje",
+                "tip": "P",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "06",
+                "string": "Meko racunanje P D8,D9 08:15-10:00 06"
+            },
+            {
+                "predmet": "Analiza procesa i Petrijeve mreže",
+                "tip": "V",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "19",
+                "string": "Analiza procesa i Petrijeve mreže V D8,D9 10:15-12:00 19"
+            },
+            {
+                "predmet": "Meko racunanje",
+                "tip": "V",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "06",
+                "string": "Meko racunanje V D8,D9 10:15-12:00 06"
             },
             {
                 "predmet": "Internet marketing i društveni mediji",
@@ -11030,26 +11147,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -11088,6 +11185,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -11301,8 +11438,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -11321,8 +11458,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -11339,12 +11476,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -11441,24 +11582,52 @@
         ],
         "Sreda": [
             {
-                "predmet": "Dinamika organizacionih sistema",
+                "predmet": "Analiza procesa i Petrijeve mreže",
                 "tip": "P",
                 "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
                     "D8",
-                    "D9",
-                    "D10"
+                    "D9"
                 ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "19",
+                "string": "Analiza procesa i Petrijeve mreže P D8,D9 08:15-10:00 19"
+            },
+            {
+                "predmet": "Meko racunanje",
+                "tip": "P",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "06",
+                "string": "Meko racunanje P D8,D9 08:15-10:00 06"
+            },
+            {
+                "predmet": "Analiza procesa i Petrijeve mreže",
+                "tip": "V",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "19",
+                "string": "Analiza procesa i Petrijeve mreže V D8,D9 10:15-12:00 19"
+            },
+            {
+                "predmet": "Meko racunanje",
+                "tip": "V",
+                "grupe": [
+                    "D8",
+                    "D9"
+                ],
+                "od": "10:15",
+                "do": "12:00",
+                "sala": "06",
+                "string": "Meko racunanje V D8,D9 10:15-12:00 06"
             },
             {
                 "predmet": "Internet marketing i društveni mediji",
@@ -11501,26 +11670,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -11559,6 +11708,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -11769,8 +11958,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 1",
-                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
+                "sala": "Amfiteatar 2",
+                "string": "Menadžment ljudskih resursa P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
             },
             {
                 "predmet": "Osnove kvaliteta",
@@ -11789,8 +11978,8 @@
                 ],
                 "od": "16:15",
                 "do": "18:00",
-                "sala": "Amfiteatar 2",
-                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 2"
+                "sala": "Amfiteatar 1",
+                "string": "Osnove kvaliteta P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 Amfiteatar 1"
             }
         ],
         "Utorak": [
@@ -11819,12 +12008,16 @@
                     "D7",
                     "D8",
                     "D9",
-                    "D10"
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
                 ],
                 "od": "08:15",
                 "do": "10:00",
                 "sala": "21",
-                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 08:15-10:00 21"
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
             },
             {
                 "predmet": "Multimediji",
@@ -11931,26 +12124,6 @@
                 "string": "Alati za izveštavanje i vizuelizaciju podataka V D10 10:15-12:00 40"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "P",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "P",
                 "grupe": [
@@ -11991,26 +12164,6 @@
                 "string": "Softverski paterni V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 12:15-14:00 61"
             },
             {
-                "predmet": "Dinamika organizacionih sistema",
-                "tip": "V",
-                "grupe": [
-                    "D1",
-                    "D2",
-                    "D3",
-                    "D4",
-                    "D5",
-                    "D6",
-                    "D7",
-                    "D8",
-                    "D9",
-                    "D10"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "11",
-                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 11"
-            },
-            {
                 "predmet": "Internet marketing i društveni mediji",
                 "tip": "V",
                 "grupe": [
@@ -12049,6 +12202,46 @@
                 "do": "16:00",
                 "sala": "61",
                 "string": "Softverski paterni P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 14:15-16:00 61"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 16:15-18:00 11"
+            },
+            {
+                "predmet": "Dinamika organizacionih sistema",
+                "tip": "V",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "11",
+                "string": "Dinamika organizacionih sistema V D1,D2,D3,D4,D5,D6,D7,D8,D9,D10 18:15-20:00 11"
             }
         ],
         "Četvrtak": [
@@ -12181,6 +12374,30 @@
         ],
         "Utorak": [
             {
+                "predmet": "Teorija odlučivanja",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "21",
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
+            },
+            {
                 "predmet": "Bankarski menadžment",
                 "tip": "P",
                 "grupe": [
@@ -12241,20 +12458,6 @@
         ],
         "Petak": [
             {
-                "predmet": "Teorija odlučivanja",
-                "tip": "P",
-                "grupe": [
-                    "D11",
-                    "D13",
-                    "D17",
-                    "D19"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "Amfiteatar 3",
-                "string": "Teorija odlučivanja P D11,D13,D17,D19 08:15-10:00 Amfiteatar 3"
-            },
-            {
                 "predmet": "Bankarski menadžment",
                 "tip": "V",
                 "grupe": [
@@ -12294,6 +12497,30 @@
     },
     "D13": {
         "Utorak": [
+            {
+                "predmet": "Teorija odlučivanja",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "21",
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
+            },
             {
                 "predmet": "Upravljački sistemi",
                 "tip": "V",
@@ -12368,20 +12595,6 @@
             }
         ],
         "Petak": [
-            {
-                "predmet": "Teorija odlučivanja",
-                "tip": "P",
-                "grupe": [
-                    "D11",
-                    "D13",
-                    "D17",
-                    "D19"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "Amfiteatar 3",
-                "string": "Teorija odlučivanja P D11,D13,D17,D19 08:15-10:00 Amfiteatar 3"
-            },
             {
                 "predmet": "Projektovanje proizvodnih i uslužnih sistema",
                 "tip": "P",
@@ -12510,6 +12723,50 @@
                 "string": "Lean logistika P C19,D15 14:15-16:00 Čitaonica"
             }
         ],
+        "Sreda": [
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "P",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "50",
+                "string": "E-obrazovanje P D6,D7,D15 16:15-18:00 50"
+            },
+            {
+                "predmet": "Elektronsko poslovanje (NA)",
+                "tip": "P",
+                "grupe": [
+                    "C11",
+                    "C17",
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "Amfiteatar 5",
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
+            },
+            {
+                "predmet": "E-obrazovanje",
+                "tip": "V",
+                "grupe": [
+                    "D6",
+                    "D7",
+                    "D15"
+                ],
+                "od": "18:15",
+                "do": "20:00",
+                "sala": "50",
+                "string": "E-obrazovanje V D6,D7,D15 18:15-20:00 50"
+            }
+        ],
         "Četvrtak": [
             {
                 "predmet": "Sistem menadžmenta zdravlja i bezbednosti na radu i životne sredine",
@@ -12556,52 +12813,35 @@
                 "do": "18:00",
                 "sala": "61/60",
                 "string": "Elektronsko poslovanje (NA) V C18,D15 16:15-18:00 61/60"
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "P",
-                "grupe": [
-                    "D15",
-                    "D21",
-                    "D22"
-                ],
-                "od": "18:15",
-                "do": "20:00",
-                "sala": "Amfiteatar 3",
-                "string": "Elektronsko poslovanje (NA) P D15,D21,D22 18:15-20:00 Amfiteatar 3"
-            }
-        ],
-        "Sreda": [
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "P",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "12:15",
-                "do": "14:00",
-                "sala": "60",
-                "string": "E-obrazovanje P D6,D7,D15 12:15-14:00 60"
-            },
-            {
-                "predmet": "E-obrazovanje",
-                "tip": "V",
-                "grupe": [
-                    "D6",
-                    "D7",
-                    "D15"
-                ],
-                "od": "14:15",
-                "do": "16:00",
-                "sala": "60",
-                "string": "E-obrazovanje V D6,D7,D15 14:15-16:00 60"
             }
         ]
     },
     "D17": {
         "Utorak": [
+            {
+                "predmet": "Teorija odlučivanja",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "21",
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
+            },
             {
                 "predmet": "Projektovanje organizacije",
                 "tip": "V",
@@ -12699,20 +12939,6 @@
         ],
         "Petak": [
             {
-                "predmet": "Teorija odlučivanja",
-                "tip": "P",
-                "grupe": [
-                    "D11",
-                    "D13",
-                    "D17",
-                    "D19"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "Amfiteatar 3",
-                "string": "Teorija odlučivanja P D11,D13,D17,D19 08:15-10:00 Amfiteatar 3"
-            },
-            {
                 "predmet": "Projektovanje organizacije",
                 "tip": "P",
                 "grupe": [
@@ -12737,8 +12963,8 @@
                 ],
                 "od": "10:15",
                 "do": "12:00",
-                "sala": "Čitaonica",
-                "string": "Tehnološko preduzetništvo P D19 10:15-12:00 Čitaonica"
+                "sala": "18",
+                "string": "Tehnološko preduzetništvo P D19 10:15-12:00 18"
             },
             {
                 "predmet": "Tehnološko preduzetništvo",
@@ -12748,8 +12974,8 @@
                 ],
                 "od": "12:15",
                 "do": "14:00",
-                "sala": "Čitaonica",
-                "string": "Tehnološko preduzetništvo V D19 12:15-14:00 Čitaonica"
+                "sala": "18",
+                "string": "Tehnološko preduzetništvo V D19 12:15-14:00 18"
             },
             {
                 "predmet": "Korporativne komunikacije",
@@ -12769,6 +12995,30 @@
             }
         ],
         "Utorak": [
+            {
+                "predmet": "Teorija odlučivanja",
+                "tip": "P",
+                "grupe": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6",
+                    "D7",
+                    "D8",
+                    "D9",
+                    "D10",
+                    "D11",
+                    "D13",
+                    "D17",
+                    "D19"
+                ],
+                "od": "08:15",
+                "do": "10:00",
+                "sala": "21",
+                "string": "Teorija odlučivanja P D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D13,D17,D19 08:15-10:00 21"
+            },
             {
                 "predmet": "Računarski integrisana proizvodnja",
                 "tip": "P",
@@ -12836,20 +13086,6 @@
             }
         ],
         "Petak": [
-            {
-                "predmet": "Teorija odlučivanja",
-                "tip": "P",
-                "grupe": [
-                    "D11",
-                    "D13",
-                    "D17",
-                    "D19"
-                ],
-                "od": "08:15",
-                "do": "10:00",
-                "sala": "Amfiteatar 3",
-                "string": "Teorija odlučivanja P D11,D13,D17,D19 08:15-10:00 Amfiteatar 3"
-            },
             {
                 "predmet": "Projektovanje proizvodnih i uslužnih sistema",
                 "tip": "P",
@@ -12938,6 +13174,24 @@
                 "string": "Upravljački sistemi V D21,D22 14:15-16:00 62"
             }
         ],
+        "Sreda": [
+            {
+                "predmet": "Elektronsko poslovanje (NA)",
+                "tip": "P",
+                "grupe": [
+                    "C11",
+                    "C17",
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "Amfiteatar 5",
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
+            }
+        ],
         "Ponedeljak": [
             {
                 "predmet": "Elektronsko poslovanje (NA)",
@@ -13021,19 +13275,6 @@
                 "do": "16:00",
                 "sala": "Amfiteatar 4",
                 "string": "Upravljanje inovacionim projektima P D21,D22 14:15-16:00 Amfiteatar 4"
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "P",
-                "grupe": [
-                    "D15",
-                    "D21",
-                    "D22"
-                ],
-                "od": "18:15",
-                "do": "20:00",
-                "sala": "Amfiteatar 3",
-                "string": "Elektronsko poslovanje (NA) P D15,D21,D22 18:15-20:00 Amfiteatar 3"
             }
         ],
         "Petak": [
@@ -13128,6 +13369,24 @@
                 "string": "Softverska podrška upravljanju projektima P D22 18:15-20:00 62"
             }
         ],
+        "Sreda": [
+            {
+                "predmet": "Elektronsko poslovanje (NA)",
+                "tip": "P",
+                "grupe": [
+                    "C11",
+                    "C17",
+                    "C18",
+                    "D15",
+                    "D21",
+                    "D22"
+                ],
+                "od": "16:15",
+                "do": "18:00",
+                "sala": "Amfiteatar 5",
+                "string": "Elektronsko poslovanje (NA) P C11,C17,C18,D15,D21,D22 16:15-18:00 Amfiteatar 5"
+            }
+        ],
         "Ponedeljak": [
             {
                 "predmet": "Elektronsko poslovanje (NA)",
@@ -13211,19 +13470,6 @@
                 "do": "18:00",
                 "sala": "62",
                 "string": "Upravljanje inovacionim projektima V D22 16:15-18:00 62"
-            },
-            {
-                "predmet": "Elektronsko poslovanje (NA)",
-                "tip": "P",
-                "grupe": [
-                    "D15",
-                    "D21",
-                    "D22"
-                ],
-                "od": "18:15",
-                "do": "20:00",
-                "sala": "Amfiteatar 3",
-                "string": "Elektronsko poslovanje (NA) P D15,D21,D22 18:15-20:00 Amfiteatar 3"
             }
         ],
         "Petak": [
